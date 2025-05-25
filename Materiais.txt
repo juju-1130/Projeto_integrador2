@@ -1,0 +1,18 @@
+﻿Julia Sperb Schmidt - Info 4
+
+
+Coleta de templates para projeto integrador
+
+
+
+
+
+
+* Modelo para base do projeto:
+   * https://startbootstrap.com/previews/freelancer#google_vignette
+* Localização do maps e projects:
+   * https://themewagon.github.io/UpConstruction/contact.html#
+* Barra para colocação de marcas que trabalhamos e vídeo do youtube(possivelmente):
+   * https://themewagon.github.io/Impact/#services
+* Carrossel de imagens:
+   * https://themewagon.github.io/Industrio/

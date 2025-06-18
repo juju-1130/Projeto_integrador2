@@ -11044,3 +11044,20 @@ html {
 .copyright {
   background-color: #1a252f;
 }
+
+.logo-container {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.brand-logo {
+  max-width: 100px;
+  max-height: 60px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}

@@ -34,7 +34,7 @@
   --bs-gray-700: #495057;
   --bs-gray-800: #343a40;
   --bs-gray-900: #212529;
-  --bs-primary: #1abc9c;
+  --bs-primary: #578eca;
   --bs-secondary: #2c3e50;
   --bs-success: #198754;
   --bs-info: #0dcaf0;
@@ -11106,23 +11106,150 @@ html {
     max-width: 100px;
   }
 
-/* Logo Responsiva */
 .logo-resposivo {
-    max-height: 50px; /* Altura máxima (ajuste conforme necessário) */
-    width: auto; /* Largura automática para manter proporção */
-    transition: all 0.3s ease; /* Efeito suave ao redimensionar */
+  max-height: 40px !important; /* força a altura máxima */
+  height: auto !important;
+  width: auto !important;
+  object-fit: contain;
+  padding: 2px 0;
 }
 
-/* Ajustes para telas menores */
-@media (max-width: 992px) {
-    .logo-resposivo {
-        max-height: 40px; /* Reduz um pouco em tablets */
+
+/* Ajuste para telas pequenas (celulares) */
+@media (max-width: 768px) {
+  .logo-resposivo {
+    max-height: 40px;
+  }
+}
+
+/* Ajuste para telas médias (tablets) */
+@media (min-width: 769px) and (max-width: 991px) {
+  .logo-resposivo {
+    max-height: 50px;
+  }
+}
+
+/* Ajuste para telas grandes (desktops) */
+@media (min-width: 992px) {
+  .logo-resposivo {
+    max-height: 60px;
+  }
+}
+
+
+/* Estilos para a seção Local */
+.mapa-responsivo {
+    width: 100%;
+    height: 350px;
+    border: 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.foto-local {
+    max-height: 350px;
+    width: 100%;
+    object-fit: cover;
+}
+
+/* Ajustes para mobile */
+@media (max-width: 768px) {
+    .mapa-responsivo, 
+    .foto-local {
+        height: 250px;
     }
+}
+
+/* Estilos para projetos - igualando à seção Sobre */
+.projeto-img {
+    max-height: 250px; /* Imagens menores */
+    width: 100%;
+    object-fit: cover;
+}
+
+.projeto-texto {
+    font-size: 1rem; /* Igual à seção Sobre */
+    line-height: 1.6;
+    color: var(--bs-body-color);
+}
+
+.projeto-texto h3 {
+    color: var(--bs-primary);
+    font-size: 1.1rem;
+}
+
+/* Ajustes para mobile */
+@media (max-width: 768px) {
+    .projeto-img {
+        max-height: 200px;
+        margin-bottom: 1rem;
+    }
+    
+    .projeto-texto {
+        padding-top: 1rem;
+    }
+    
+    .order-md-1 {
+        order: 1;
+    }
+    
+    .order-md-2 {
+        order: 2;
+    }
+}
+
+/* Estilos para a seção Sobre nós */
+#about .page-section-heading {
+    margin-bottom: 2rem !important; /* Espaço maior abaixo do título */
+}
+
+#about .about-text {
+    font-size: 1rem; /* Tamanho menor que o lead (1.25rem) */
+    line-height: 1.6;
+    max-width: 100%;
+}
+
+/* Estilos para a seção Onde Estamos */
+.local .card {
+    transition: transform 0.3s ease;
+}
+
+.local .card:hover {
+    transform: translateY(-5px);
+}
+
+.local iframe {
+    min-height: 300px;
 }
 
 @media (max-width: 768px) {
-    .logo-resposivo {
-        max-height: 30px; /* Tamanho menor para mobile */
+    .local .row {
+        flex-direction: column-reverse;
     }
+    
+    .local iframe {
+        height: 250px;
+    }
+}
+
+/* Estilo para a seção de orçamento */
+#orcamento {
+    background-color: #f8f9fa;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+/* Estilo para a tabela de consumo */
+#orcamento table {
+    background-color: white;
+}
+
+#orcamento th {
+    font-weight: 600;
+}
+
+/* Espaçamento entre linhas da tabela */
+#orcamento tbody tr {
+    height: 50px;
 }
 }

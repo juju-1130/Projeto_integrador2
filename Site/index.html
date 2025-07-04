@@ -36,8 +36,9 @@
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-primary " href="#contact">Fale Conosco</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-primary" href="#orcamento">Orçamento</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-primary" href="#project">Projetos</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded bg-primary" href="#login">Login/Cadastre-se</a></li>
-
+                        <li class="nav-item mx-0 mx-lg-1">
+                        <a class="nav-link py-3 px-0 px-lg-3 rounded bg-primary text-white" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login/Cadastre-se</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -273,32 +274,133 @@
         <!-- Footer-->
         <footer class="footer text-center bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="#page-top">
-                    <img 
-                        src="images/MKLOGO.png" 
-                        alt="MK Energia Solar" 
-                        class="img-fluid logo-resposivo">
-                </a>
-                <div class="row">
-                    <!-- Footer Social Icons-->
-                    <div class="col-lg-4 mb-5 mb-lg-0">
-                        <h4 class="text-uppercase mb-4">Around the Web</h4>
-                        <a class="btn btn-outline-light btn-social mx-1" href="#https://www.facebook.com/MKferragenseEletrica?locale=pt_BR!"><i class="fab fa-fw fa-facebook-f"></i></a>
-                        <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-linkedin-in"></i></a>
-                        <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-dribbble"></i></a>
-                    </div>
-                    <!-- Footer About Text-->
-                    <div class="col-lg-4">
-                        <h4 class="text-uppercase mb-4">About Freelancer</h4>
-                        <p class="lead mb-0">
-                            Freelance is a free to use, MIT licensed Bootstrap theme created by
-                            <a href="http://startbootstrap.com">Start Bootstrap</a>
-                            .
-                        </p>
+                <div class="row justify-content-center mb-4">
+                    <div class="col-auto">
+                        <a class="navbar-brand" href="#page-top">
+                            <img 
+                                src="images/MKLOGO.png" 
+                                alt="MK Energia Solar" 
+                                class="img-fluid logo-resposivo">
+                        </a>
+                        <div class="row">
+                            <!-- Redes Sociais-->
+                            <div class="col-lg-4 mb-5 mb-lg-0">
+                                <h4 class="text-uppercase mb-4">Nos siga nas redes sociais</h4>
+                                <a class="btn btn-outline-light btn-social mx-1" href="#https://www.facebook.com/MKferragenseEletrica?locale=pt_BR!"><i class="fab fa-fw fa-facebook-f"></i></a>
+                                <a class="btn btn-outline-light btn-social mx-1" href="#"><i class="fab fa-fw fa-linkedin-in"></i></a>
+                                <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-dribbble"></i></a>
+                            </div>
+                            <!-- Contato-->
+                            <div class="col-lg-4"></div>
+
+                            <div class="col-lg-4 text-lg-end">
+                                <h4 class="text-uppercase mb-4">Contato</h4>
+                                <div class="p-4">
+                                    <div class="d-flex mb-3 justify-content-lg-end">
+                                        <div class="flex-shrink-0 text-primary">
+                                            <i class="fas fa-map-marker-alt fs-4"></i>
+                                            </div>
+                                                <div class="ms-3">
+                                                    <h5 class="mb-0">Endereço</h5>
+                                                    <p class="mb-0">Av. Tenente Pedro Von Muhlen, 609 - Centro, Rolante - RS</p>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex justify-content-lg-end">
+                                                <div class="flex-shrink-0 text-primary">
+                                                    <i class="fas fa-phone-alt fs-4"></i>
+                                                </div>
+                                                <div class="ms-3 text-start">
+                                                    <h5 class="mb-0">Telefone</h5>
+                                                    <p class="mb-0">(51) 99822 4220</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </footer>
+        <!-- Modal Login/Cadastro -->
+        <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="loginModalLabel">Acesse sua conta</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs nav-justified mb-4" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login" type="button" role="tab" aria-controls="login" aria-selected="true">Login</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="cadastro-tab" data-bs-toggle="tab" data-bs-target="#cadastro" type="button" role="tab" aria-controls="cadastro" aria-selected="false">Cadastre-se</button>
+                            </li>
+                        </ul>
+                        
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <!-- Login Tab -->
+                            <div class="tab-pane active" id="login" role="tabpanel" aria-labelledby="login-tab">
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="loginEmail" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="loginEmail" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="loginSenha" class="form-label">Senha</label>
+                                        <input type="password" class="form-control" id="loginSenha" required>
+                                    </div>
+                                    <div class="mb-3 form-check">
+                                        <input type="checkbox" class="form-check-input" id="lembrarLogin">
+                                        <label class="form-check-label" for="lembrarLogin">Lembrar de mim</label>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary w-100">Entrar</button>
+                                </form>
+                                <div class="text-center mt-3">
+                                    <a href="#!" class="text-decoration-none">Esqueci minha senha</a>
+                                </div>
+                            </div>
+                            
+                            <!-- Cadastro Tab -->
+                            <div class="tab-pane" id="cadastro" role="tabpanel" aria-labelledby="cadastro-tab">
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="cadastroNome" class="form-label">Nome Completo</label>
+                                        <input type="text" class="form-control" id="cadastroNome" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="cadastroEmail" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="cadastroEmail" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="cadastroTelefone" class="form-label">Telefone</label>
+                                        <input type="tel" class="form-control" id="cadastroTelefone" placeholder="(51) 99999-9999" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="cadastroSenha" class="form-label">Senha</label>
+                                        <input type="password" class="form-control" id="cadastroSenha" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="confirmarSenha" class="form-label">Confirmar Senha</label>
+                                        <input type="password" class="form-control" id="confirmarSenha" required>
+                                    </div>
+                                    <div class="mb-3 form-check">
+                                        <input type="checkbox" class="form-check-input" id="aceitarTermos" required>
+                                        <label class="form-check-label" for="aceitarTermos">Eu aceito os <a href="#!" class="text-decoration-none">Termos de Serviço</a></label>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary w-100">Cadastrar</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

@@ -362,7 +362,7 @@
                                     <button type="submit" class="btn btn-primary w-100">Entrar</button>
                                 </form>
                                 <div class="text-center mt-3">
-                                    <a href="#!" class="text-decoration-none">Esqueci minha senha</a>
+                                    <a href="#" class="text-decoration-none" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#esqueciSenhaModal">Esqueci minha senha</a>
                                 </div>
                             </div>
                             
@@ -396,6 +396,38 @@
                                     <button type="submit" class="btn btn-primary w-100">Cadastrar</button>
                                 </form>
                             </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Esqueci a Senha (Apenas visual) -->
+        <div class="modal fade" id="esqueciSenhaModal" tabindex="-1" aria-labelledby="esqueciSenhaModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="esqueciSenhaModalLabel">Recuperar Senha</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="usuarioRecuperacao" class="form-label">Usuário</label>
+                                <input type="text" class="form-control" id="usuarioRecuperacao" placeholder="Digite seu nome de usuário">
+                            </div>
+                            <div class="mb-3">
+                                <label for="emailRecuperacao" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="emailRecuperacao" placeholder="Digite o email cadastrado">
+                            </div>
+                            <button type="button" class="btn btn-primary w-100" disabled>
+                                Enviar Código de Verificação
+                            </button>
+                        </form>
+                        <div class="text-center mt-3">
+                            <a href="#" class="text-decoration-none" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#loginModal">
+                                <i class="fas fa-arrow-left me-2"></i>Voltar para Login
+                            </a>
                         </div>
                     </div>
                 </div>

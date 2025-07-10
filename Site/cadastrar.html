@@ -33,11 +33,10 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-primary " href="#contact">Fale Conosco</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-primary " href="#contato">Fale Conosco</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-primary" href="#orcamento">Orçamento</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-primary" href="#project">Projetos</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded bg-primary" href="#login">Login/Cadastre-se</a></li>
-
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded bg-primary" href="#" id="toggleEditMode">Editar projetos</a>
+</li>
                     </ul>
                 </div>
             </div>
@@ -45,46 +44,6 @@
         <!-- Masthead-->
         <header>
 
-        <!-- Botão para abrir o modal -->
-        <button class="abrir-modal">Login</button>
-
-        <!-- O modal -->
-        <div id="modalLogin" class="modal">
-            <div class="modal-conteudo">
-                <span class="fechar">&times;</span>
-                
-                <section class="login">
-                    <h2>LOGIN</h2>
-                    <form id="formLogin">
-                        <!-- Email -->
-                        <div class="campo">
-                            <label for="login-email">Email*</label>
-                            <input type="email" id="login-email" required>
-                        </div>
-
-                        <!-- Senha -->
-                        <div class="campo">
-                            <label for="login-senha">Senha*</label>
-                            <input type="password" id="login-senha" required>
-                        </div>
-
-                        <!-- Lembrar de mim -->
-                        <div class="lembrar">
-                            <input type="checkbox" id="lembrar">
-                            <label for="lembrar">Lembrar de mim</label>
-                        </div>
-
-                        <!-- Botão -->
-                        <button type="submit">Entrar</button>
-                        
-                        <!-- Link para cadastro -->
-                        <div class="link-cadastro">
-                            <p>Não tem uma conta? <a href="#" id="linkCadastro">Cadastre-se</a></p>
-                        </div>
-                    </form>
-                </section>
-            </div>
-        </div>
         <section class="page-section projects" id="projects" style="margin-top: 80px;">
             <div class="container">
                 <h2 class="page-section-heading text-uppercase text-primary d-inline-block mb-5">
@@ -299,6 +258,51 @@
                 </div>
             </div>
         </footer>
+        <!-- Modal de Edição -->
+        <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content p-3">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Editar Projeto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                <div class="mb-3">
+                    <label class="form-label">Cidade</label>
+                    <input type="text" class="form-control" name="cidade">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Placas</label>
+                    <input type="text" class="form-control" name="placas">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Inversor</label>
+                    <input type="text" class="form-control" name="inversor">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Economia</label>
+                    <input type="text" class="form-control" name="economia">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Conclusão</label>
+                    <input type="text" class="form-control" name="conclusao">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Imagem</label>
+                    <input type="file" class="form-control" name="imagem">
+                </div>
+                </form>
+                <button type="submit" class="btn btn-primary w-100">Salvar Alterações</button>
+            </div>
+            </div>
+        </div>
+        </div>
+        <div class="project-card" style="height:200px; background:#eee; margin-bottom:20px;">
+            <input type="checkbox" class="project-checkbox" checked>
+        </div>
+
+
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

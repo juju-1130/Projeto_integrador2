@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>MK Energia Solar</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg bg-white text-uppercase fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand" href="#page-top">
+                    <img 
+                        src="images/MKLOGO.png" 
+                        alt="MK Energia Solar" 
+                        class="img-fluid logo-resposivo">
+                </a>
+                <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-primary " href="#contact">Fale Conosco</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-primary" href="#orcamento">Orçamento</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-primary" href="#project">Projetos</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!--Seção bem vindo-->
+        <section class="page-section bg-primary text-white mb-0" id="">
+            <div class="container">
+                <h3 class="page-section-heading text-primary text-uppercase text-white">Atributos do orçamento</h3>
+            </div>
+        </section>
+        <!-- Masthead-->
+        <header>
+
+        <div class="container">
+            <h2 class="mb-4">Atributos do Orçamento</h2>
+            <table class="table table-bordered">
+            <tbody>
+                <tr><td>Tipos de telhado</td><td><button class="btn btn-sm btn-outline-primary" onclick="abrirModal('Tipos de telhado')">Editar</button></td></tr>
+                <tr><td>Tipos de fase</td><td><button class="btn btn-sm btn-outline-primary" onclick="abrirModal('Tipos de fase')">Editar</button></td></tr>
+                <tr><td>Concessionárias</td><td><button class="btn btn-sm btn-outline-primary" onclick="abrirModal('Concessionárias')">Editar</button></td></tr>
+                <tr><td>Modelos de placas</td><td><button class="btn btn-sm btn-outline-primary" onclick="abrirModal('Modelos de placas')">Editar</button></td></tr>
+                <tr><td>Inversores</td><td><button class="btn btn-sm btn-outline-primary" onclick="abrirModal('Inversores')">Editar</button></td></tr>
+                <tr><td>Kit solares</td><td><button class="btn btn-sm btn-outline-primary" onclick="abrirModal('Kit solares')">Editar</button></td></tr>
+                <tr><td>Vendedores</td><td><button class="btn btn-sm btn-outline-primary" onclick="abrirModal('Vendedores')">Editar</button></td></tr>
+                <tr><td>Projetos</td><td><button class="btn btn-sm btn-outline-primary" onclick="abrirModal('Projetos')">Editar</button></td></tr>
+            </tbody>
+            </table>
+        </div>
+
+        <!-- Modal para Tipos de Telhado -->
+        <div class="modal fade" id="modalTelhado" tabindex="-1" aria-labelledby="modalTelhadoLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title" id="modalTelhadoLabel">Tipos de Telhado</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Formulário para adicionar novo tipo -->
+                        <form id="formTelhado" class="mb-4">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="telhadoNome" class="form-label">Nome do Telhado</label>
+                                    <input type="text" class="form-control" id="telhadoNome" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="telhadoImagem" class="form-label">Imagem do Telhado</label>
+                                    <input class="form-control" type="file" id="telhadoImagem" accept="image/*">
+                                </div>
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary">Adicionar Telhado</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal para Tipos de Fase -->
+        <div class="modal fade" id="modalFase" tabindex="-1" aria-labelledby="modalFaseLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title" id="modalFaseLabel">Tipos de fase</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Formulário para adicionar novo tipo -->
+                        <form id="formFase" class="mb-4">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="faseTipo" class="form-label">Tipos de fase</label>
+                                    <input type="text" class="form-control" id="faseTipo" required>
+                                </div>
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary">Adicionar Fase</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal para Concessionárias -->
+        <div class="modal fade" id="modalConcessionaria" tabindex="-1" aria-labelledby="modalConcessionariaLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title" id="modalConcessionariaLabel">Concessionárias</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Formulário para adicionar novo tipo -->
+                        <form id="formConcessionaria" class="mb-4">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="ConcessionariaTipo" class="form-label">Concessionárias</label>
+                                    <input type="text" class="form-control" id="ConcessionariaTipo" required>
+                                </div>
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary">Adicionar Concessionária</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal para Modelo de Placas -->
+        <div class="modal fade" id="modalPlacas" tabindex="-1" aria-labelledby="modalPlacasLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title" id="modalPlacasLabel">Modelos de placas</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Formulário para adicionar novo tipo -->
+                        <form id="formPlacas" class="mb-4">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="MarcaPLacas" class="form-label">Marca</label>
+                                    <input type="text" class="form-control" id="marcaPlacas" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="PotenciaPlacas" class="form-label">Potência</label>
+                                    <input type="text" class="form-control" id="potenciaPlacas" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="ValorPlacas" class="form-label">Valor</label>
+                                    <input type="text" class="form-control" id="valorPlacas" required>
+                                </div>
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary">Adicionar modelo de placas</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer-->
+        <footer class="footer text-center bg-primary">
+            <div class="container">
+                <div class="row justify-content-center mb-4">
+                    <div class="col-auto">
+                        <a class="navbar-brand" href="#page-top">
+                            <img 
+                                src="images/MKLOGO.png" 
+                                alt="MK Energia Solar" 
+                                class="img-fluid logo-resposivo">
+                        </a>
+                        <div class="row">
+                            <!-- Redes Sociais-->
+                            <div class="col-lg-4 mb-5 mb-lg-0">
+                                <h4 class="text-uppercase mb-4">Nos siga nas redes sociais</h4>
+                                <a class="btn btn-outline-light btn-social mx-1" href="#https://www.facebook.com/MKferragenseEletrica?locale=pt_BR!"><i class="fab fa-fw fa-facebook-f"></i></a>
+                                <a class="btn btn-outline-light btn-social mx-1" href="#"><i class="fab fa-fw fa-linkedin-in"></i></a>
+                                <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-dribbble"></i></a>
+                            </div>
+                            <!-- Contato-->
+                            <div class="col-lg-4"></div>
+
+                            <div class="col-lg-4 text-lg-end">
+                                <h4 class="text-uppercase mb-4">Contato</h4>
+                                <div class="p-4">
+                                    <div class="d-flex mb-3 justify-content-lg-end">
+                                        <div class="flex-shrink-0 text-primary">
+                                            <i class="fas fa-map-marker-alt fs-4"></i>
+                                            </div>
+                                                <div class="ms-3">
+                                                    <h5 class="mb-0">Endereço</h5>
+                                                    <p class="mb-0">Av. Tenente Pedro Von Muhlen, 609 - Centro, Rolante - RS</p>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex justify-content-lg-end">
+                                                <div class="flex-shrink-0 text-primary">
+                                                    <i class="fas fa-phone-alt fs-4"></i>
+                                                </div>
+                                                <div class="ms-3 text-start">
+                                                    <h5 class="mb-0">Telefone</h5>
+                                                    <p class="mb-0">(51) 99822 4220</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <script>
+            function abrirModal(item) {
+                if (item === 'Tipos de telhado') {
+                    // Abre o modal específico para Tipos de Telhado
+                    var modalTelhado = new bootstrap.Modal(document.getElementById('modalTelhado'));
+                    modalTelhado.show();
+                }if (item === 'Tipos de fase') {
+                    // Abre o modal específico para Tipos de Fase
+                    var modalFase = new bootstrap.Modal(document.getElementById('modalFase'));
+                    modalFase.show();
+                }if (item === 'Concessionárias') {
+                    // Abre o modal específico para Concessionarias
+                    var modalConcessionaria = new bootstrap.Modal(document.getElementById('modalConcessionaria'));
+                    modalConcessionaria.show();
+                }if (item === 'Modelos de placas') {
+                    // Abre o modal específico para Placas
+                    var modalPlacas = new bootstrap.Modal(document.getElementById('modalPlacas'));
+                    modalPlacas.show();
+                } else {
+                    // Abre o modal genérico de edição
+                    document.getElementById('modalTitulo').textContent = 'Editar ' + item;
+                    var modalGenerico = new bootstrap.Modal(document.getElementById('modalEditar'));
+                    modalGenerico.show();
+                }
+            }
+        </script>
+
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
+</html>

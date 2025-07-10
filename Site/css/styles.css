@@ -11070,6 +11070,7 @@ html {
   }
 }
 
+/*seção marcas*/
 .marcas {
   padding: 60px 20px;
   background-color: #ffffff;
@@ -11137,7 +11138,7 @@ html {
 }
 
 
-/* Estilos para a seção Local */
+/* seção local */
 .mapa-responsivo {
     width: 100%;
     height: 350px;
@@ -11152,6 +11153,28 @@ html {
     object-fit: cover;
 }
 
+.local .card {
+    transition: transform 0.3s ease;
+}
+
+.local .card:hover {
+    transform: translateY(-5px);
+}
+
+.local iframe {
+    min-height: 300px;
+}
+
+@media (max-width: 768px) {
+    .local .row {
+        flex-direction: column-reverse;
+    }
+    
+    .local iframe {
+        height: 250px;
+    }
+}
+
 /* Ajustes para mobile */
 @media (max-width: 768px) {
     .mapa-responsivo, 
@@ -11160,15 +11183,15 @@ html {
     }
 }
 
-/* Estilos para projetos - igualando à seção Sobre */
+/*seção projetos*/
 .projeto-img {
-    max-height: 250px; /* Imagens menores */
+    max-height: 250px; 
     width: 100%;
     object-fit: cover;
 }
 
 .projeto-texto {
-    font-size: 1rem; /* Igual à seção Sobre */
+    font-size: 1rem; 
     line-height: 1.6;
     color: var(--bs-body-color);
 }
@@ -11198,7 +11221,7 @@ html {
     }
 }
 
-/* Estilos para a seção Sobre nós */
+/* seção Sobre nós */
 #about .page-section-heading {
     margin-bottom: 2rem !important; /* Espaço maior abaixo do título */
 }
@@ -11209,30 +11232,7 @@ html {
     max-width: 100%;
 }
 
-/* Estilos para a seção Onde Estamos */
-.local .card {
-    transition: transform 0.3s ease;
-}
-
-.local .card:hover {
-    transform: translateY(-5px);
-}
-
-.local iframe {
-    min-height: 300px;
-}
-
-@media (max-width: 768px) {
-    .local .row {
-        flex-direction: column-reverse;
-    }
-    
-    .local iframe {
-        height: 250px;
-    }
-}
-
-/* Estilo para a seção de orçamento */
+/* arquivo orçamento */
 #orcamento {
     background-color: #f8f9fa;
     padding-top: 3rem;
@@ -11311,7 +11311,7 @@ button:hover {
     background-color: #0056b3;
 }
 
-/* Estilos para o modal de login */
+/* Estilos para o modal de login - index*/
 #loginModal .modal-content {
     border-radius: 10px;
     border: none;
@@ -11356,5 +11356,261 @@ button:hover {
     border-color: #0d6efd;
 }
 
+/* Estilo para o modal de recuperação - index*/
+#esqueciSenhaModal .modal-content {
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+#esqueciSenhaModal .form-control {
+    padding: 12px 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+#esqueciSenhaModal .btn-primary {
+    padding: 12px;
+    border-radius: 5px;
+    font-weight: 500;
+    background-color: #0d6efd;
+    border: none;
+}
+
+#esqueciSenhaModal .btn-primary:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+}
+
+#esqueciSenhaModal .text-decoration-none {
+    color: #0d6efd;
+    transition: color 0.3s;
+}
+
+#esqueciSenhaModal .text-decoration-none:hover {
+    color: #0a58ca;
+    text-decoration: none;
+}
+
+
+/* Cadastrar.html */
+.edit-mode .select-project {
+    display: block !important;
+}
+
+/* Checkbox de seleção */
+.select-project {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 10;
+    display: none;
+}
+
+.select-project .form-check-input {
+    width: 1.5em;
+    height: 1.5em;
+    cursor: pointer;
+    border: 2px solid #0d6efd;
+}
+
+.select-project .form-check-input:checked {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+/* Modal de Edição */
+#editModal .modal-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+}
+
+#editModal .modal-title {
+    color: #0d6efd;
+    font-weight: 600;
+}
+
+#editModal .modal-footer {
+    border-top: 1px solid #dee2e6;
+}
+
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .select-project {
+        top: 10px;
+        right: 10px;
+    }
+    
+    .select-project .form-check-input {
+        width: 1.3em;
+        height: 1.3em;
+    }
+}
+
+/* Checkbox - Cadastrar */
+.project-card {
+  position: relative; 
+}
+
+.project-checkbox {
+  display: none;
+  position: absolute;
+  top: 10px;
+  right: 10px; 
+  transform: scale(1.5);
+  z-index: 10;
+}
+.edit-mode .project-checkbox {
+  display: block;
+}
+
+/* Seção Vendedores */
+.page-section {
+    padding: 6rem 0;
+}
+
+.py-5 {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+#vendedores {
+    margin-top: 80px;
+}
+
+.page-section-heading {
+    font-size: 2.25rem;
+    line-height: 2rem;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+.text-primary {
+    color: #0d6efd !important; /* Cor do tema primary do Bootstrap */
+}
+
+.d-inline-block {
+    display: inline-block;
+}
+
+.mb-5 {
+    margin-bottom: 3rem !important;
+}
+
+.position-absolute {
+    position: absolute;
+}
+
+.bottom-0 {
+    bottom: 0;
+}
+
+.start-50 {
+    left: 50%;
+}
+
+.translate-middle-x {
+    transform: translateX(-50%);
+}
+
+.bg-primary {
+    background-color: #0d6efd !important;
+}
+
+/* Estilos dos cards de vendedores */
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: 0.25rem;
+}
+
+.h-100 {
+    height: 100%;
+}
+
+.border-0 {
+    border: 0 !important;
+}
+
+.shadow-sm {
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075) !important;
+}
+
+.card-body {
+    flex: 1 1 auto;
+    padding: 1rem 1rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.p-4 {
+    padding: 1.5rem !important;
+}
+
+.rounded-circle {
+    border-radius: 50% !important;
+}
+
+.shadow {
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15) !important;
+}
+
+/* Estilos do alerta de horário */
+.alert {
+    position: relative;
+    padding: 1rem 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+}
+
+.alert-info {
+    color: #055160;
+    background-color: #cff4fc;
+    border-color: #b6effb;
+}
+
+.mt-5 {
+    margin-top: 3rem !important;
+}
+
+.d-flex {
+    display: flex !important;
+}
+
+.align-items-center {
+    align-items: center !important;
+}
+
+.fs-4 {
+    font-size: 1.5rem !important;
+}
+
+.me-3 {
+    margin-right: 1rem !important;
+}
+
+.alert-heading {
+    color: inherit;
+}
+
+.mb-1 {
+    margin-bottom: 0.25rem !important;
+}
+
+.mb-0 {
+    margin-bottom: 0 !important;
+}
 
 }

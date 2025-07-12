@@ -41,7 +41,7 @@
             </div>
         </nav>
         <!--Seção bem vindo-->
-        <section class="page-section bg-primary text-white mb-0" id="">
+        <section class="page-section bg-primary text-white mb-0" id="title">
             <div class="container">
                 <h3 class="page-section-heading text-primary text-uppercase text-white">Atributos do orçamento</h3>
             </div>
@@ -50,7 +50,6 @@
         <header>
 
         <div class="container">
-            <h2 class="mb-4">Atributos do Orçamento</h2>
             <table class="table table-bordered">
             <tbody>
                 <tr><td>Tipos de telhado</td><td><button class="btn btn-sm btn-outline-primary" onclick="abrirModal('Tipos de telhado')">Editar</button></td></tr>
@@ -177,6 +176,39 @@
                 </div>
             </div>
         </div>
+        <!-- Modal para Inversores -->
+        <div class="modal fade" id="modalInversores" tabindex="-1" aria-labelledby="modalInversoresLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title" id="modalInversoresLabel">Inversores</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Formulário para adicionar novo tipo -->
+                        <form id="formPlacas" class="mb-4">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="MarcaInversores" class="form-label">Marca</label>
+                                    <input type="text" class="form-control" id="MarcaInversores" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="PotenciaInversores" class="form-label">Potência</label>
+                                    <input type="text" class="form-control" id="PotenciaInversores" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="ValorInversores" class="form-label">Valor</label>
+                                    <input type="text" class="form-control" id="ValorInversores" required>
+                                </div>
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary">Adicionar inversor</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- Footer-->
         <footer class="footer text-center bg-primary">
             <div class="container">
@@ -247,6 +279,10 @@
                     // Abre o modal específico para Placas
                     var modalPlacas = new bootstrap.Modal(document.getElementById('modalPlacas'));
                     modalPlacas.show();
+                }if (item === 'Inversores') {
+                    // Abre o modal específico para Inversores
+                    var modalInversores = new bootstrap.Modal(document.getElementById('modalInversores'));
+                    modalInversores.show();
                 } else {
                     // Abre o modal genérico de edição
                     document.getElementById('modalTitulo').textContent = 'Editar ' + item;

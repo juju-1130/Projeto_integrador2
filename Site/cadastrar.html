@@ -33,24 +33,24 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-primary " href="#contato">Fale Conosco</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-primary" href="#orcamento">Orçamento</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded bg-primary" href="#" id="toggleEditMode">Editar projetos</a>
-</li>
+                        <button class="btn btn-primary text-uppercase py-2 px-3 me-2" data-bs-toggle="modal" data-bs-target="#newProjectModal">Novo Projeto</button>
+                        <button id="btnEditarProjeto" class="btn btn-primary text-uppercase me-2" >Editar projeto</button>
+                        <button id="btnExcluirProjeto" class="btn btn-primary text-uppercase">Excluir projeto</button>
                     </ul>
                 </div>
             </div>
         </nav>
+        <!--Seção bem vindo-->
+        <section class="page-section bg-primary text-white mb-0" id="title">
+            <div class="container">
+                <h5 class="page-section-heading text-primary text-uppercase text-white">Projetos Concluídos</h5>
+            </div>
+        </section>
         <!-- Masthead-->
         <header>
-
-        <section class="page-section projects" id="projects" style="margin-top: 80px;">
+        <!-- Seção de projetos-->
+        <section class="page-section projects" id="projects">
             <div class="container">
-                <h2 class="page-section-heading text-uppercase text-primary d-inline-block mb-5">
-                Projetos Concluídos
-                    <span class="position-absolute bottom-0 start-50 translate-middle-x bg-primary" style="width: 80px; height: 3px;"></span>
-                </h2>
-                <!-- Primeiro Projeto -->
                 <div class="project-card mb-5 p-4 rounded-3 bg-light">
                     <div class="row align-items-center g-4">
                         <div class="col-lg-5 col-md-6">
@@ -126,106 +126,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="project-card mb-5 p-4 rounded-3 bg-light">
-                    <div class="row align-items-center g-4">
-                        <div class="col-lg-5 col-md-6">
-                            <img src="images/project4.jpg" class="img-fluid rounded shadow projeto-img" alt="Sistema solar residencial">
-                        </div>
-                        <div class="col-lg-7 col-md-6">
-                            <div class="ps-lg-4">
-                                <h3 class="project-title mb-3">Sistema solar de 5,13Kwp</h3>
-                                <ul class="project-features list-unstyled">
-                                    <li class="mb-2"><i class="fas fa-map-marker-alt text-primary me-2"></i> Cidade de Rolante</li>
-                                    <li class="mb-2"><i class="fas fa-solar-panel text-primary me-2"></i> 9 módulos de 570W</li>
-                                    <li class="mb-2"><i class="fas fa-bolt text-primary me-2"></i> Inversor Chint de 5Kw</li>
-                                    <li class="mb-2"><i class="fas fa-battery-three-quarters text-primary me-2"></i> Economia: R$ 350/mês</li>
-                                </ul>
-                                <div class="project-meta mt-3 small text-muted">
-                                    <span class="me-3"><i class="far fa-calendar-alt me-1"></i> Concluído: Jan/2023</span>
-                                </div>
-                                <div class="mt-3">
-                                    <span class="badge bg-primary me-2">Residencial</span>
-                                    <span class="badge bg-success">Sustentável</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card mb-5 p-4 rounded-3 bg-light">
-                    <div class="row align-items-center g-4">
-                        <div class="col-lg-5 col-md-6">
-                            <img src="images/project5.jpg" class="img-fluid rounded shadow projeto-img" alt="Sistema solar residencial">
-                        </div>
-                        <div class="col-lg-7 col-md-6">
-                            <div class="ps-lg-4">
-                                <h3 class="project-title mb-3">Sistema solar de 5,13Kwp</h3>
-                                <ul class="project-features list-unstyled">
-                                    <li class="mb-2"><i class="fas fa-map-marker-alt text-primary me-2"></i> Cidade de Rolante</li>
-                                    <li class="mb-2"><i class="fas fa-solar-panel text-primary me-2"></i> 9 módulos de 570W</li>
-                                    <li class="mb-2"><i class="fas fa-bolt text-primary me-2"></i> Inversor Chint de 5Kw</li>
-                                    <li class="mb-2"><i class="fas fa-battery-three-quarters text-primary me-2"></i> Economia: R$ 350/mês</li>
-                                </ul>
-                                <div class="project-meta mt-3 small text-muted">
-                                    <span class="me-3"><i class="far fa-calendar-alt me-1"></i> Concluído: Jan/2023</span>
-                                </div>
-                                <div class="mt-3">
-                                    <span class="badge bg-primary me-2">Residencial</span>
-                                    <span class="badge bg-success">Sustentável</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card mb-5 p-4 rounded-3 bg-light">
-                    <div class="row align-items-center g-4">
-                        <div class="col-lg-5 col-md-6">
-                            <img src="images/project6.jpg" class="img-fluid rounded shadow projeto-img" alt="Sistema solar residencial">
-                        </div>
-                        <div class="col-lg-7 col-md-6">
-                            <div class="ps-lg-4">
-                                <h3 class="project-title mb-3">Sistema solar de 5,13Kwp</h3>
-                                <ul class="project-features list-unstyled">
-                                    <li class="mb-2"><i class="fas fa-map-marker-alt text-primary me-2"></i> Cidade de Rolante</li>
-                                    <li class="mb-2"><i class="fas fa-solar-panel text-primary me-2"></i> 9 módulos de 570W</li>
-                                    <li class="mb-2"><i class="fas fa-bolt text-primary me-2"></i> Inversor Chint de 5Kw</li>
-                                    <li class="mb-2"><i class="fas fa-battery-three-quarters text-primary me-2"></i> Economia: R$ 350/mês</li>
-                                </ul>
-                                <div class="project-meta mt-3 small text-muted">
-                                    <span class="me-3"><i class="far fa-calendar-alt me-1"></i> Concluído: Jan/2023</span>
-                                </div>
-                                <div class="mt-3">
-                                    <span class="badge bg-primary me-2">Residencial</span>
-                                    <span class="badge bg-success">Sustentável</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card mb-5 p-4 rounded-3 bg-light">
-                    <div class="row align-items-center g-4">
-                        <div class="col-lg-5 col-md-6">
-                            <img src="images/project7.jpg" class="img-fluid rounded shadow projeto-img" alt="Sistema solar residencial">
-                        </div>
-                        <div class="col-lg-7 col-md-6">
-                            <div class="ps-lg-4">
-                                <h3 class="project-title mb-3">Sistema solar de 5,13Kwp</h3>
-                                <ul class="project-features list-unstyled">
-                                    <li class="mb-2"><i class="fas fa-map-marker-alt text-primary me-2"></i> Cidade de Rolante</li>
-                                    <li class="mb-2"><i class="fas fa-solar-panel text-primary me-2"></i> 9 módulos de 570W</li>
-                                    <li class="mb-2"><i class="fas fa-bolt text-primary me-2"></i> Inversor Chint de 5Kw</li>
-                                    <li class="mb-2"><i class="fas fa-battery-three-quarters text-primary me-2"></i> Economia: R$ 350/mês</li>
-                                </ul>
-                                <div class="project-meta mt-3 small text-muted">
-                                    <span class="me-3"><i class="far fa-calendar-alt me-1"></i> Concluído: Jan/2023</span>
-                                </div>
-                                <div class="mt-3">
-                                    <span class="badge bg-primary me-2">Residencial</span>
-                                    <span class="badge bg-success">Sustentável</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
         </section>
         <!-- End section projetos-->
@@ -258,16 +159,16 @@
                 </div>
             </div>
         </footer>
-        <!-- Modal de Edição -->
-        <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+        <!-- Modal Novo Projeto-->
+        <div class="modal fade" id="newProjectModal" tabindex="-1" aria-labelledby="newProjectModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content p-3">
             <div class="modal-header">
-                <h5 class="modal-title" id="editModalLabel">Editar Projeto</h5>
+                <h5 class="modal-title" id="newProjectModalLabel">Novo Projeto</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
             </div>
             <div class="modal-body">
-                <form>
+                <form id="formNovoProjeto">
                 <div class="mb-3">
                     <label class="form-label">Cidade</label>
                     <input type="text" class="form-control" name="cidade">
@@ -292,16 +193,257 @@
                     <label class="form-label">Imagem</label>
                     <input type="file" class="form-control" name="imagem">
                 </div>
+                <button type="submit" class="btn btn-primary w-100">Adicionar Projeto</button>
                 </form>
-                <button type="submit" class="btn btn-primary w-100">Salvar Alterações</button>
             </div>
             </div>
         </div>
-        </div>
-        <div class="project-card" style="height:200px; background:#eee; margin-bottom:20px;">
-            <input type="checkbox" class="project-checkbox" checked>
         </div>
 
+        <!-- Modal de Edição -->
+        <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content p-3">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editModalLabel">Editar Projeto</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formEditarProjeto">
+                            <div class="mb-3">
+                                <label class="form-label">Título do Projeto</label>
+                                <input type="text" class="form-control" name="titulo" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Cidade</label>
+                                <input type="text" class="form-control" name="cidade">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Placas</label>
+                                <input type="text" class="form-control" name="placas">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Inversor</label>
+                                <input type="text" class="form-control" name="inversor">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Economia</label>
+                                <input type="text" class="form-control" name="economia">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Conclusão</label>
+                                <input type="text" class="form-control" name="conclusao">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Imagem</label>
+                                <input type="file" class="form-control" name="imagem">
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Salvar Alterações</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de Confirmação -->
+        <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="confirmModalLabel">Confirmação</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                    </div>
+                    <div class="modal-body" id="confirmModalBody">
+                        Tem certeza que deseja excluir este projeto?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-danger" id="confirmDelete">Excluir</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Variáveis de estado
+            let modoEdicaoAtivo = false;
+            let modoExclusaoAtivo = false;
+            let projetoSelecionado = null;
+            
+            // Elementos UI
+            const btnEditar = document.querySelector('#btnEditarProjeto');
+            const btnExcluir = document.querySelector('#btnExcluirProjeto');
+            const projectCards = document.querySelectorAll('.project-card');
+            
+            // Botão Editar Projeto
+            btnEditar.addEventListener('click', () => {
+                if (modoExclusaoAtivo) {
+                    desativarModoExclusao();
+                }
+                
+                modoEdicaoAtivo = !modoEdicaoAtivo;
+                
+                if (modoEdicaoAtivo) {
+                    btnEditar.classList.add('active');
+                    btnEditar.textContent = 'Sair do Modo Edição';
+                    ativarModoEdicao();
+                } else {
+                    btnEditar.classList.remove('active');
+                    btnEditar.textContent = 'Editar projeto';
+                    desativarModoEdicao();
+                }
+            });
+            
+            // Botão Excluir Projeto
+            btnExcluir.addEventListener('click', () => {
+                if (modoEdicaoAtivo) {
+                    desativarModoEdicao();
+                    btnEditar.classList.remove('active');
+                    btnEditar.textContent = 'Editar projeto';
+                    modoEdicaoAtivo = false;
+                }
+                
+                modoExclusaoAtivo = !modoExclusaoAtivo;
+                
+                if (modoExclusaoAtivo) {
+                    btnExcluir.classList.add('active');
+                    btnExcluir.textContent = 'Sair do Modo Exclusão';
+                    ativarModoExclusao();
+                } else {
+                    btnExcluir.classList.remove('active');
+                    btnExcluir.textContent = 'Excluir projeto';
+                    desativarModoExclusao();
+                }
+            });
+            
+            // Funções para gerenciar os modos
+            function ativarModoEdicao() {
+                projectCards.forEach(card => {
+                    const btnEditarCard = document.createElement('button');
+                    btnEditarCard.className = 'btn btn-sm btn-warning position-absolute top-0 end-0 m-3';
+                    btnEditarCard.innerHTML = '<i class="fas fa-edit"></i>';
+                    btnEditarCard.style.zIndex = '10';
+                    
+                    btnEditarCard.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        projetoSelecionado = card;
+                        abrirModalEdicao(card);
+                    });
+                    
+                    card.style.position = 'relative';
+                    card.style.boxShadow = '0 0 0 3px rgba(13, 110, 253, 0.5)';
+                    card.appendChild(btnEditarCard);
+                });
+            }
+            
+            function desativarModoEdicao() {
+                projectCards.forEach(card => {
+                    const btnEditar = card.querySelector('.btn-warning');
+                    if (btnEditar) {
+                        btnEditar.remove();
+                    }
+                    card.style.boxShadow = '';
+                });
+            }
+            
+            function ativarModoExclusao() {
+                projectCards.forEach(card => {
+                    const btnExcluirCard = document.createElement('button');
+                    btnExcluirCard.className = 'btn btn-sm btn-danger position-absolute top-0 end-0 m-3';
+                    btnExcluirCard.innerHTML = '<i class="fas fa-trash"></i>';
+                    btnExcluirCard.style.zIndex = '10';
+                    
+                    btnExcluirCard.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        projetoSelecionado = card;
+                        abrirModalConfirmacao();
+                    });
+                    
+                    card.style.position = 'relative';
+                    card.style.boxShadow = '0 0 0 3px rgba(220, 53, 69, 0.5)';
+                    card.appendChild(btnExcluirCard);
+                });
+            }
+            
+            function desativarModoExclusao() {
+                projectCards.forEach(card => {
+                    const btnExcluir = card.querySelector('.btn-danger');
+                    if (btnExcluir) {
+                        btnExcluir.remove();
+                    }
+                    card.style.boxShadow = '';
+                });
+            }
+            
+            function abrirModalEdicao(card) {
+                // Obter dados atuais do projeto
+                const cidade = card.querySelector('.project-features li:nth-child(1)').textContent.replace('Cidade de ', '').trim();
+                const placas = card.querySelector('.project-features li:nth-child(2)').textContent.replace(' módulos de ', '|').split('|')[0].trim();
+                const inversor = card.querySelector('.project-features li:nth-child(3)').textContent.replace('Inversor ', '').trim();
+                const economia = card.querySelector('.project-features li:nth-child(4)').textContent.replace('Economia: ', '').trim();
+                const conclusao = card.querySelector('.project-meta span').textContent.replace('Concluído: ', '').trim();
+                const titulo = card.querySelector('.project-title').textContent.trim();
+                
+                // Preencher o modal com os dados atuais
+                const editModal = document.getElementById('editModal');
+                editModal.querySelector('[name="titulo"]').value = titulo;
+                editModal.querySelector('[name="cidade"]').value = cidade;
+                editModal.querySelector('[name="placas"]').value = placas;
+                editModal.querySelector('[name="inversor"]').value = inversor;
+                editModal.querySelector('[name="economia"]').value = economia;
+                editModal.querySelector('[name="conclusao"]').value = conclusao;
+                
+                // Abrir o modal
+                const modal = new bootstrap.Modal(editModal);
+                modal.show();
+            }
+            
+            function abrirModalConfirmacao() {
+                const modal = new bootstrap.Modal(document.getElementById('confirmModal'));
+                modal.show();
+            }
+            
+            // Formulário de edição
+            document.getElementById('formEditarProjeto').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                if (projetoSelecionado) {
+                    // Obter valores do formulário
+                    const titulo = this.querySelector('[name="titulo"]').value;
+                    const cidade = this.querySelector('[name="cidade"]').value;
+                    const placas = this.querySelector('[name="placas"]').value;
+                    const inversor = this.querySelector('[name="inversor"]').value;
+                    const economia = this.querySelector('[name="economia"]').value;
+                    const conclusao = this.querySelector('[name="conclusao"]').value;
+                    
+                    // Atualizar o card com os novos valores
+                    projetoSelecionado.querySelector('.project-title').textContent = titulo;
+                    projetoSelecionado.querySelector('.project-features li:nth-child(1)').innerHTML = `<i class="fas fa-map-marker-alt text-primary me-2"></i> Cidade de ${cidade}`;
+                    projetoSelecionado.querySelector('.project-features li:nth-child(2)').innerHTML = `<i class="fas fa-solar-panel text-primary me-2"></i> ${placas} módulos de 570W`;
+                    projetoSelecionado.querySelector('.project-features li:nth-child(3)').innerHTML = `<i class="fas fa-bolt text-primary me-2"></i> Inversor ${inversor}`;
+                    projetoSelecionado.querySelector('.project-features li:nth-child(4)').innerHTML = `<i class="fas fa-battery-three-quarters text-primary me-2"></i> Economia: ${economia}`;
+                    projetoSelecionado.querySelector('.project-meta span').innerHTML = `<i class="far fa-calendar-alt me-1"></i> Concluído: ${conclusao}`;
+                    
+                    // Fechar o modal
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('editModal'));
+                    modal.hide();
+                    
+                    projetoSelecionado = null;
+                }
+            });
+            
+            // Confirmação de exclusão
+            document.getElementById('confirmDelete').addEventListener('click', function() {
+                if (projetoSelecionado) {
+                    projetoSelecionado.remove();
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('confirmModal'));
+                    modal.hide();
+                    projetoSelecionado = null;
+                }
+            });
+        });
+        </script>
 
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>

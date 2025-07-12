@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>MK Energia Solar</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg bg-white text-uppercase fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand" href="#page-top">
+                    <img 
+                        src="images/MKLOGO.png" 
+                        alt="MK Energia Solar" 
+                        class="img-fluid logo-resposivo">
+                </a>
+                <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-primary " href="#contact">Fale Conosco</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-primary" href="#orcamento">Orçamento</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-primary" href="#project">Projetos</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!--Seção bem vindo-->
+        <section class="page-section bg-primary text-white mb-0" id="title">
+            <div class="container">
+                <h3 class="page-section-heading text-primary text-uppercase text-white">Kit solar</h3>
+            </div>
+        </section>
+        <!-- Masthead-->
+        <header>
+
+        <div class="container mt-5">
+            <table class="table table-bordered">
+            <tbody>
+                <tr><td>Custo mão de obra por placa</td><td><button class="btn btn-sm btn-outline-primary" onclick="abrirModal('Mão de obra', '200.00')">Editar</button></td></tr>
+                <tr><td>Custo cabos</td><td><button class="btn btn-sm btn-outline-primary" onclick="abrirModal('Cabos', '180.00')">Editar</button></td></tr>
+                <tr><td>Custo trilho por placa</td><td><button class="btn btn-sm btn-outline-primary" onclick="abrirModal('Trilho', '80.00')">Editar</button></td></tr>
+                <tr><td>Custo conectores</td><td><button class="btn btn-sm btn-outline-primary" onclick="abrirModal('Conectores', '50.00')">Editar</button></td></tr>
+                <tr><td>Custos fixos</td><td><button class="btn btn-sm btn-outline-primary" onclick="abrirModal('Fixos', '400.00')">Editar</button></td></tr>
+                <tr><td>Custos extras</td><td><button class="btn btn-sm btn-outline-primary" onclick="abrirModal('Extra', '300.00')">Editar</button></td></tr>
+            </tbody>
+            </table>
+        </div>
+
+        <!-- Modal de Edição -->
+        <div class="modal fade" id="editarValorModal" tabindex="-1" aria-labelledby="editarValorModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editarValorModalLabel">Editar Valor</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formEditarValor">
+                            <div class="mb-3">
+                                <label for="itemNome" class="form-label">Item</label>
+                                <input type="text" class="form-control" id="itemNome" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label for="itemValor" class="form-label">Valor (R$)</label>
+                                <input type="number" step="0.01" class="form-control" id="itemValor" required>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary" onclick="salvarEdicao()">Salvar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer-->
+        <footer class="footer text-center bg-primary mt-5">
+            <div class="container">
+                <div class="row justify-content-center mb-4">
+                    <div class="col-auto">
+                        <a class="navbar-brand" href="#page-top">
+                            <img 
+                                src="images/MKLOGO.png" 
+                                alt="MK Energia Solar" 
+                                class="img-fluid logo-resposivo">
+                        </a>
+                        <div class="row">
+                            <!-- Redes Sociais-->
+                            <div class="col-lg-4 mb-5 mb-lg-0">
+                                <h4 class="text-uppercase mb-4">Nos siga nas redes sociais</h4>
+                                <a class="btn btn-outline-light btn-social mx-1" href="#https://www.facebook.com/MKferragenseEletrica?locale=pt_BR!"><i class="fab fa-fw fa-facebook-f"></i></a>
+                                <a class="btn btn-outline-light btn-social mx-1" href="#"><i class="fab fa-fw fa-linkedin-in"></i></a>
+                                <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-dribbble"></i></a>
+                            </div>
+                            <!-- Contato-->
+                            <div class="col-lg-4"></div>
+
+                            <div class="col-lg-4 text-lg-end">
+                                <h4 class="text-uppercase mb-4">Contato</h4>
+                                <div class="p-4">
+                                    <div class="d-flex mb-3 justify-content-lg-end">
+                                        <div class="flex-shrink-0 text-primary">
+                                            <i class="fas fa-map-marker-alt fs-4"></i>
+                                            </div>
+                                                <div class="ms-3">
+                                                    <h5 class="mb-0">Endereço</h5>
+                                                    <p class="mb-0">Av. Tenente Pedro Von Muhlen, 609 - Centro, Rolante - RS</p>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex justify-content-lg-end">
+                                                <div class="flex-shrink-0 text-primary">
+                                                    <i class="fas fa-phone-alt fs-4"></i>
+                                                </div>
+                                                <div class="ms-3 text-start">
+                                                    <h5 class="mb-0">Telefone</h5>
+                                                    <p class="mb-0">(51) 99822 4220</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <script>
+            let itemAtual = null;
+            
+            function abrirModal(item, valor) {
+                itemAtual = item;
+                
+                document.getElementById('itemNome').value = item;
+                document.getElementById('itemValor').value = valor;
+                
+                const modal = new bootstrap.Modal(document.getElementById('editarValorModal'));
+                modal.show();
+            }
+            
+            function salvarEdicao() {
+                const novoValor = document.getElementById('itemValor').value;
+                
+                
+                const modal = bootstrap.Modal.getInstance(document.getElementById('editarValorModal'));
+                modal.hide();
+                
+                const linhas = document.querySelectorAll('table tbody tr');
+                linhas.forEach(linha => {
+                    const td = linha.querySelector('td:first-child');
+                    if (td.textContent.includes(itemAtual)) {
+                        const valorTd = linha.querySelector('td:nth-child(2)');
+                        valorTd.innerHTML = `R$ ${novoValor} <button class="btn btn-sm btn-outline-primary ms-2" onclick="abrirModal('${itemAtual}', '${novoValor}')">Editar</button>`;
+                    }
+                });
+            }
+        </script>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
+</html>

@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>MK Energia Solar</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg bg-white text-uppercase fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand" href="#page-top">
+                    <img 
+                        src="images/MKLOGO.png" 
+                        alt="MK Energia Solar" 
+                        class="img-fluid logo-resposivo">
+                </a>
+                <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <button class="btn btn-primary text-uppercase py-2 px-3 me-2" data-bs-toggle="modal" data-bs-target="#novoVendedorModal">Novo Vendedor</button>
+                        <button id="btnEditarVendedor" class="btn btn-primary text-uppercase me-2">Editar vendedor</button>
+                        <button id="btnExcluirVendedor" class="btn btn-primary text-uppercase">Excluir vendedor</button>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!--Seção bem vindo-->
+        <section class="page-section bg-primary text-white mb-0" id="title">
+            <div class="container">
+                <h5 class="page-section-heading text-primary text-uppercase text-white">Vendedores</h5>
+            </div>
+        </section>
+        <!-- Masthead-->
+        <header>
+        <!-- Seção Vendedores -->
+        <section class="page-section py-5" id="vendedores" style="margin-top: 80px;">
+            <div class="container">
+                <div class="row g-4" id="vendedoresContainer">
+                    <!-- Vendedor Jonathan -->
+                    <div class="col-lg-4 col-md-6 vendedor-card">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-body text-center p-4">
+                                <div class="position-relative mb-4">
+                                    <img src="images/icone.png" class="rounded-circle shadow" width="120" height="120">
+                                </div>
+                                <h4 class="card-title mb-2">Jonathan Kirsch</h4>
+                                <p class="text-muted mb-3">Especialista em Energia Solar e CEO</p>
+                                <p class="card-text mb-4">Atendimento personalizado para encontrar a melhor solução em energia solar para sua necessidade.</p>
+                                <a href="https://wa.me/5551999999999?text=Olá Jonathan, gostaria de informações sobre energia solar" 
+                                class="btn btn-success w-100" target="_blank">
+                                    <i class="fab fa-whatsapp me-2"></i> Falar com Jonathan
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Vendedor Dhonavan -->
+                    <div class="col-lg-4 col-md-6 vendedor-card">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-body text-center p-4">
+                                <div class="position-relative mb-4">
+                                    <img src="images/icone.png" class="rounded-circle shadow" width="120" height="120">
+                                </div>
+                                <h4 class="card-title mb-2">Dhonavan Dias</h4>
+                                <p class="text-muted mb-3">Consultor e Especialista em Energia Solar</p>
+                                <p class="card-text mb-4">Especialista em projetos personalizados para maximizar sua economia com energia solar.</p>
+                                <a href="https://wa.me/5551999999998?text=Olá Dhonavan, gostaria de informações sobre energia solar" 
+                                class="btn btn-success w-100" target="_blank">
+                                    <i class="fab fa-whatsapp me-2"></i> Falar com Dhonavan
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Vendedor MK -->
+                    <div class="col-lg-4 col-md-6 vendedor-card">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-body text-center p-4">
+                                <div class="position-relative mb-4">
+                                    <img src="images/icone.png" class="rounded-circle shadow" width="120" height="120">
+                                </div>
+                                <h4 class="card-title mb-2">MK Energia Solar</h4>
+                                <p class="text-muted mb-3">Especialista em Garantir Maior Comodidade aos Clientes</p>
+                                <p class="card-text mb-4">Empresa Especialista em Energia Solar</p>
+                                <a href="https://wa.me/5551999999997?text=Olá MK, gostaria de informações sobre energia solar" 
+                                class="btn btn-success w-100" target="_blank">
+                                    <i class="fab fa-whatsapp me-2"></i> Falar com MK
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Modal Novo Vendedor -->
+        <div class="modal fade" id="novoVendedorModal" tabindex="-1" aria-labelledby="novoVendedorModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title" id="novoVendedorModalLabel">Adicionar Novo Vendedor</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formNovoVendedor">
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="nomeVendedor" class="form-label">Nome do Vendedor</label>
+                                        <input type="text" class="form-control" id="nomeVendedor" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="cargoVendedor" class="form-label">Cargo/Especialidade</label>
+                                        <input type="text" class="form-control" id="cargoVendedor" required>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group mb-4">
+                                <label for="descricaoVendedor" class="form-label">Descrição</label>
+                                <textarea class="form-control" id="descricaoVendedor" rows="3" required></textarea>
+                            </div>
+                            
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="whatsappVendedor" class="form-label">Número do WhatsApp</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fab fa-whatsapp"></i></span>
+                                            <input type="text" class="form-control" id="whatsappVendedor" placeholder="5511999999999" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="fotoVendedor" class="form-label">Foto do Vendedor</label>
+                                        <input type="file" class="form-control" id="fotoVendedor" accept="image/*">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center">
+                                <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-primary">Salvar Vendedor</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Modal de Edição -->
+        <div class="modal fade" id="editVendedorModal" tabindex="-1" aria-labelledby="editVendedorModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title" id="editVendedorModalLabel">Editar Vendedor</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formEditarVendedor">
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="editNomeVendedor" class="form-label">Nome do Vendedor</label>
+                                        <input type="text" class="form-control" id="editNomeVendedor" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="editCargoVendedor" class="form-label">Cargo/Especialidade</label>
+                                        <input type="text" class="form-control" id="editCargoVendedor" required>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group mb-4">
+                                <label for="editDescricaoVendedor" class="form-label">Descrição</label>
+                                <textarea class="form-control" id="editDescricaoVendedor" rows="3" required></textarea>
+                            </div>
+                            
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="editWhatsappVendedor" class="form-label">Número do WhatsApp</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fab fa-whatsapp"></i></span>
+                                            <input type="text" class="form-control" id="editWhatsappVendedor" placeholder="5511999999999" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="editFotoVendedor" class="form-label">Atualizar Foto</label>
+                                        <input type="file" class="form-control" id="editFotoVendedor" accept="image/*">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center">
+                                <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de Confirmação -->
+        <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-danger text-white">
+                        <h5 class="modal-title" id="confirmModalLabel">Confirmação</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                    </div>
+                    <div class="modal-body" id="confirmModalBody">
+                        Tem certeza que deseja excluir este vendedor?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-danger" id="confirmDelete">Excluir</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer-->
+        <footer class="footer text-center bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="#page-top">
+                    <img 
+                        src="images/MKLOGO.png" 
+                        alt="MK Energia Solar" 
+                        class="img-fluid logo-resposivo">
+                </a>
+                <div class="row">
+                    <!-- Footer Social Icons-->
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <h4 class="text-uppercase mb-4">Nos siga nas redes sociais</h4>
+                        <a class="btn btn-outline-light btn-social mx-1" href="#https://www.facebook.com/MKferragenseEletrica?locale=pt_BR!"><i class="fab fa-fw fa-facebook-f"></i></a>
+                        <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-linkedin-in"></i></a>
+                        <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-dribbble"></i></a>
+                    </div>
+                    <!-- Footer About Text-->
+                    <div class="col-lg-4">
+                        <h4 class="text-uppercase mb-4">About Freelancer</h4>
+                        <p class="lead mb-0">
+                            Freelance is a free to use, MIT licensed Bootstrap theme created by
+                            <a href="http://startbootstrap.com">Start Bootstrap</a>
+                            .
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Variáveis de estado
+            let modoEdicaoAtivo = false;
+            let modoExclusaoAtivo = false;
+            let vendedorSelecionado = null;
+            
+            // Elementos UI
+            const btnEditar = document.querySelector('#btnEditarVendedor');
+            const btnExcluir = document.querySelector('#btnExcluirVendedor');
+            const vendedorCards = document.querySelectorAll('.vendedor-card');
+            
+            // Botão Editar Vendedor
+            btnEditar.addEventListener('click', () => {
+                if (modoExclusaoAtivo) {
+                    desativarModoExclusao();
+                }
+                
+                modoEdicaoAtivo = !modoEdicaoAtivo;
+                
+                if (modoEdicaoAtivo) {
+                    btnEditar.classList.add('active');
+                    btnEditar.textContent = 'Sair do Modo Edição';
+                    ativarModoEdicao();
+                } else {
+                    btnEditar.classList.remove('active');
+                    btnEditar.textContent = 'Editar vendedor';
+                    desativarModoEdicao();
+                }
+            });
+            
+            // Botão Excluir Vendedor
+            btnExcluir.addEventListener('click', () => {
+                if (modoEdicaoAtivo) {
+                    desativarModoEdicao();
+                    btnEditar.classList.remove('active');
+                    btnEditar.textContent = 'Editar vendedor';
+                    modoEdicaoAtivo = false;
+                }
+                
+                modoExclusaoAtivo = !modoExclusaoAtivo;
+                
+                if (modoExclusaoAtivo) {
+                    btnExcluir.classList.add('active');
+                    btnExcluir.textContent = 'Sair do Modo Exclusão';
+                    ativarModoExclusao();
+                } else {
+                    btnExcluir.classList.remove('active');
+                    btnExcluir.textContent = 'Excluir vendedor';
+                    desativarModoExclusao();
+                }
+            });
+            
+            // Funções para gerenciar os modos
+            function ativarModoEdicao() {
+                vendedorCards.forEach(card => {
+                    const btnEditarCard = document.createElement('button');
+                    btnEditarCard.className = 'btn btn-sm btn-warning position-absolute top-0 end-0 m-3';
+                    btnEditarCard.innerHTML = '<i class="fas fa-edit"></i>';
+                    btnEditarCard.style.zIndex = '10';
+                    
+                    btnEditarCard.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        vendedorSelecionado = card;
+                        abrirModalEdicao(card);
+                    });
+                    
+                    card.style.position = 'relative';
+                    card.style.boxShadow = '0 0 0 3px rgba(13, 110, 253, 0.5)';
+                    card.appendChild(btnEditarCard);
+                });
+            }
+            
+            function desativarModoEdicao() {
+                vendedorCards.forEach(card => {
+                    const btnEditar = card.querySelector('.btn-warning');
+                    if (btnEditar) {
+                        btnEditar.remove();
+                    }
+                    card.style.boxShadow = '';
+                });
+            }
+            
+            function ativarModoExclusao() {
+                vendedorCards.forEach(card => {
+                    const btnExcluirCard = document.createElement('button');
+                    btnExcluirCard.className = 'btn btn-sm btn-danger position-absolute top-0 end-0 m-3';
+                    btnExcluirCard.innerHTML = '<i class="fas fa-trash"></i>';
+                    btnExcluirCard.style.zIndex = '10';
+                    
+                    btnExcluirCard.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        vendedorSelecionado = card;
+                        abrirModalConfirmacao();
+                    });
+                    
+                    card.style.position = 'relative';
+                    card.style.boxShadow = '0 0 0 3px rgba(220, 53, 69, 0.5)';
+                    card.appendChild(btnExcluirCard);
+                });
+            }
+            
+            function desativarModoExclusao() {
+                vendedorCards.forEach(card => {
+                    const btnExcluir = card.querySelector('.btn-danger');
+                    if (btnExcluir) {
+                        btnExcluir.remove();
+                    }
+                    card.style.boxShadow = '';
+                });
+            }
+            
+            function abrirModalEdicao(card) {
+                // Obter dados atuais do vendedor
+                const nome = card.querySelector('.card-title').textContent.trim();
+                const cargo = card.querySelector('.text-muted').textContent.trim();
+                const descricao = card.querySelector('.card-text').textContent.trim();
+                const whatsapp = card.querySelector('.btn-success').getAttribute('href').match(/wa.me\/(\d+)/)[1];
+                
+                // Preencher o modal com os dados atuais
+                const editModal = document.getElementById('editVendedorModal');
+                editModal.querySelector('#editNomeVendedor').value = nome;
+                editModal.querySelector('#editCargoVendedor').value = cargo;
+                editModal.querySelector('#editDescricaoVendedor').value = descricao;
+                editModal.querySelector('#editWhatsappVendedor').value = whatsapp;
+                
+                // Abrir o modal
+                const modal = new bootstrap.Modal(editModal);
+                modal.show();
+            }
+            
+            function abrirModalConfirmacao() {
+                const modal = new bootstrap.Modal(document.getElementById('confirmModal'));
+                modal.show();
+            }
+            
+            // Formulário de edição
+            document.getElementById('formEditarVendedor').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                if (vendedorSelecionado) {
+                    // Obter valores do formulário
+                    const nome = this.querySelector('#editNomeVendedor').value;
+                    const cargo = this.querySelector('#editCargoVendedor').value;
+                    const descricao = this.querySelector('#editDescricaoVendedor').value;
+                    const whatsapp = this.querySelector('#editWhatsappVendedor').value;
+                    
+                    // Atualizar o card com os novos valores
+                    vendedorSelecionado.querySelector('.card-title').textContent = nome;
+                    vendedorSelecionado.querySelector('.text-muted').textContent = cargo;
+                    vendedorSelecionado.querySelector('.card-text').textContent = descricao;
+                    
+                    const whatsappLink = vendedorSelecionado.querySelector('.btn-success');
+                    const currentHref = whatsappLink.getAttribute('href');
+                    const newHref = currentHref.replace(/wa.me\/\d+/, `wa.me/${whatsapp}`);
+                    whatsappLink.setAttribute('href', newHref);
+                    
+                    // Fechar o modal
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('editVendedorModal'));
+                    modal.hide();
+                    
+                    vendedorSelecionado = null;
+                }
+            });
+            
+            // Confirmação de exclusão
+            document.getElementById('confirmDelete').addEventListener('click', function() {
+                if (vendedorSelecionado) {
+                    vendedorSelecionado.remove();
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('confirmModal'));
+                    modal.hide();
+                    vendedorSelecionado = null;
+                }
+            });
+
+            // Formulário de novo vendedor
+            document.getElementById('formNovoVendedor').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Obter valores do formulário
+                const nome = this.querySelector('#nomeVendedor').value;
+                const cargo = this.querySelector('#cargoVendedor').value;
+                const descricao = this.querySelector('#descricaoVendedor').value;
+                const whatsapp = this.querySelector('#whatsappVendedor').value;
+                
+                // Criar novo card de vendedor
+                const novoVendedorHTML = `
+                <div class="col-lg-4 col-md-6 vendedor-card">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="position-relative mb-4">
+                                <img src="images/icone.png" class="rounded-circle shadow" width="120" height="120">
+                            </div>
+                            <h4 class="card-title mb-2">${nome}</h4>
+                            <p class="text-muted mb-3">${cargo}</p>
+                            <p class="card-text mb-4">${descricao}</p>
+                            <a href="https://wa.me/${whatsapp}?text=Olá ${nome.split(' ')[0]}, gostaria de informações sobre energia solar" 
+                            class="btn btn-success w-100" target="_blank">
+                                <i class="fab fa-whatsapp me-2"></i> Falar com ${nome.split(' ')[0]}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                `;
+                
+                // Adicionar ao container
+                document.getElementById('vendedoresContainer').insertAdjacentHTML('beforeend', novoVendedorHTML);
+                
+                // Fechar o modal
+                const modal = bootstrap.Modal.getInstance(document.getElementById('novoVendedorModal'));
+                modal.hide();
+                
+                // Resetar o formulário
+                this.reset();
+                
+                // Atualizar os listeners para os novos cards
+                atualizarVendedorCards();
+            });
+            
+            function atualizarVendedorCards() {
+                // Atualizar a lista de cards
+                const novosCards = document.querySelectorAll('.vendedor-card');
+                
+                // Remover listeners antigos se necessário
+                // (não necessário neste caso simples)
+                
+                // Se estiver em modo de edição, reativar
+                if (modoEdicaoAtivo) {
+                    desativarModoEdicao();
+                    ativarModoEdicao();
+                }
+                
+                // Se estiver em modo de exclusão, reativar
+                if (modoExclusaoAtivo) {
+                    desativarModoExclusao();
+                    ativarModoExclusao();
+                }
+            }
+        });
+        </script>
+
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
+</html>

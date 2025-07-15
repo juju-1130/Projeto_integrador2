@@ -15,15 +15,15 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
+        <link href="../css/styles.css" rel="stylesheet" />
     </head>
     <body id="page-top">
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg bg-white text-uppercase fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand" href="#page-top">
+                <a class="navbar-brand" href="index.html">
                     <img 
-                        src="images/MKLOGO.png" 
+                        src="../images/MKLOGO.png" 
                         alt="MK Energia Solar" 
                         class="img-fluid logo-resposivo">
                 </a>
@@ -33,14 +33,11 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-primary " href="#contact">Fale Conosco</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-primary" href="#orcamento">Orçamento</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-primary" href="#project">Projetos</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
-        <!--Seção bem vindo-->
+        <!--Seção titulo-->
         <section class="page-section bg-primary text-white mb-0" id="title">
             <div class="container">
                 <h3 class="page-section-heading text-primary text-uppercase text-white">Atributos do orçamento</h3>
@@ -57,13 +54,20 @@
                 <tr><td>Concessionárias</td><td><button class="btn btn-sm btn-outline-primary" onclick="abrirModal('Concessionárias')">Editar</button></td></tr>
                 <tr><td>Modelos de placas</td><td><button class="btn btn-sm btn-outline-primary" onclick="abrirModal('Modelos de placas')">Editar</button></td></tr>
                 <tr><td>Inversores</td><td><button class="btn btn-sm btn-outline-primary" onclick="abrirModal('Inversores')">Editar</button></td></tr>
-                <tr><td>Kit solares</td><td><button class="btn btn-sm btn-outline-primary" onclick="abrirModal('Kit solares')">Editar</button></td></tr>
+                <tr><td>Kit solar</td><td><a href="kit_solar.html" class="btn btn-sm btn-outline-primary">Editar</a></td></tr>
                 <tr><td>Vendedores</td><td><a href="editar_vendedor.html" class="btn btn-sm btn-outline-primary">Editar</a></td></tr>
                 <tr><td>Projetos</td><td><a href="cadastrar.html" class="btn btn-sm btn-outline-primary">Editar</a></td></tr>
             </tbody>
             </table>
         </div>
-
+        <!-- Footer-->
+        <footer class="footer text-center bg-primary text-white py-5">
+            <div class="container">
+                <div class="mb-4">
+                    <img src="../images/MKLOGO.png" alt="MK Energia Solar" class="img-fluid footer-logo">
+                </div>
+            </div>
+        </footer>
         <!-- Modal para Tipos de Telhado -->
         <div class="modal fade" id="modalTelhado" tabindex="-1" aria-labelledby="modalTelhadoLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
@@ -89,6 +93,40 @@
                                 <button type="submit" class="btn btn-primary">Adicionar Telhado</button>
                             </div>
                         </form>
+
+                        <!-- Lista de telhados cadastrados -->
+                        <div class="mt-4">
+                            <h5>Telhados Cadastrados</h5>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Nome</th>
+                                            <th>Imagem</th>
+                                            <th>Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Telhado Cerâmico</td>
+                                            <td><img src="placeholder.jpg" width="50" alt="Telhado Cerâmico"></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-warning">Editar</button>
+                                                <button class="btn btn-sm btn-danger">Excluir</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Telhado Metálico</td>
+                                            <td><img src="placeholder.jpg" width="50" alt="Telhado Metálico"></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-warning">Editar</button>
+                                                <button class="btn btn-sm btn-danger">Excluir</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -114,6 +152,44 @@
                                 <button type="submit" class="btn btn-primary">Adicionar Fase</button>
                             </div>
                         </form>
+
+                        <!-- Lista de fases cadastradas -->
+                        <div class="mt-4">
+                            <h5>Fases Cadastradas</h5>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Tipo</th>
+                                            <th>Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Monofásico</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-warning">Editar</button>
+                                                <button class="btn btn-sm btn-danger">Excluir</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Bifásico</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-warning">Editar</button>
+                                                <button class="btn btn-sm btn-danger">Excluir</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Trifásico</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-warning">Editar</button>
+                                                <button class="btn btn-sm btn-danger">Excluir</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -139,6 +215,37 @@
                                 <button type="submit" class="btn btn-primary">Adicionar Concessionária</button>
                             </div>
                         </form>
+
+                        <!-- Lista de concessionárias cadastradas -->
+                        <div class="mt-4">
+                            <h5>Concessionárias Cadastradas</h5>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Nome</th>
+                                            <th>Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>CPFL</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-warning">Editar</button>
+                                                <button class="btn btn-sm btn-danger">Excluir</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>RGE</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-warning">Editar</button>
+                                                <button class="btn btn-sm btn-danger">Excluir</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -172,6 +279,43 @@
                                 <button type="submit" class="btn btn-primary">Adicionar modelo de placas</button>
                             </div>
                         </form>
+
+                        <!-- Lista de placas cadastradas -->
+                        <div class="mt-4">
+                            <h5>Placas Cadastradas</h5>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Marca</th>
+                                            <th>Potência</th>
+                                            <th>Valor</th>
+                                            <th>Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Tsun Tech Power</td>
+                                            <td>600w</td>
+                                            <td>R$ 700,00</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-warning">Editar</button>
+                                                <button class="btn btn-sm btn-danger">Excluir</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sunova Solar</td>
+                                            <td>610W</td>
+                                            <td>R$ 770,00</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-warning">Editar</button>
+                                                <button class="btn btn-sm btn-danger">Excluir</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -205,6 +349,43 @@
                                 <button type="submit" class="btn btn-primary">Adicionar inversor</button>
                             </div>
                         </form>
+
+                        <!-- Lista de inversores cadastrados -->
+                        <div class="mt-4">
+                            <h5>Inversores Cadastrados</h5>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Marca</th>
+                                            <th>Potência</th>
+                                            <th>Valor</th>
+                                            <th>Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Chint</td>
+                                            <td>5kW</td>
+                                            <td>R$ 1100,00</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-warning">Editar</button>
+                                                <button class="btn btn-sm btn-danger">Excluir</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Growatt</td>
+                                            <td>3kW</td>
+                                            <td>R$ 900,00</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-warning">Editar</button>
+                                                <button class="btn btn-sm btn-danger">Excluir</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -36,6 +36,9 @@
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-primary " href="#contact">Fale Conosco</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-primary" href="#orcamento">Orçamento</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-primary" href="#project">Projetos</a></li>
+                        <li class="nav-item mx-0 mx-lg-1">
+                        <a class="nav-link py-3 px-0 px-lg-3 rounded bg-primary text-white" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login/Cadastre-se</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -43,50 +46,53 @@
         <!--Seção bem vindo-->
         <section class="page-section bg-primary text-white mb-0" id="title">
             <div class="container">
-                <h3 class="page-section-heading text-primary text-uppercase text-white">Kit solar</h3>
+                <h5 class="page-section-heading text-primary text-uppercase text-white">Seu orçamento</h5>
             </div>
         </section>
         <!-- Masthead-->
         <header>
-        <!-- Tabela custos kit solar-->
-        <div class="container mt-5">
-            <table class="table table-bordered">
-            <tbody>
-                <tr><td>Custo mão de obra por placa</td><td><button class="btn btn-sm btn-outline-primary" onclick="abrirModal('Mão de obra', '200.00')">Editar</button></td></tr>
-                <tr><td>Custo cabos</td><td><button class="btn btn-sm btn-outline-primary" onclick="abrirModal('Cabos', '180.00')">Editar</button></td></tr>
-                <tr><td>Custo trilho por placa</td><td><button class="btn btn-sm btn-outline-primary" onclick="abrirModal('Trilho', '80.00')">Editar</button></td></tr>
-                <tr><td>Custo conectores</td><td><button class="btn btn-sm btn-outline-primary" onclick="abrirModal('Conectores', '50.00')">Editar</button></td></tr>
-                <tr><td>Custos fixos</td><td><button class="btn btn-sm btn-outline-primary" onclick="abrirModal('Fixos', '400.00')">Editar</button></td></tr>
-                <tr><td>Custos extras</td><td><button class="btn btn-sm btn-outline-primary" onclick="abrirModal('Extra', '300.00')">Editar</button></td></tr>
-            </tbody>
-            </table>
+        <div class="container my-5">
+            <!-- Cabeçalho padrão -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <button class="btn btn-primary">Meus orçamentos</button>
+                <button class="btn btn-primary">Salvar orçamento atual</button>
+            </div>
+
+            <div class="pdf-container">
+                <embed src="images/Documentação.pdf#toolbar=0&navpanes=0&scrollbar=0"
+                    type="application/pdf" />
+
+                <button onclick="expandirPDF()" class="btn btn-light btn-expandir-pdf">
+                    <i class="fas fa-expand"></i>
+                </button>
+            </div>
+
+
+            <div class="row mb-4">
+                <!-- Quantidade de placas -->
+                <div class="col-md-6 mb-3">
+                <label for="quantidadePlacas" class="form-label">Quantidade de placas</label>
+                <div class="input-group">
+                    <button class="btn btn-outline-secondary" type="button" onclick="diminuirPlacas()">−</button>
+                    <input type="number" class="form-control text-center" id="quantidadePlacas" value="10" readonly>
+                    <button class="btn btn-outline-secondary" type="button" onclick="aumentarPlacas()">+</button>
+                </div>
+            </div>
+
+            <!-- Potência do inversor -->
+            <div class="col-md-6 mb-3">
+                <label for="modeloInversor" class="form-label">Potência inversor</label>
+                <select class="form-select" id="modeloInversor">
+                    <option value="1">Inversor 3kW</option>
+                    <option value="2">Inversor 5kW</option>
+                    <option value="3">Inversor 6kW</option>
+                </select>
+            </div>
         </div>
 
-        <!-- Modal de Edição -->
-        <div class="modal fade" id="editarValorModal" tabindex="-1" aria-labelledby="editarValorModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="editarValorModalLabel">Editar Valor</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="formEditarValor">
-                            <div class="mb-3">
-                                <label for="itemNome" class="form-label">Item</label>
-                                <input type="text" class="form-control" id="itemNome" readonly>
-                            </div>
-                            <div class="mb-3">
-                                <label for="itemValor" class="form-label">Valor (R$)</label>
-                                <input type="number" step="0.01" class="form-control" id="itemValor" required>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary" onclick="salvarEdicao()">Salvar</button>
-                    </div>
-                </div>
+            <!-- Botão verificar orçamento -->
+            <div class="text-center">
+                <button class="btn btn-success">Verificar orçamento</button>
             </div>
         </div>
         <!-- Footer-->
@@ -103,34 +109,26 @@
             </div>
         </footer>
         <script>
-            let itemAtual = null;
-            
-            function abrirModal(item, valor) {
-                itemAtual = item;
-                
-                document.getElementById('itemNome').value = item;
-                document.getElementById('itemValor').value = valor;
-                
-                const modal = new bootstrap.Modal(document.getElementById('editarValorModal'));
-                modal.show();
+        function aumentarPlacas() {
+            const input = document.getElementById("quantidadePlacas");
+            input.value = parseInt(input.value) + 1;
+        }
+
+        function diminuirPlacas() {
+            const input = document.getElementById("quantidadePlacas");
+            if (parseInt(input.value) > 1) {
+            input.value = parseInt(input.value) - 1;
             }
-            
-            function salvarEdicao() {
-                const novoValor = document.getElementById('itemValor').value;
-                
-                
-                const modal = bootstrap.Modal.getInstance(document.getElementById('editarValorModal'));
-                modal.hide();
-                
-                const linhas = document.querySelectorAll('table tbody tr');
-                linhas.forEach(linha => {
-                    const td = linha.querySelector('td:first-child');
-                    if (td.textContent.includes(itemAtual)) {
-                        const valorTd = linha.querySelector('td:nth-child(2)');
-                        valorTd.innerHTML = `R$ ${novoValor} <button class="btn btn-sm btn-outline-primary ms-2" onclick="abrirModal('${itemAtual}', '${novoValor}')">Editar</button>`;
-                    }
-                });
-            }
+        }
+
+        function expandirPDF() {
+             window.open('images/Documentação.pdf', '_blank');
+        }
+
+        function abrirEmTelaCheia() {
+            const pdfUrl = 'images/Documentação.pdf';
+            window.open(pdfUrl, '_blank'); // Abre o PDF em nova aba com barra de ferramentas do navegador
+        }
         </script>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>

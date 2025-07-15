@@ -150,6 +150,12 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                        <label for="mensagemWhatsapp" class="form-label">Mensagem Padrão</label>
+                                        <input type="text" class="form-control" id="mensagemWhatsapp" value="Olá, gostaria de informações sobre energia solar" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
                                         <label for="fotoVendedor" class="form-label">Foto do Vendedor</label>
                                         <input type="file" class="form-control" id="fotoVendedor" accept="image/*">
                                     </div>
@@ -208,6 +214,12 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                        <label for="editMensagemWhatsapp" class="form-label">Mensagem Padrão</label>
+                                        <input type="text" class="form-control" id="editMensagemWhatsapp" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
                                         <label for="editFotoVendedor" class="form-label">Atualizar Foto</label>
                                         <input type="file" class="form-control" id="editFotoVendedor" accept="image/*">
                                     </div>
@@ -242,49 +254,16 @@
                 </div>
             </div>
         </div>
-        <!-- Footer-->
-        <footer class="footer text-center bg-primary">
-            <div class="container">
-                <a class="navbar-brand" href="#page-top">
-                    <img 
-                        src="images/MKLOGO.png" 
-                        alt="MK Energia Solar" 
-                        class="img-fluid logo-resposivo">
-                </a>
-                <div class="row">
-                    <!-- Footer Social Icons-->
-                    <div class="col-lg-4 mb-5 mb-lg-0">
-                        <h4 class="text-uppercase mb-4">Nos siga nas redes sociais</h4>
-                        <a class="btn btn-outline-light btn-social mx-1" href="#https://www.facebook.com/MKferragenseEletrica?locale=pt_BR!"><i class="fab fa-fw fa-facebook-f"></i></a>
-                        <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-linkedin-in"></i></a>
-                        <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-dribbble"></i></a>
-                    </div>
-                    <!-- Footer About Text-->
-                    <div class="col-lg-4">
-                        <h4 class="text-uppercase mb-4">About Freelancer</h4>
-                        <p class="lead mb-0">
-                            Freelance is a free to use, MIT licensed Bootstrap theme created by
-                            <a href="http://startbootstrap.com">Start Bootstrap</a>
-                            .
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </footer>
-
         <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Variáveis de estado
             let modoEdicaoAtivo = false;
             let modoExclusaoAtivo = false;
             let vendedorSelecionado = null;
             
-            // Elementos UI
             const btnEditar = document.querySelector('#btnEditarVendedor');
             const btnExcluir = document.querySelector('#btnExcluirVendedor');
             const vendedorCards = document.querySelectorAll('.vendedor-card');
             
-            // Botão Editar Vendedor
             btnEditar.addEventListener('click', () => {
                 if (modoExclusaoAtivo) {
                     desativarModoExclusao();
@@ -303,7 +282,6 @@
                 }
             });
             
-            // Botão Excluir Vendedor
             btnExcluir.addEventListener('click', () => {
                 if (modoEdicaoAtivo) {
                     desativarModoEdicao();
@@ -325,7 +303,6 @@
                 }
             });
             
-            // Funções para gerenciar os modos
             function ativarModoEdicao() {
                 vendedorCards.forEach(card => {
                     const btnEditarCard = document.createElement('button');
@@ -385,20 +362,22 @@
             }
             
             function abrirModalEdicao(card) {
-                // Obter dados atuais do vendedor
                 const nome = card.querySelector('.card-title').textContent.trim();
                 const cargo = card.querySelector('.text-muted').textContent.trim();
                 const descricao = card.querySelector('.card-text').textContent.trim();
+                const whatsappLink = card.querySelector('.btn-success').getAttribute('href');
                 const whatsapp = card.querySelector('.btn-success').getAttribute('href').match(/wa.me\/(\d+)/)[1];
+                const mensagem = decodeURIComponent(whatsappLink.split('?text=')[1]);
+
                 
-                // Preencher o modal com os dados atuais
                 const editModal = document.getElementById('editVendedorModal');
                 editModal.querySelector('#editNomeVendedor').value = nome;
                 editModal.querySelector('#editCargoVendedor').value = cargo;
                 editModal.querySelector('#editDescricaoVendedor').value = descricao;
                 editModal.querySelector('#editWhatsappVendedor').value = whatsapp;
+                editModal.querySelector('#editMensagemWhatsapp').value = mensagem;
+
                 
-                // Abrir o modal
                 const modal = new bootstrap.Modal(editModal);
                 modal.show();
             }
@@ -408,28 +387,28 @@
                 modal.show();
             }
             
-            // Formulário de edição
             document.getElementById('formEditarVendedor').addEventListener('submit', function(e) {
                 e.preventDefault();
                 
                 if (vendedorSelecionado) {
-                    // Obter valores do formulário
                     const nome = this.querySelector('#editNomeVendedor').value;
                     const cargo = this.querySelector('#editCargoVendedor').value;
                     const descricao = this.querySelector('#editDescricaoVendedor').value;
                     const whatsapp = this.querySelector('#editWhatsappVendedor').value;
+                    const mensagem = this.querySelector('#editMensagemWhatsapp').value;
+                    const nomePrimeiraParte = nome.split(' ')[0];
+
+
                     
-                    // Atualizar o card com os novos valores
                     vendedorSelecionado.querySelector('.card-title').textContent = nome;
                     vendedorSelecionado.querySelector('.text-muted').textContent = cargo;
                     vendedorSelecionado.querySelector('.card-text').textContent = descricao;
                     
                     const whatsappLink = vendedorSelecionado.querySelector('.btn-success');
-                    const currentHref = whatsappLink.getAttribute('href');
-                    const newHref = currentHref.replace(/wa.me\/\d+/, `wa.me/${whatsapp}`);
-                    whatsappLink.setAttribute('href', newHref);
+                    const mensagemCodificada = encodeURIComponent(mensagem.replace(nomePrimeiraParte, `${nomePrimeiraParte}`));
+                    whatsappLink.setAttribute('href', `https://wa.me/${whatsapp}?text=${mensagemCodificada}`);
+                    whatsappLink.innerHTML = `<i class="fab fa-whatsapp me-2"></i> Falar com ${nomePrimeiraParte}`;
                     
-                    // Fechar o modal
                     const modal = bootstrap.Modal.getInstance(document.getElementById('editVendedorModal'));
                     modal.hide();
                     
@@ -437,7 +416,6 @@
                 }
             });
             
-            // Confirmação de exclusão
             document.getElementById('confirmDelete').addEventListener('click', function() {
                 if (vendedorSelecionado) {
                     vendedorSelecionado.remove();
@@ -447,17 +425,17 @@
                 }
             });
 
-            // Formulário de novo vendedor
             document.getElementById('formNovoVendedor').addEventListener('submit', function(e) {
                 e.preventDefault();
                 
-                // Obter valores do formulário
                 const nome = this.querySelector('#nomeVendedor').value;
                 const cargo = this.querySelector('#cargoVendedor').value;
                 const descricao = this.querySelector('#descricaoVendedor').value;
                 const whatsapp = this.querySelector('#whatsappVendedor').value;
+                const mensagem = this.querySelector('#mensagemWhatsapp').value;
+                const nomePrimeiraParte = nome.split(' ')[0];
+                const mensagemCodificada = encodeURIComponent(mensagem.replace('Olá', `Olá ${nomePrimeiraParte}`));
                 
-                // Criar novo card de vendedor
                 const novoVendedorHTML = `
                 <div class="col-lg-4 col-md-6 vendedor-card">
                     <div class="card h-100 border-0 shadow-sm">
@@ -468,43 +446,32 @@
                             <h4 class="card-title mb-2">${nome}</h4>
                             <p class="text-muted mb-3">${cargo}</p>
                             <p class="card-text mb-4">${descricao}</p>
-                            <a href="https://wa.me/${whatsapp}?text=Olá ${nome.split(' ')[0]}, gostaria de informações sobre energia solar" 
-                            class="btn btn-success w-100" target="_blank">
-                                <i class="fab fa-whatsapp me-2"></i> Falar com ${nome.split(' ')[0]}
-                            </a>
+                            <a href="https://wa.me/${whatsapp}?text=${mensagemCodificada}"class="btn btn-success w-100" target="_blank">
+                                class="btn btn-success w-100" target="_blank">
+                                    <i class="fab fa-whatsapp me-2"></i> Falar com ${nomePrimeiraParte}</a>
                         </div>
                     </div>
                 </div>
                 `;
                 
-                // Adicionar ao container
                 document.getElementById('vendedoresContainer').insertAdjacentHTML('beforeend', novoVendedorHTML);
                 
-                // Fechar o modal
                 const modal = bootstrap.Modal.getInstance(document.getElementById('novoVendedorModal'));
                 modal.hide();
                 
-                // Resetar o formulário
                 this.reset();
                 
-                // Atualizar os listeners para os novos cards
                 atualizarVendedorCards();
             });
             
             function atualizarVendedorCards() {
-                // Atualizar a lista de cards
                 const novosCards = document.querySelectorAll('.vendedor-card');
-                
-                // Remover listeners antigos se necessário
-                // (não necessário neste caso simples)
-                
-                // Se estiver em modo de edição, reativar
+                                
                 if (modoEdicaoAtivo) {
                     desativarModoEdicao();
                     ativarModoEdicao();
                 }
                 
-                // Se estiver em modo de exclusão, reativar
                 if (modoExclusaoAtivo) {
                     desativarModoExclusao();
                     ativarModoExclusao();

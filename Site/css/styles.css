@@ -77,6 +77,7 @@
   --bs-link-hover-color: #15967d;
   --bs-code-color: #d63384;
   --bs-highlight-bg: #fff3cd;
+  
 }
 
 *,
@@ -2052,7 +2053,6 @@ progress {
   border-color: inherit;
   border-style: solid;
   border-width: 0;
-  border-inline-end-width: 0.125rem;
   border-radius: 0;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
@@ -5831,7 +5831,7 @@ textarea.form-control-lg {
 }
 
 .carousel-item-prev:not(.carousel-item-end),
-.active.carousel-item-start {
+.active.sel-item-start {
   transform: translateX(-100%);
 }
 
@@ -5987,6 +5987,51 @@ textarea.form-control-lg {
 }
 .carousel-dark .carousel-caption {
   color: #000;
+}
+
+/* Carrossel responsivo */
+.carousel-inner img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    max-height: 500px; 
+}
+
+@media (max-width: 768px) {
+    .carousel-inner img {
+        max-height: 300px;
+    }
+}
+
+.carousel-caption {
+    bottom: 20%;
+}
+
+@media (max-width: 768px) {
+    .carousel-caption h1 {
+        font-size: 1.8rem;
+    }
+}
+
+/* Estilo dos botões de controle do carrossel */
+.carousel-control-prev,
+.carousel-control-next {
+    width: 5%;
+    background-color: rgba(0, 0, 0, 0.3); 
+    transition: background-color 0.3s ease;
+    z-index: 1;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    background-color: rgba(0, 0, 0, 0.6); 
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-size: 100% 100%;
+    background-color: transparent; 
+    filter: drop-shadow(0 0 4px white); 
 }
 
 .spinner-grow,
@@ -11106,6 +11151,7 @@ html {
   .logos img {
     max-width: 100px;
   }
+}
 
 .logo-resposivo {
   max-height: 40px !important; /* força a altura máxima */
@@ -11185,9 +11231,9 @@ html {
 
 /*seção projetos*/
 .projeto-img {
-    max-height: 250px; 
-    width: 100%;
+    max-height: 400px; 
     object-fit: cover;
+    transition: transform 0.3s ease;
 }
 
 .projeto-texto {
@@ -11204,7 +11250,7 @@ html {
 /* Ajustes para mobile */
 @media (max-width: 768px) {
     .projeto-img {
-        max-height: 200px;
+        max-height: 300px;
         margin-bottom: 1rem;
     }
     
@@ -11305,7 +11351,6 @@ button {
     border-radius: 4px;
     cursor: pointer;
     font-size: weight;
-    font-family: "Montserrat, sans-serif";
     text-transform: uppercase;
     transition: background-color 0.3s ease;
 }
@@ -11492,10 +11537,6 @@ button:hover {
     text-transform: uppercase;
 }
 
-.text-primary {
-    color: #0d6efd !important; /* Cor do tema primary do Bootstrap */
-}
-
 .d-inline-block {
     display: inline-block;
 }
@@ -11518,10 +11559,6 @@ button:hover {
 
 .translate-middle-x {
     transform: translateX(-50%);
-}
-
-.bg-primary {
-    background-color: #0d6efd !important;
 }
 
 /* Estilos dos cards de vendedores */
@@ -11617,6 +11654,61 @@ button:hover {
     margin-bottom: 0 !important;
 }
 
+/*Estilo PDF*/
+.pdf-container {
+    position: relative;
+    height: 600px;
+    overflow: hidden;
+    border-radius: 12px;
+    background-color: #ffffff; 
+    margin-bottom: 1.5rem;
+}
 
+.pdf-container embed {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+}
+
+.btn-expandir-pdf {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    border-radius: 50%;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+}
+
+@media (max-width: 768px) {
+    .pdf-container {
+        height: 70vh; /* mais flexível em altura */
+        border-radius: 8px;
+    }
+
+    .btn-expandir-pdf {
+        top: 10px;
+        right: 10px;
+        padding: 6px 10px;
+        font-size: 14px;
+    }
+
+.form-control::file-selector-button {
+  border-inline-end-width: 0 !important;
+}
+input[type="file"]::file-selector-button {
+  border: none !important;
+  border-inline-end: none !important;
+  background-color: #e9ecef;
+  color: #212529;
+  padding: 0.375rem 0.75rem;
+  margin: 0;
+  pointer-events: auto;
+  border-radius: 0.375rem;
+}
+
+input[type="file"]::file-selector-button {
+  outline: 2px solid red;
+}
 
 }

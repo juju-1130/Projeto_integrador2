@@ -22,10 +22,7 @@
         <nav class="navbar navbar-expand-lg bg-white text-uppercase fixed-top" id="mainNav">
             <div class="container">
                 <a class="navbar-brand" href="index.html">
-                    <img 
-                        src="../images/MKLOGO.png" 
-                        alt="MK Energia Solar" 
-                        class="img-fluid logo-resposivo">
+                    <img src="../images/MKLOGO.png" alt="MK Energia Solar" class="img-fluid logo-resposivo">
                 </a>
                 <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
@@ -33,6 +30,25 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
+                        <!-- Botão Home (estendido em mobile) -->
+                        <li class="nav-item mx-0 mx-lg-1 w-100 w-lg-auto mb-2 mb-lg-0">
+                            <a class="btn btn-primary py-3 px-4 rounded w-100 text-start" href="index.html">
+                                Home
+                            </a>
+                        </li>
+                        
+                        <!-- Dropdown (estendido em mobile) -->
+                        <li class="nav-item mx-0 mx-lg-1 w-100 w-lg-auto">
+                            <div class="dropdown w-100">
+                                <a class="btn btn-primary py-3 px-4 rounded dropdown-toggle w-100 text-start" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-user me-2"></i>
+                                    <strong>Primeiro Nome</strong>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end w-100" aria-labelledby="dropdownMenuLink">
+                                    <li><a class="dropdown-item" href="#" onclick="logout()">Sair</a></li>
+                                </ul>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -49,11 +65,11 @@
         <div class="container mt-5">
             <table class="table table-bordered">
             <tbody>
-                <tr><td>Tipos de telhado</td><td><button class="btn btn-sm btn-outline-primary" onclick="abrirModal('Tipos de telhado')">Editar</button></td></tr>
-                <tr><td>Tipos de fase</td><td><button class="btn btn-sm btn-outline-primary" onclick="abrirModal('Tipos de fase')">Editar</button></td></tr>
-                <tr><td>Concessionárias</td><td><button class="btn btn-sm btn-outline-primary" onclick="abrirModal('Concessionárias')">Editar</button></td></tr>
-                <tr><td>Modelos de placas</td><td><button class="btn btn-sm btn-outline-primary" onclick="abrirModal('Modelos de placas')">Editar</button></td></tr>
-                <tr><td>Inversores</td><td><button class="btn btn-sm btn-outline-primary" onclick="abrirModal('Inversores')">Editar</button></td></tr>
+                <tr><td>Tipos de telhado</td><td><a href="#" class="btn btn-sm btn-outline-primary" onclick="abrirModal('Tipos de telhado')">Editar</a></td></tr>
+                <tr><td>Tipos de fase</td><td><a href="#" class="btn btn-sm btn-outline-primary" onclick="abrirModal('Tipos de fase')">Editar</a></td></tr>
+                <tr><td>Concessionárias</td><td><a href="#" class="btn btn-sm btn-outline-primary" onclick="abrirModal('Concessionárias')">Editar</a></td></tr>
+                <tr><td>Modelos de placas</td><td><a href="#" class="btn btn-sm btn-outline-primary" onclick="abrirModal('Modelos de placas')">Editar</a></td></tr>
+                <tr><td>Inversores</td><td><a href="#" class="btn btn-sm btn-outline-primary" onclick="abrirModal('Inversores')">Editar</a></td></tr>
                 <tr><td>Kit solar</td><td><a href="kit_solar.html" class="btn btn-sm btn-outline-primary">Editar</a></td></tr>
                 <tr><td>Vendedores</td><td><a href="editar_vendedor.html" class="btn btn-sm btn-outline-primary">Editar</a></td></tr>
                 <tr><td>Projetos</td><td><a href="cadastrar.html" class="btn btn-sm btn-outline-primary">Editar</a></td></tr>
@@ -78,7 +94,7 @@
                     </div>
                     <div class="modal-body">
                         <!-- Formulário para adicionar novo tipo -->
-                        <form id="formTelhado" class="mb-4">
+                        <form id="formTelhado" onsubmit="adicionarItem('modalTelhado', ['telhadoNome'], '#modalTelhado', 'telhadoImagem')">
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label for="telhadoNome" class="form-label">Nome do Telhado</label>
@@ -111,16 +127,16 @@
                                             <td>Telhado Cerâmico</td>
                                             <td><img src="placeholder.jpg" width="50" alt="Telhado Cerâmico"></td>
                                             <td>
-                                                <button class="btn btn-sm btn-warning">Editar</button>
-                                                <button class="btn btn-sm btn-danger">Excluir</button>
+                                                <button class="btn btn-sm btn-warning" onclick="editarLinhaComSalvar(this)">Editar</button>
+                                                <button class="btn btn-sm btn-danger" onclick="excluirLinha(this)">Excluir</button>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Telhado Metálico</td>
                                             <td><img src="placeholder.jpg" width="50" alt="Telhado Metálico"></td>
                                             <td>
-                                                <button class="btn btn-sm btn-warning">Editar</button>
-                                                <button class="btn btn-sm btn-danger">Excluir</button>
+                                                <button class="btn btn-sm btn-warning" onclick="editarLinhaComSalvar(this)">Editar</button>
+                                                <button class="btn btn-sm btn-danger" onclick="excluirLinha(this)">Excluir</button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -168,22 +184,22 @@
                                         <tr>
                                             <td>Monofásico</td>
                                             <td>
-                                                <button class="btn btn-sm btn-warning">Editar</button>
-                                                <button class="btn btn-sm btn-danger">Excluir</button>
+                                                <button class="btn btn-sm btn-warning" onclick="editarLinhaComSalvar(this)">Editar</button>
+                                                <button class="btn btn-sm btn-danger" onclick="excluirLinha(this)">Excluir</button>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Bifásico</td>
                                             <td>
-                                                <button class="btn btn-sm btn-warning">Editar</button>
-                                                <button class="btn btn-sm btn-danger">Excluir</button>
+                                                <button class="btn btn-sm btn-warning" onclick="editarLinhaComSalvar(this)">Editar</button>
+                                                <button class="btn btn-sm btn-danger" onclick="excluirLinha(this)">Excluir</button>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Trifásico</td>
                                             <td>
-                                                <button class="btn btn-sm btn-warning">Editar</button>
-                                                <button class="btn btn-sm btn-danger">Excluir</button>
+                                                <button class="btn btn-sm btn-warning" onclick="editarLinhaComSalvar(this)">Editar</button>
+                                                <button class="btn btn-sm btn-danger" onclick="excluirLinha(this)">Excluir</button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -231,15 +247,14 @@
                                         <tr>
                                             <td>CPFL</td>
                                             <td>
-                                                <button class="btn btn-sm btn-warning">Editar</button>
-                                                <button class="btn btn-sm btn-danger">Excluir</button>
+                                                <button class="btn btn-sm btn-warning" onclick="editarLinhaComSalvar(this)">Editar</button>
+                                                <button class="btn btn-sm btn-danger" onclick="excluirLinha(this)">Excluir</button>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>RGE</td>
-                                            <td>
-                                                <button class="btn btn-sm btn-warning">Editar</button>
-                                                <button class="btn btn-sm btn-danger">Excluir</button>
+                                                <button class="btn btn-sm btn-warning" onclick="editarLinhaComSalvar(this)">Editar</button>
+                                                <button class="btn btn-sm btn-danger" onclick="excluirLinha(this)">Excluir</button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -299,8 +314,8 @@
                                             <td>600w</td>
                                             <td>R$ 700,00</td>
                                             <td>
-                                                <button class="btn btn-sm btn-warning">Editar</button>
-                                                <button class="btn btn-sm btn-danger">Excluir</button>
+                                                <button class="btn btn-sm btn-warning" onclick="editarLinhaComSalvar(this)">Editar</button>
+                                                <button class="btn btn-sm btn-danger" onclick="excluirLinha(this)">Excluir</button>
                                             </td>
                                         </tr>
                                         <tr>
@@ -308,8 +323,8 @@
                                             <td>610W</td>
                                             <td>R$ 770,00</td>
                                             <td>
-                                                <button class="btn btn-sm btn-warning">Editar</button>
-                                                <button class="btn btn-sm btn-danger">Excluir</button>
+                                                <button class="btn btn-sm btn-warning" onclick="editarLinhaComSalvar(this)">Editar</button>
+                                                <button class="btn btn-sm btn-danger" onclick="excluirLinha(this)">Excluir</button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -369,8 +384,8 @@
                                             <td>5kW</td>
                                             <td>R$ 1100,00</td>
                                             <td>
-                                                <button class="btn btn-sm btn-warning">Editar</button>
-                                                <button class="btn btn-sm btn-danger">Excluir</button>
+                                                <button class="btn btn-sm btn-warning" onclick="editarLinhaComSalvar(this)">Editar</button>
+                                                <button class="btn btn-sm btn-danger" onclick="excluirLinha(this)">Excluir</button>
                                             </td>
                                         </tr>
                                         <tr>
@@ -378,8 +393,8 @@
                                             <td>3kW</td>
                                             <td>R$ 900,00</td>
                                             <td>
-                                                <button class="btn btn-sm btn-warning">Editar</button>
-                                                <button class="btn btn-sm btn-danger">Excluir</button>
+                                                <button class="btn btn-sm btn-warning" onclick="editarLinhaComSalvar(this)">Editar</button>
+                                                <button class="btn btn-sm btn-danger" onclick="excluirLinha(this)">Excluir</button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -419,6 +434,104 @@
                     modalGenerico.show();
                 }
             }
+
+            function editarLinhaComSalvar(botao) {
+                const linha = botao.closest('tr');
+                const tds = linha.querySelectorAll('td');
+
+                // Se já estiver em modo edição (tem inputs), salvamos
+                if (botao.textContent === 'Salvar') {
+                    const inputs = linha.querySelectorAll('input');
+                    const valores = [];
+                    const imagens = linha.querySelectorAll('img');
+                    
+                    inputs.forEach(input => {
+                        valores.push(input.value);
+                        input.parentElement.innerText = input.value; // Atualiza o texto da célula
+                    });
+
+                    // Verificar se existe uma imagem e salvar a nova imagem
+                    if (imagens.length > 0) {
+                        const novaImagem = linha.querySelector('input[type="file"]').files[0];
+                        if (novaImagem) {
+                            // Exibe a nova imagem se o usuário fez upload
+                            imagens[0].src = URL.createObjectURL(novaImagem);
+                        }
+                    }
+
+                    botao.textContent = 'Editar';
+                    botao.classList.remove('btn-success');
+                    botao.classList.add('btn-warning');
+
+                    // Atualiza a tabela com os valores editados
+                    for (let i = 0; i < valores.length; i++) {
+                        tds[i].innerText = valores[i];
+                    }
+
+                } else {
+                    // Modo edição: transforma as células em inputs
+                    const valoresAtuais = [];
+                    tds.forEach((td, index) => {
+                        if (index < tds.length - 1) { // Ignora a última célula com botões
+                            if (td.querySelector('img')) {
+                                // Caso tenha uma imagem, cria um campo de upload
+                                const imagemAtual = td.querySelector('img');
+                                td.innerHTML = `<input type="file" class="form-control form-control-sm" />`;
+                            } else {
+                                valoresAtuais.push(td.innerText);
+                                td.innerHTML = `<input type="text" class="form-control form-control-sm" value="${td.innerText}">`;
+                            }
+                        }
+                    });
+
+                    botao.textContent = 'Salvar';
+                    botao.classList.remove('btn-warning');
+                    botao.classList.add('btn-success');
+                }
+            }
+
+
+            function adicionarItem(modalId, inputs, tbodySelector, imageField = null) {
+                event.preventDefault();
+
+                const values = {};
+                inputs.forEach(id => {
+                    values[id] = document.getElementById(id).value;
+                });
+
+                let imagem = 'placeholder.jpg';
+                if (imageField) {
+                    const fileInput = document.getElementById(imageField);
+                    if (fileInput.files.length > 0) {
+                        imagem = URL.createObjectURL(fileInput.files[0]);
+                    }
+                }
+
+                const tbody = document.querySelector(`${tbodySelector} tbody`);
+                const tr = document.createElement('tr');
+
+                let html = '';
+                Object.values(values).forEach(v => {
+                    html += `<td>${v}</td>`;
+                });
+
+                if (imageField) {
+                    html += `<td><img src="${imagem}" width="50"></td>`;
+                }
+
+                html += `<td>
+                    <button class="btn btn-sm btn-warning" onclick="editarLinhaComSalvar(this)">Editar</button>
+                    <button class="btn btn-sm btn-danger" onclick="excluirLinha(this)">Excluir</button>
+                </td>`;
+
+                tr.innerHTML = html;
+                tbody.appendChild(tr);
+
+                // Limpa os campos
+                inputs.forEach(id => document.getElementById(id).value = '');
+                if (imageField) document.getElementById(imageField).value = '';
+            }
+
         </script>
 
         <!-- Bootstrap core JS-->

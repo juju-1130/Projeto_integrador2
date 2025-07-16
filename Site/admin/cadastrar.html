@@ -33,9 +33,29 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <button class="btn btn-primary text-uppercase py-2 px-3 me-2" data-bs-toggle="modal" data-bs-target="#newProjectModal">Novo Projeto</button>
-                        <button id="btnEditarProjeto" class="btn btn-primary text-uppercase me-2" >Editar projeto</button>
-                        <button id="btnExcluirProjeto" class="btn btn-primary text-uppercase">Excluir projeto</button>
+                        <li class="nav-item mx-0 mx-lg-1">
+                            <a class="btn btn-primary py-3 px-4 rounded me-2" href="#" data-bs-toggle="modal" data-bs-target="#newProjectModal">Novo</a>
+                        </li>
+                        <li class="nav-item mx-0 mx-lg-1">
+                            <a id="btnEditarProjeto" class="btn btn-primary py-3 px-4 rounded me-2" href="#">Editar Projeto</a>
+                        </li>
+                        <li class="nav-item mx-0 mx-lg-1">
+                            <a id="btnExcluirProjeto" class="btn btn-primary py-3 px-4 rounded" href="#">Excluir Projeto</a>
+                        </li>
+                        <li class="nav-item mx-0 mx-lg-1">
+                            <a class="btn btn-primary py-3 px-4 rounded" href="editar.html">Editar Dados</a>
+                        </li>
+                        <li class="nav-item mx-0 mx-lg-1 w-lg-auto">
+                            <div class="dropdown w-100">
+                                <a class="btn btn-primary py-3 px-4 rounded dropdown-toggle text-start" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-user me-2"></i>
+                                    <strong>Primeiro Nome</strong>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end w-100" aria-labelledby="dropdownMenuLink">
+                                    <li><a class="dropdown-item" href="#" onclick="logout()">Sair</a></li>
+                                </ul>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -72,6 +92,9 @@
                                     <span class="badge bg-primary me-2">Residencial</span>
                                     <span class="badge bg-success">Sustentável</span>
                                 </div>
+                                <div class="mt-4">
+                                    <button class="btn btn-warning mt-3" onclick="destacarProjeto(this)">Destacar Projeto</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -96,6 +119,9 @@
                                 <div class="mt-3">
                                     <span class="badge bg-primary me-2">Residencial</span>
                                     <span class="badge bg-success">Sustentável</span>
+                                </div>
+                                <div class="mt-4">
+                                    <button class="btn btn-warning mt-3" onclick="destacarProjeto(this)">Destacar Projeto</button>
                                 </div>
                             </div>
                         </div>
@@ -122,11 +148,13 @@
                                     <span class="badge bg-primary me-2">Residencial</span>
                                     <span class="badge bg-success">Sustentável</span>
                                 </div>
+                                <div class="mt-4">
+                                    <button class="btn btn-warning mt-3" onclick="destacarProjeto(this)">Destacar Projeto</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
             </div>
         </section>
         <!-- End section projetos-->
@@ -245,25 +273,50 @@
 
         <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Variáveis de estado
             let modoEdicaoAtivo = false;
             let modoExclusaoAtivo = false;
             let projetoSelecionado = null;
             
-            // Elementos UI
             const btnEditar = document.querySelector('#btnEditarProjeto');
             const btnExcluir = document.querySelector('#btnExcluirProjeto');
-            const projectCards = document.querySelectorAll('.project-card');
             
-            // Botão Editar Projeto
+            function getAllProjectCards() {
+                return document.querySelectorAll('.project-card');
+            }
+            
+            function saveOriginalButtons() {
+                getAllProjectCards().forEach(card => {
+                    const btnDestacar = card.querySelector('.btn-warning[onclick="destacarProjeto(this)"]');
+                    if (btnDestacar) {
+                        card.setAttribute('data-original-btn', btnDestacar.outerHTML);
+                    }
+                });
+            }
+            
+            function restoreOriginalButtons() {
+                getAllProjectCards().forEach(card => {
+                    const originalBtn = card.getAttribute('data-original-btn');
+                    if (originalBtn) {
+                        const btnContainer = card.querySelector('.mt-4');
+                        if (btnContainer) {
+                            btnContainer.innerHTML = originalBtn;
+                        }
+                    }
+                });
+            }
+            
             btnEditar.addEventListener('click', () => {
                 if (modoExclusaoAtivo) {
                     desativarModoExclusao();
+                    modoExclusaoAtivo = false;
+                    btnExcluir.classList.remove('active');
+                    btnExcluir.textContent = 'Excluir projeto';
                 }
                 
                 modoEdicaoAtivo = !modoEdicaoAtivo;
                 
                 if (modoEdicaoAtivo) {
+                    saveOriginalButtons();
                     btnEditar.classList.add('active');
                     btnEditar.textContent = 'Sair do Modo Edição';
                     ativarModoEdicao();
@@ -271,21 +324,23 @@
                     btnEditar.classList.remove('active');
                     btnEditar.textContent = 'Editar projeto';
                     desativarModoEdicao();
+                    restoreOriginalButtons();
                 }
             });
             
-            // Botão Excluir Projeto
             btnExcluir.addEventListener('click', () => {
                 if (modoEdicaoAtivo) {
                     desativarModoEdicao();
+                    modoEdicaoAtivo = false;
                     btnEditar.classList.remove('active');
                     btnEditar.textContent = 'Editar projeto';
-                    modoEdicaoAtivo = false;
+                    restoreOriginalButtons();
                 }
                 
                 modoExclusaoAtivo = !modoExclusaoAtivo;
                 
                 if (modoExclusaoAtivo) {
+                    saveOriginalButtons();
                     btnExcluir.classList.add('active');
                     btnExcluir.textContent = 'Sair do Modo Exclusão';
                     ativarModoExclusao();
@@ -293,16 +348,25 @@
                     btnExcluir.classList.remove('active');
                     btnExcluir.textContent = 'Excluir projeto';
                     desativarModoExclusao();
+                    restoreOriginalButtons();
                 }
             });
             
-            // Funções para gerenciar os modos
             function ativarModoEdicao() {
-                projectCards.forEach(card => {
+                getAllProjectCards().forEach(card => {
+                    const btnDestacar = card.querySelector('.btn-warning[onclick="destacarProjeto(this)"]');
+                    if (btnDestacar) {
+                        btnDestacar.style.display = 'none';
+                    }
+                    
                     const btnEditarCard = document.createElement('button');
                     btnEditarCard.className = 'btn btn-sm btn-warning position-absolute top-0 end-0 m-3';
                     btnEditarCard.innerHTML = '<i class="fas fa-edit"></i>';
+                    btnEditarCard.style.width = '30px';
+                    btnEditarCard.style.height = '30px';
                     btnEditarCard.style.zIndex = '10';
+                    btnEditarCard.style.borderRadius = '4px';
+                    btnEditarCard.setAttribute('data-edicao', 'true');
                     
                     btnEditarCard.addEventListener('click', (e) => {
                         e.stopPropagation();
@@ -317,21 +381,35 @@
             }
             
             function desativarModoEdicao() {
-                projectCards.forEach(card => {
-                    const btnEditar = card.querySelector('.btn-warning');
+                getAllProjectCards().forEach(card => {
+                    const btnEditar = card.querySelector('[data-edicao="true"]');
                     if (btnEditar) {
                         btnEditar.remove();
                     }
                     card.style.boxShadow = '';
+                    
+                    const btnDestacar = card.querySelector('.btn-warning[onclick="destacarProjeto(this)"]');
+                    if (btnDestacar) {
+                        btnDestacar.style.display = '';
+                    }
                 });
             }
             
             function ativarModoExclusao() {
-                projectCards.forEach(card => {
+                getAllProjectCards().forEach(card => {
+                    const btnDestacar = card.querySelector('.btn-warning[onclick="destacarProjeto(this)"]');
+                    if (btnDestacar) {
+                        btnDestacar.style.display = 'none';
+                    }
+                    
                     const btnExcluirCard = document.createElement('button');
                     btnExcluirCard.className = 'btn btn-sm btn-danger position-absolute top-0 end-0 m-3';
                     btnExcluirCard.innerHTML = '<i class="fas fa-trash"></i>';
+                    btnExcluirCard.style.width = '30px';
+                    btnExcluirCard.style.height = '30px';
                     btnExcluirCard.style.zIndex = '10';
+                    btnExcluirCard.style.borderRadius = '4px';
+                    btnExcluirCard.setAttribute('data-exclusao', 'true');
                     
                     btnExcluirCard.addEventListener('click', (e) => {
                         e.stopPropagation();
@@ -346,17 +424,21 @@
             }
             
             function desativarModoExclusao() {
-                projectCards.forEach(card => {
-                    const btnExcluir = card.querySelector('.btn-danger');
+                getAllProjectCards().forEach(card => {
+                    const btnExcluir = card.querySelector('[data-exclusao="true"]');
                     if (btnExcluir) {
                         btnExcluir.remove();
                     }
                     card.style.boxShadow = '';
+                    
+                    const btnDestacar = card.querySelector('.btn-warning[onclick="destacarProjeto(this)"]');
+                    if (btnDestacar) {
+                        btnDestacar.style.display = '';
+                    }
                 });
             }
             
             function abrirModalEdicao(card) {
-                // Obter dados atuais do projeto
                 const cidade = card.querySelector('.project-features li:nth-child(1)').textContent.replace('Cidade de ', '').trim();
                 const placas = card.querySelector('.project-features li:nth-child(2)').textContent.replace(' módulos de ', '|').split('|')[0].trim();
                 const inversor = card.querySelector('.project-features li:nth-child(3)').textContent.replace('Inversor ', '').trim();
@@ -364,7 +446,6 @@
                 const conclusao = card.querySelector('.project-meta span').textContent.replace('Concluído: ', '').trim();
                 const titulo = card.querySelector('.project-title').textContent.trim();
                 
-                // Preencher o modal com os dados atuais
                 const editModal = document.getElementById('editModal');
                 editModal.querySelector('[name="titulo"]').value = titulo;
                 editModal.querySelector('[name="cidade"]').value = cidade;
@@ -373,7 +454,6 @@
                 editModal.querySelector('[name="economia"]').value = economia;
                 editModal.querySelector('[name="conclusao"]').value = conclusao;
                 
-                // Abrir o modal
                 const modal = new bootstrap.Modal(editModal);
                 modal.show();
             }
@@ -388,7 +468,6 @@
                 e.preventDefault();
                 
                 if (projetoSelecionado) {
-                    // Obter valores do formulário
                     const titulo = this.querySelector('[name="titulo"]').value;
                     const cidade = this.querySelector('[name="cidade"]').value;
                     const placas = this.querySelector('[name="placas"]').value;
@@ -396,7 +475,6 @@
                     const economia = this.querySelector('[name="economia"]').value;
                     const conclusao = this.querySelector('[name="conclusao"]').value;
                     
-                    // Atualizar o card com os novos valores
                     projetoSelecionado.querySelector('.project-title').textContent = titulo;
                     projetoSelecionado.querySelector('.project-features li:nth-child(1)').innerHTML = `<i class="fas fa-map-marker-alt text-primary me-2"></i> Cidade de ${cidade}`;
                     projetoSelecionado.querySelector('.project-features li:nth-child(2)').innerHTML = `<i class="fas fa-solar-panel text-primary me-2"></i> ${placas} módulos de 570W`;
@@ -404,7 +482,6 @@
                     projetoSelecionado.querySelector('.project-features li:nth-child(4)').innerHTML = `<i class="fas fa-battery-three-quarters text-primary me-2"></i> Economia: ${economia}`;
                     projetoSelecionado.querySelector('.project-meta span').innerHTML = `<i class="far fa-calendar-alt me-1"></i> Concluído: ${conclusao}`;
                     
-                    // Fechar o modal
                     const modal = bootstrap.Modal.getInstance(document.getElementById('editModal'));
                     modal.hide();
                     
@@ -412,7 +489,6 @@
                 }
             });
             
-            // Confirmação de exclusão
             document.getElementById('confirmDelete').addEventListener('click', function() {
                 if (projetoSelecionado) {
                     projetoSelecionado.remove();
@@ -422,6 +498,37 @@
                 }
             });
         });
+
+        function destacarProjeto(button) {
+            const card = button.closest('.project-card');
+
+            const titulo = card.querySelector('.project-title')?.innerText;
+            const imagem = card.querySelector('img')?.getAttribute('src');
+            const detalhes = card.querySelector('.project-features')?.innerHTML;
+            const meta = card.querySelector('.project-meta')?.innerHTML;
+            const tags = card.querySelectorAll('.badge');
+
+            const novoProjeto = {
+                titulo,
+                imagem,
+                detalhes,
+                meta,
+                tags: Array.from(tags).map(tag => tag.outerHTML)
+            };
+
+            const projetosDestacados = JSON.parse(localStorage.getItem('projetosDestacados')) || [];
+
+            const LIMITE = 2;
+
+            projetosDestacados.unshift(novoProjeto); 
+            if (projetosDestacados.length > LIMITE) {
+                projetosDestacados.pop(); 
+            }
+
+            localStorage.setItem('projetosDestacados', JSON.stringify(projetosDestacados));
+            alert('Projeto destacado com sucesso!');
+        }
+
         </script>
 
         <!-- Bootstrap core JS-->

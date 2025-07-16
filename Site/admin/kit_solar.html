@@ -33,6 +33,20 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
+                        <li class="nav-item mx-0 mx-lg-1">
+                            <a class="btn btn-primary py-3 px-4 rounded" href="editar.html">Editar Dados</a>
+                        </li>
+                        <li class="nav-item mx-0 mx-lg-1">
+                            <div class="dropdown">
+                                <a class="btn btn-primary py-3 px-4 rounded dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-user me-2"></i>
+                                    <strong>Primeiro Nome</strong>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
+                                    <li><a class="dropdown-item" href="#" onclick="logout()">Sair</a></li>
+                                </ul>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -49,12 +63,12 @@
         <div class="container mt-5">
             <table class="table table-bordered">
             <tbody>
-                <tr><td>Custo mão de obra por placa</td><td><button class="btn btn-sm btn-outline-primary" onclick="abrirModal('Mão de obra', '200.00')">Editar</button></td></tr>
-                <tr><td>Custo cabos</td><td><button class="btn btn-sm btn-outline-primary" onclick="abrirModal('Cabos', '180.00')">Editar</button></td></tr>
-                <tr><td>Custo trilho por placa</td><td><button class="btn btn-sm btn-outline-primary" onclick="abrirModal('Trilho', '80.00')">Editar</button></td></tr>
-                <tr><td>Custo conectores</td><td><button class="btn btn-sm btn-outline-primary" onclick="abrirModal('Conectores', '50.00')">Editar</button></td></tr>
-                <tr><td>Custos fixos</td><td><button class="btn btn-sm btn-outline-primary" onclick="abrirModal('Fixos', '400.00')">Editar</button></td></tr>
-                <tr><td>Custos extras</td><td><button class="btn btn-sm btn-outline-primary" onclick="abrirModal('Extra', '300.00')">Editar</button></td></tr>
+                <tr><td>Custo mão de obra por placa</td><td><a href="#" class="btn btn-sm btn-outline-primary" onclick="abrirModal('Mão de obra', '200.00')">Editar</a></td></tr>
+                <tr><td>Custo cabos</td><td><a href="#" class="btn btn-sm btn-outline-primary" onclick="abrirModal('Cabos', '180.00')">Editar</a></td></tr>
+                <tr><td>Custo trilho por placa</td><td><a href="#" class="btn btn-sm btn-outline-primary" onclick="abrirModal('Trilho', '80.00')">Editar</a></td></tr>
+                <tr><td>Custo conectores</td><td><a href="#" class="btn btn-sm btn-outline-primary" onclick="abrirModal('Conectores', '50.00')">Editar</a></td></tr>
+                <tr><td>Custos fixos</td><td><a href="#" class="btn btn-sm btn-outline-primary" onclick="abrirModal('Fixos', '400.00')">Editar</a></td></tr>
+                <tr><td>Custos extras</td><td><a href="#" class="btn btn-sm btn-outline-primary" onclick="abrirModal('Extra', '300.00')">Editar</a></td></tr>
             </tbody>
             </table>
         </div>

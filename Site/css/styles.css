@@ -11711,4 +11711,51 @@ input[type="file"]::file-selector-button {
   outline: 2px solid red;
 }
 
+/* Menu responsivo */
+@media (max-width: 991.98px) {
+    #navbarResponsive .nav-item {
+        width: 100%;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    
+    #navbarResponsive .btn {
+        width: 100%;
+        text-align: left;
+        margin-bottom: 0.5rem;
+    }
+    
+    #navbarResponsive .mx-lg-1 {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    
+    #navbarResponsive .dropdown-menu {
+        width: 100%;
+    }
+}
+
+.project-card {
+  position: relative;
+}
+
+.project-actions {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 5px;
+}
+
+.project-actions .btn {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  border-radius: 6px;
+}
+
 }

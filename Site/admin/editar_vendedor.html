@@ -33,9 +33,30 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <button class="btn btn-primary text-uppercase py-2 px-3 me-2" data-bs-toggle="modal" data-bs-target="#novoVendedorModal">Novo Vendedor</button>
-                        <button id="btnEditarVendedor" class="btn btn-primary text-uppercase me-2">Editar vendedor</button>
-                        <button id="btnExcluirVendedor" class="btn btn-primary text-uppercase">Excluir vendedor</button>
+                        <ul class="navbar-nav ms-auto">
+                        <li class="nav-item mx-0 mx-lg-1">
+                            <a class="btn btn-primary py-3 px-4 rounded me-2" href="#" data-bs-toggle="modal" data-bs-target="#novoVendedorModal">Novo</a>
+                        </li>
+                        <li class="nav-item mx-0 mx-lg-1">
+                            <a id="btnEditarVendedor" class="btn btn-primary py-3 px-4 rounded me-2" href="#">Editar vendedor</a>
+                        </li>
+                        <li class="nav-item mx-0 mx-lg-1">
+                            <a id="btnExcluirVendedor" class="btn btn-primary py-3 px-4 rounded" href="#">Excluir vendedor</a>
+                        </li>
+                        <li class="nav-item mx-0 mx-lg-1">
+                            <a class="btn btn-primary py-3 px-4 rounded" href="editar.html">Editar Dados</a>
+                        </li>
+                        <li class="nav-item mx-0 mx-lg-1 w-lg-auto">
+                            <div class="dropdown w-100">
+                                <a class="btn btn-primary py-3 px-4 rounded dropdown-toggle text-start" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-user me-2"></i>
+                                    <strong>Primeiro Nome</strong>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end w-100" aria-labelledby="dropdownMenuLink">
+                                    <li><a class="dropdown-item" href="#" onclick="logout()">Sair</a></li>
+                                </ul>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -312,59 +333,59 @@
             });
             
             function ativarModoEdicao() {
-                vendedorCards.forEach(card => {
+                vendedorCards.forEach(card => {  
                     const btnEditarCard = document.createElement('button');
-                    btnEditarCard.className = 'btn btn-sm btn-warning position-absolute top-0 end-0 m-3';
+                    btnEditarCard.className = 'btn btn-sm btn-warning position-absolute top-0 end-0 m-3 btn-edicao-dinamica';
                     btnEditarCard.innerHTML = '<i class="fas fa-edit"></i>';
+                    btnEditarCard.style.width = '30px';
+                    btnEditarCard.style.height = '30px';
                     btnEditarCard.style.zIndex = '10';
-                    
+                    btnEditarCard.style.borderRadius = '4px';
+
                     btnEditarCard.addEventListener('click', (e) => {
                         e.stopPropagation();
-                        vendedorSelecionado = card;
+                        vendedorSelecionado = card;  
                         abrirModalEdicao(card);
                     });
-                    
+
                     card.style.position = 'relative';
                     card.style.boxShadow = '0 0 0 3px rgba(13, 110, 253, 0.5)';
                     card.appendChild(btnEditarCard);
                 });
             }
-            
+
             function desativarModoEdicao() {
-                vendedorCards.forEach(card => {
-                    const btnEditar = card.querySelector('.btn-warning');
-                    if (btnEditar) {
-                        btnEditar.remove();
-                    }
+                vendedorCards.forEach(card => {  
+                    card.querySelectorAll('.btn-edicao-dinamica').forEach(btn => btn.remove());
                     card.style.boxShadow = '';
                 });
             }
-            
+
             function ativarModoExclusao() {
-                vendedorCards.forEach(card => {
+                vendedorCards.forEach(card => {  
                     const btnExcluirCard = document.createElement('button');
-                    btnExcluirCard.className = 'btn btn-sm btn-danger position-absolute top-0 end-0 m-3';
+                    btnExcluirCard.className = 'btn btn-sm btn-danger position-absolute top-0 end-0 m-3 btn-exclusao-dinamica';
                     btnExcluirCard.innerHTML = '<i class="fas fa-trash"></i>';
+                    btnExcluirCard.style.width = '30px';
+                    btnExcluirCard.style.height = '30px';
                     btnExcluirCard.style.zIndex = '10';
-                    
+                    btnExcluirCard.style.borderRadius = '4px';
+
                     btnExcluirCard.addEventListener('click', (e) => {
                         e.stopPropagation();
-                        vendedorSelecionado = card;
+                        vendedorSelecionado = card;  
                         abrirModalConfirmacao();
                     });
-                    
+
                     card.style.position = 'relative';
                     card.style.boxShadow = '0 0 0 3px rgba(220, 53, 69, 0.5)';
                     card.appendChild(btnExcluirCard);
                 });
             }
-            
+
             function desativarModoExclusao() {
-                vendedorCards.forEach(card => {
-                    const btnExcluir = card.querySelector('.btn-danger');
-                    if (btnExcluir) {
-                        btnExcluir.remove();
-                    }
+                vendedorCards.forEach(card => {  
+                    card.querySelectorAll('.btn-exclusao-dinamica').forEach(btn => btn.remove());
                     card.style.boxShadow = '';
                 });
             }
@@ -455,7 +476,6 @@
                             <p class="text-muted mb-3">${cargo}</p>
                             <p class="card-text mb-4">${descricao}</p>
                             <a href="https://wa.me/${whatsapp}?text=${mensagemCodificada}"class="btn btn-success w-100" target="_blank">
-                                class="btn btn-success w-100" target="_blank">
                                     <i class="fab fa-whatsapp me-2"></i> Falar com ${nomePrimeiraParte}</a>
                         </div>
                     </div>

@@ -15,15 +15,15 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
+        <link href="../css/styles.css" rel="stylesheet" />
     </head>
     <body id="page-top">
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg bg-white text-uppercase fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand" href="#page-top">
+                <a class="navbar-brand" href="index.html">
                     <img 
-                        src="images/MKLOGO.png" 
+                        src="../images/MKLOGO.png" 
                         alt="MK Energia Solar" 
                         class="img-fluid logo-resposivo">
                 </a>
@@ -33,26 +33,39 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-primary " href="#contact">Fale Conosco</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-primary" href="#orcamento">Orçamento</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded bg-primary" href="#project">Projetos</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-primary " href="contato.html">Fale Conosco</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-primary" href="orcamento.html">Orçamento</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded bg-primary" href="projetos.html">Projetos</a></li>
+                        <li class="nav-item mx-0 mx-lg-1">
+                            <div class="dropdown">
+                                <a class="btn btn-primary py-3 px-4 rounded dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-user me-2"></i>
+                                    <strong>Primeiro Nome</strong>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
+                                    <li><a class="dropdown-item" href="#" onclick="logout()">Sair</a></li>
+                                </ul>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
         <!-- Masthead-->
-        <header>
-        <section class="page-section projects" id="projects" style="margin-top: 80px;">
+        <section class="page-section bg-primary text-white mb-0" id="title">
             <div class="container">
-                <h2 class="page-section-heading text-uppercase text-primary d-inline-block mb-5">
-                Projetos Concluídos
-                    <span class="position-absolute bottom-0 start-50 translate-middle-x bg-primary" style="width: 80px; height: 3px;"></span>
-                </h2>
+                <h5 class="page-section-heading text-primary text-uppercase text-white">Projetos Concluídos</h5>
+            </div>
+        </section>
+        <header>
+        <header>
+        <section class="page-section projects" id="projects">
+            <div class="container">
                 <!-- Primeiro Projeto -->
                 <div class="project-card mb-5 p-4 rounded-3 bg-light">
                     <div class="row align-items-center g-4">
                         <div class="col-lg-5 col-md-6">
-                            <img src="images/project1.png" class="img-fluid rounded shadow projeto-img" alt="Sistema solar residencial">
+                            <img src="../images/project1.png" class="img-fluid rounded shadow projeto-img" alt="Sistema solar residencial">
                         </div>
                         <div class="col-lg-7 col-md-6">
                             <div class="ps-lg-4">
@@ -80,7 +93,7 @@
                     </div>
                     <div class="row align-items-center g-4">
                         <div class="col-lg-5 col-md-6">
-                            <img src="images/project2.png" class="img-fluid rounded shadow projeto-img" alt="Sistema solar residencial">
+                            <img src="../images/project2.png" class="img-fluid rounded shadow projeto-img" alt="Sistema solar residencial">
                         </div>
                         <div class="col-lg-7 col-md-6">
                             <div class="ps-lg-4">
@@ -105,7 +118,7 @@
                 <div class="project-card mb-5 p-4 rounded-3 bg-light">
                     <div class="row align-items-center g-4">
                         <div class="col-lg-5 col-md-6">
-                            <img src="images/project3.jpg" class="img-fluid rounded shadow projeto-img" alt="Sistema solar residencial">
+                            <img src="../images/project3.jpg" class="img-fluid rounded shadow projeto-img" alt="Sistema solar residencial">
                         </div>
                         <div class="col-lg-7 col-md-6">
                             <div class="ps-lg-4">
@@ -130,7 +143,7 @@
                 <div class="project-card mb-5 p-4 rounded-3 bg-light">
                     <div class="row align-items-center g-4">
                         <div class="col-lg-5 col-md-6">
-                            <img src="images/project4.jpg" class="img-fluid rounded shadow projeto-img" alt="Sistema solar residencial">
+                            <img src="../images/project4.jpg" class="img-fluid rounded shadow projeto-img" alt="Sistema solar residencial">
                         </div>
                         <div class="col-lg-7 col-md-6">
                             <div class="ps-lg-4">
@@ -155,7 +168,7 @@
                 <div class="project-card mb-5 p-4 rounded-3 bg-light">
                     <div class="row align-items-center g-4">
                         <div class="col-lg-5 col-md-6">
-                            <img src="images/project5.jpg" class="img-fluid rounded shadow projeto-img" alt="Sistema solar residencial">
+                            <img src="../images/project5.jpg" class="img-fluid rounded shadow projeto-img" alt="Sistema solar residencial">
                         </div>
                         <div class="col-lg-7 col-md-6">
                             <div class="ps-lg-4">
@@ -180,7 +193,7 @@
                 <div class="project-card mb-5 p-4 rounded-3 bg-light">
                     <div class="row align-items-center g-4">
                         <div class="col-lg-5 col-md-6">
-                            <img src="images/project6.jpg" class="img-fluid rounded shadow projeto-img" alt="Sistema solar residencial">
+                            <img src="../images/project6.jpg" class="img-fluid rounded shadow projeto-img" alt="Sistema solar residencial">
                         </div>
                         <div class="col-lg-7 col-md-6">
                             <div class="ps-lg-4">
@@ -205,7 +218,7 @@
                 <div class="project-card mb-5 p-4 rounded-3 bg-light">
                     <div class="row align-items-center g-4">
                         <div class="col-lg-5 col-md-6">
-                            <img src="images/project7.jpg" class="img-fluid rounded shadow projeto-img" alt="Sistema solar residencial">
+                            <img src="../images/project7.jpg" class="img-fluid rounded shadow projeto-img" alt="Sistema solar residencial">
                         </div>
                         <div class="col-lg-7 col-md-6">
                             <div class="ps-lg-4">
@@ -231,56 +244,35 @@
         </section>
         <!-- End section projetos-->
         <!-- Footer-->
-        <footer class="footer text-center bg-primary">
+        <footer class="footer text-center bg-primary text-white py-5">
             <div class="container">
-                <a class="navbar-brand" href="#page-top">
-                    <img 
-                        src="images/MKLOGO.png" 
-                        alt="MK Energia Solar" 
-                        class="img-fluid logo-resposivo">
-                </a>
-                <div class="row">
-                    <!-- Footer Social Icons-->
-                    <div class="col-lg-4 mb-5 mb-lg-0">
-                        <h4 class="text-uppercase mb-4">Nos siga nas redes sociais</h4>
-                        <a class="btn btn-outline-light btn-social mx-1" href="#https://www.facebook.com/MKferragenseEletrica?locale=pt_BR!"><i class="fab fa-fw fa-facebook-f"></i></a>
-                        <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-linkedin-in"></i></a>
-                        <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-dribbble"></i></a>
-                    </div>
-                    <!-- Footer About Text-->
-                    <div class="col-lg-4">
-                        <h4 class="text-uppercase mb-4">About Freelancer</h4>
-                        <p class="lead mb-0">
-                            Freelance is a free to use, MIT licensed Bootstrap theme created by
-                            <a href="http://startbootstrap.com">Start Bootstrap</a>
-                            .
-                        </p>
-                    </div>
+                <div class="mb-4">
+                <img src="../images/MKLOGO.png" alt="MK Energia Solar" class="img-fluid footer-logo" style="max-height: 80px;">
                 </div>
+                <div class="d-flex justify-content-center mb-4">
+                <a class="btn btn-outline-light btn-social mx-2" href="https://www.facebook.com/MKferragenseEletrica" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a class="btn btn-outline-light btn-social mx-2" href="https://www.instagram.com/mkenergiasolareferragens" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a class="btn btn-outline-light btn-social mx-2" href="https://wa.me/5551998224220" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+                <div class="row text-start justify-content-center">
+                <div class="col-md-4 mb-3">
+                    <h5 class="text-white">Contato</h5>
+                    <p class="mb-1"><i class="fas fa-phone-alt me-2"></i>(51) 99822-4220</p>
+                    <p><i class="fas fa-envelope me-2"></i>mkferragenseeletrica@gmail.com</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5 class="text-white">Endereço</h5>
+                    <p>Av. Tenente Pedro Von Muhlen, 609<br>Centro, Rolante - RS</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5 class="text-white">Horário</h5>
+                    <p>Seg a Sex: 7:30–11:30 / 13:15–18:30<br>Sábado: 8:00–11:30</p>
+                </div>
+                </div>
+                <hr class="bg-light opacity-25">
+                <p class="small mb-0 text-white-50">&copy; 2025 MK Energia Solar - Todos os direitos reservados</p>
             </div>
         </footer>
-        <!-- Modal de Edição -->
-        <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="editModalLabel">Editar Projeto</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="projectForm">
-                            <input type="hidden" id="projectId">
-                            <div class="mb-3">
-                                <button type="button" class="btn btn-warning me-2" id="highlightBtn">Destacar</button>
-                                <button type="button" class="btn btn-danger me-2" id="deleteBtn">Excluir</button>
-                                <button type="submit" class="btn btn-primary">Salvar Alterações</button>
-                            </div>
-                            <!-- Adicione aqui os campos de edição conforme necessário -->
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

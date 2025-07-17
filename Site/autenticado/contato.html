@@ -15,15 +15,15 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
+        <link href="../css/styles.css" rel="stylesheet" />
     </head>
     <body id="page-top">
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg bg-white text-uppercase fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand" href="#page-top">
+                <a class="navbar-brand" href="index.html">
                     <img 
-                        src="images/MKLOGO.png" 
+                        src="../images/MKLOGO.png" 
                         alt="MK Energia Solar" 
                         class="img-fluid logo-resposivo">
                 </a>
@@ -33,30 +33,43 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded bg-primary " href="#contact">Fale Conosco</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-primary" href="#orcamento">Orçamento</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-primary" href="#project">Projetos</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded bg-primary " href="contato.html">Fale Conosco</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-primary" href="orcamento.html">Orçamento</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-primary" href="projetos.html">Projetos</a></li>
+                        <li class="nav-item mx-0 mx-lg-1">
+                            <div class="dropdown">
+                                <a class="btn btn-primary py-3 px-4 rounded dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-user me-2"></i>
+                                    <strong>Primeiro Nome</strong>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
+                                    <li><a class="dropdown-item" href="#" onclick="logout()">Sair</a></li>
+                                </ul>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
         <!-- Masthead-->
+        <!--Seção titulo-->
+        <section class="page-section bg-primary text-white mb-0" id="title">
+            <div class="container">
+                <h5 class="page-section-heading text-primary text-uppercase text-white">Nossos Vendedores</h5>
+            </div>
+        </section>
+        <header>
         <header>
         <!-- Seção Vendedores -->
         <section class="page-section py-5" id="vendedores" style="margin-top: 80px;">
             <div class="container">
-                <h2 class="page-section-heading text-uppercase text-primary d-inline-block mb-5">
-                    Nossos Vendedores
-                    <span class="position-absolute bottom-0 start-50 translate-middle-x bg-primary" style="width: 80px; height: 3px;"></span>
-                </h2>
-                
                 <div class="row g-4">
                     <!-- Vendedor Jonathan -->
                     <div class="col-lg-4 col-md-6">
                         <div class="card h-100 border-0 shadow-sm">
                             <div class="card-body text-center p-4">
                                 <div class="position-relative mb-4">
-                                    <img src="images/icone.png" class="rounded-circle shadow" width="120" height="120">
+                                    <img src="../images/icone.png" class="rounded-circle shadow" width="120" height="120">
                                 </div>
                                 <h4 class="card-title mb-2">Jonathan Kirsch</h4>
                                 <p class="text-muted mb-3">Especialista em Energia Solar e CEO</p>
@@ -74,7 +87,7 @@
                         <div class="card h-100 border-0 shadow-sm">
                             <div class="card-body text-center p-4">
                                 <div class="position-relative mb-4">
-                                    <img src="images/icone.png" class="rounded-circle shadow" width="120" height="120">
+                                    <img src="../images/icone.png" class="rounded-circle shadow" width="120" height="120">
                                 </div>
                                 <h4 class="card-title mb-2">Dhonavan Dias</h4>
                                 <p class="text-muted mb-3">Consultor e Especialista em Energia Solar</p>
@@ -92,7 +105,7 @@
                         <div class="card h-100 border-0 shadow-sm">
                             <div class="card-body text-center p-4">
                                 <div class="position-relative mb-4">
-                                    <img src="images/icone.png" class="rounded-circle shadow" width="120" height="120">
+                                    <img src="../images/icone.png" class="rounded-circle shadow" width="120" height="120">
                                 </div>
                                 <h4 class="card-title mb-2">MK Energia Solar</h4>
                                 <p class="text-muted mb-3">Especialista em Garantir Maior Comodidade aos Clientes</p>
@@ -122,13 +135,30 @@
         <footer class="footer text-center bg-primary text-white py-5">
             <div class="container">
                 <div class="mb-4">
-                    <img src="images/MKLOGO.png" alt="MK Energia Solar" class="img-fluid footer-logo">
+                <img src="../images/MKLOGO.png" alt="MK Energia Solar" class="img-fluid footer-logo" style="max-height: 80px;">
                 </div>
-                <div class="d-flex justify-content-center">
-                    <a class="btn btn-outline-light btn-social mx-2" href="https://www.facebook.com/MKferragenseEletrica" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-outline-light btn-social mx-2" href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a class="btn btn-outline-light btn-social mx-2" href="https://wa.me/5551998224220" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <div class="d-flex justify-content-center mb-4">
+                <a class="btn btn-outline-light btn-social mx-2" href="https://www.facebook.com/MKferragenseEletrica" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a class="btn btn-outline-light btn-social mx-2" href="https://www.instagram.com/mkenergiasolareferragens" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a class="btn btn-outline-light btn-social mx-2" href="https://wa.me/5551998224220" target="_blank"><i class="fab fa-whatsapp"></i></a>
                 </div>
+                <div class="row text-start justify-content-center">
+                <div class="col-md-4 mb-3">
+                    <h5 class="text-white">Contato</h5>
+                    <p class="mb-1"><i class="fas fa-phone-alt me-2"></i>(51) 99822-4220</p>
+                    <p><i class="fas fa-envelope me-2"></i>mkferragenseeletrica@gmail.com</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5 class="text-white">Endereço</h5>
+                    <p>Av. Tenente Pedro Von Muhlen, 609<br>Centro, Rolante - RS</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5 class="text-white">Horário</h5>
+                    <p>Seg a Sex: 7:30–11:30 / 13:15–18:30<br>Sábado: 8:00–11:30</p>
+                </div>
+                </div>
+                <hr class="bg-light opacity-25">
+                <p class="small mb-0 text-white-50">&copy; 2025 MK Energia Solar - Todos os direitos reservados</p>
             </div>
         </footer>
         <!-- Bootstrap core JS-->

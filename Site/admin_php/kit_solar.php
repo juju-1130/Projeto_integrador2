@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>MK Energia Solar</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="../css/styles.css" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg bg-white text-uppercase fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img 
+                        src="../images/MKLOGO.png" 
+                        alt="MK Energia Solar" 
+                        class="img-fluid logo-resposivo">
+                </a>
+                <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item mx-0 mx-lg-1 w-100 w-lg-auto mb-2 mb-lg-0">
+                            <a class="btn btn-primary py-3 px-4 rounded" href="editar.html">Editar Dados</a>
+                        </li>
+                        <li class="nav-item mx-0 mx-lg-1 w-100 w-lg-auto">
+                            <div class="dropdown">
+                                <a class="btn btn-primary py-3 px-4 rounded dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-user me-2"></i>
+                                    <strong>Primeiro Nome</strong>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
+                                    <li><a class="dropdown-item" href="#" onclick="logout()">Sair</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!--Seção titulo-->
+        <section class="page-section bg-primary text-white mb-0" id="title">
+            <div class="container">
+                <h3 class="page-section-heading text-primary text-uppercase text-white">Kit solar</h3>
+            </div>
+        </section>
+        <!-- Masthead-->
+        <header>
+        <!-- Tabela custos kit solar-->
+        <div class="container mt-5">
+            <table class="table table-bordered">
+            <tbody>
+                <tr><td>Custo mão de obra por placa</td><td><a href="#" class="btn btn-sm btn-outline-primary" onclick="abrirModal('Mão de obra', '200.00')">Editar</a></td></tr>
+                <tr><td>Custo cabos</td><td><a href="#" class="btn btn-sm btn-outline-primary" onclick="abrirModal('Cabos', '180.00')">Editar</a></td></tr>
+                <tr><td>Custo trilho por placa</td><td><a href="#" class="btn btn-sm btn-outline-primary" onclick="abrirModal('Trilho', '80.00')">Editar</a></td></tr>
+                <tr><td>Custo conectores</td><td><a href="#" class="btn btn-sm btn-outline-primary" onclick="abrirModal('Conectores', '50.00')">Editar</a></td></tr>
+                <tr><td>Custos fixos</td><td><a href="#" class="btn btn-sm btn-outline-primary" onclick="abrirModal('Fixos', '400.00')">Editar</a></td></tr>
+                <tr><td>Custos extras</td><td><a href="#" class="btn btn-sm btn-outline-primary" onclick="abrirModal('Extra', '300.00')">Editar</a></td></tr>
+            </tbody>
+            </table>
+        </div>
+        <!-- Footer-->
+        <footer class="footer text-center bg-primary text-white py-5">
+            <div class="container">
+                <div class="mb-4">
+                    <img src="../images/MKLOGO.png" alt="MK Energia Solar" class="img-fluid footer-logo">
+                </div>
+            </div>
+        </footer>
+        <!-- Modal de Edição -->
+        <div class="modal fade" id="editarValorModal" tabindex="-1" aria-labelledby="editarValorModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editarValorModalLabel">Editar Valor</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formEditarValor">
+                            <div class="mb-3">
+                                <label for="itemNome" class="form-label">Item</label>
+                                <input type="text" class="form-control" id="itemNome" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label for="itemValor" class="form-label">Valor (R$)</label>
+                                <input type="number" step="0.01" class="form-control" id="itemValor" required>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary" onclick="salvarEdicao()">Salvar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            let itemAtual = null;
+            
+            function abrirModal(item, valor) {
+                itemAtual = item;
+                
+                document.getElementById('itemNome').value = item;
+                document.getElementById('itemValor').value = valor;
+                
+                const modal = new bootstrap.Modal(document.getElementById('editarValorModal'));
+                modal.show();
+            }
+            
+            function salvarEdicao() {
+                const novoValor = document.getElementById('itemValor').value;
+                
+                
+                const modal = bootstrap.Modal.getInstance(document.getElementById('editarValorModal'));
+                modal.hide();
+                
+                const linhas = document.querySelectorAll('table tbody tr');
+                linhas.forEach(linha => {
+                    const td = linha.querySelector('td:first-child');
+                    if (td.textContent.includes(itemAtual)) {
+                        const valorTd = linha.querySelector('td:nth-child(2)');
+                        valorTd.innerHTML = `R$ ${novoValor} <button class="btn btn-sm btn-outline-primary ms-2" onclick="abrirModal('${itemAtual}', '${novoValor}')">Editar</button>`;
+                    }
+                });
+            }
+        </script>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
+</html>

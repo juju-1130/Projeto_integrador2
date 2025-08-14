@@ -19,35 +19,7 @@
     </head>
     <body id="page-top">
         <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg bg-white text-uppercase fixed-top" id="mainNav">
-            <div class="container">
-                <a class="navbar-brand" href="index.html">
-                    <img src="../images/MKLOGO.png" alt="MK Energia Solar" class="img-fluid logo-resposivo">
-                </a>
-                <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    Menu
-                    <i class="fas fa-bars"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item mx-0 mx-lg-1">
-                            <a class="btn btn-primary py-3 px-4 rounded" href="editar.php">Editar Dados</a>
-                        </li>
-                        <li class="nav-item mx-0 mx-lg-1">
-                            <div class="dropdown">
-                                <a class="btn btn-primary py-3 px-4 rounded dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fas fa-user me-2"></i>
-                                    <strong>Primeiro Nome</strong>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
-                                    <li><a class="dropdown-item" href="#" onclick="logout()">Sair</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <?php include __DIR__ . '/../includes/nav_admin.php'; ?>
         <!--Seção bem vindo-->
         <section class="page-section bg-primary text-white mb-0" id="title">
             <div class="container">
@@ -275,35 +247,7 @@
             </div>
         </section>
         <!-- Footer-->
-        <footer class="footer text-center bg-primary text-white py-5">
-            <div class="container">
-                <div class="mb-4">
-                <img src="../images/MKLOGO.png" alt="MK Energia Solar" class="img-fluid footer-logo" style="max-height: 80px;">
-                </div>
-                <div class="d-flex justify-content-center mb-4">
-                <a class="btn btn-outline-light btn-social mx-2" href="https://www.facebook.com/MKferragenseEletrica" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a class="btn btn-outline-light btn-social mx-2" href="https://www.instagram.com/mkenergiasolareferragens" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a class="btn btn-outline-light btn-social mx-2" href="https://wa.me/5551998224220" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                </div>
-                <div class="row text-start justify-content-center">
-                <div class="col-md-4 mb-3">
-                    <h5 class="text-white">Contato</h5>
-                    <p class="mb-1"><i class="fas fa-phone-alt me-2"></i>(51) 99822-4220</p>
-                    <p><i class="fas fa-envelope me-2"></i>mkferragenseeletrica@gmail.com</p>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <h5 class="text-white">Endereço</h5>
-                    <p>Av. Tenente Pedro Von Muhlen, 609<br>Centro, Rolante - RS</p>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <h5 class="text-white">Horário</h5>
-                    <p>Seg a Sex: 7:30–11:30 / 13:15–18:30<br>Sábado: 8:00–11:30</p>
-                </div>
-                </div>
-                <hr class="bg-light opacity-25">
-                <p class="small mb-0 text-white-50">&copy; 2025 MK Energia Solar - Todos os direitos reservados</p>
-            </div>
-        </footer>
+        <?php include __DIR__ . '/../includes/footer.php'; ?>
         <script>
         document.addEventListener('DOMContentLoaded', () => {
             const projetos = JSON.parse(localStorage.getItem('projetosDestacados')) || [];

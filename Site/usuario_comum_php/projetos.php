@@ -19,16 +19,45 @@
     </head>
     <body id="page-top">
         <!-- Navigation-->
-        <?php include __DIR__ . '/../includes/nav_autenticado.php'; ?>
-        <!-- Masthead-->
+        <nav class="navbar navbar-expand-lg bg-white text-uppercase fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img 
+                        src="../images/MKLOGO.png" 
+                        alt="MK Energia Solar" 
+                        class="img-fluid logo-resposivo">
+                </a>
+                <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item mx-0 mx-lg-1 w-auto">
+                            <a class="nav-link py-3 px-0 px-lg-3 rounded text-primary" href="contato.php">Fale Conosco</a>
+                        </li>
+                        <li class="nav-item mx-0 mx-lg-1 w-auto">
+                            <a class="nav-link py-3 px-0 px-lg-3 rounded text-primary" href="#" data-bs-toggle="modal" data-bs-target="#cadastroOrcamentoModal">Orçamento</a>
+                        </li>
+                        <li class="nav-item mx-0 mx-lg-1 w-auto">
+                            <a class="nav-link py-3 px-0 px-lg-3 rounded bg-primary" href="projetos.php">Projetos</a>
+                        </li>
+                        <li class="nav-item mx-0 mx-lg-1 w-auto">
+                            <a class="nav-link py-3 px-0 px-lg-3 rounded bg-primary text-white" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login/Cadastre-se</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!--Seção título-->
         <section class="page-section bg-primary text-white mb-0" id="title">
             <div class="container">
-                <h5 class="page-section-heading text-primary text-uppercase text-white">Projetos Concluídos</h5>
+                <h5 class="page-section-heading text-uppercase text-white">Projetos Concluídos</h5>
             </div>
         </section>
+        <!-- Masthead-->
         <header>
-        <header>
-        <section class="page-section projects" id="projects">
+        <section class="page-section projects" id="projects" style="margin-top: 30px;">
             <div class="container">
                 <!-- Primeiro Projeto -->
                 <div class="project-card mb-5 p-4 rounded-3 bg-light">
@@ -214,6 +243,135 @@
         <!-- End section projetos-->
         <!-- Footer-->
         <?php include __DIR__ . '/../includes/footer.php'; ?>
+        <!-- Modal Login/Cadastro -->
+        <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="loginModalLabel">Acesse sua conta</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Nav Login/Cadastro -->
+                        <ul class="nav nav-tabs nav-justified mb-4" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login" type="button" role="tab" aria-controls="login" aria-selected="true">Login</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="cadastro-tab" data-bs-toggle="tab" data-bs-target="#cadastro" type="button" role="tab" aria-controls="cadastro" aria-selected="false">Cadastre-se</button>
+                            </li>
+                        </ul>
+                        
+                        <!-- Login/Cadastro -->
+                        <div class="tab-content">
+                            <!-- Login -->
+                            <div class="tab-pane active" id="login" role="tabpanel" aria-labelledby="login-tab">
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="loginEmail" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="loginEmail" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="loginSenha" class="form-label">Senha</label>
+                                        <input type="password" class="form-control" id="loginSenha" required>
+                                    </div>
+                                    <div class="mb-3 form-check">
+                                        <input type="checkbox" class="form-check-input" id="lembrarLogin">
+                                        <label class="form-check-label" for="lembrarLogin">Lembrar de mim</label>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary w-100">Entrar</button>
+                                </form>
+                                <div class="text-center mt-3">
+                                    <a href="#" class="text-decoration-none" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#esqueciSenhaModal">Esqueci minha senha</a>
+                                </div>
+                            </div>
+                            
+                            <!-- Cadastro -->
+                            <div class="tab-pane" id="cadastro" role="tabpanel" aria-labelledby="cadastro-tab">
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="cadastroNome" class="form-label">Nome Completo</label>
+                                        <input type="text" class="form-control" id="cadastroNome" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="cadastroEmail" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="cadastroEmail" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="cadastroTelefone" class="form-label">Telefone</label>
+                                        <input type="tel" class="form-control" id="cadastroTelefone" placeholder="(51) 99999-9999" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="cadastroSenha" class="form-label">Senha</label>
+                                        <input type="password" class="form-control" id="cadastroSenha" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="confirmarSenha" class="form-label">Confirmar Senha</label>
+                                        <input type="password" class="form-control" id="confirmarSenha" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary w-100">Cadastrar</button>
+                                </form>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Esqueci a Senha -->
+        <div class="modal fade" id="esqueciSenhaModal" tabindex="-1" aria-labelledby="esqueciSenhaModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="esqueciSenhaModalLabel">Recuperar Senha</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="usuarioRecuperacao" class="form-label">Usuário</label>
+                                <input type="text" class="form-control" id="usuarioRecuperacao" placeholder="Digite seu nome de usuário">
+                            </div>
+                            <div class="mb-3">
+                                <label for="emailRecuperacao" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="emailRecuperacao" placeholder="Digite o email cadastrado">
+                            </div>
+                            <button type="button" class="btn btn-primary w-100" disabled>
+                                Enviar Código de Verificação
+                            </button>
+                        </form>
+                        <div class="text-center mt-3">
+                            <a href="#" class="text-decoration-none" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#loginModal">
+                                <i class="fas fa-arrow-left me-2"></i>Voltar para Login
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Cadastro para Orçamento -->
+        <div class="modal fade" id="cadastroOrcamentoModal" tabindex="-1" aria-labelledby="cadastroOrcamentoModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="cadastroOrcamentoModalLabel">Orçamento</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Para realizar um orçamento, é necessário ter um cadastro no sistema.</p>
+                        <p>Se você já tem conta, faça login. Caso contrário, cadastre-se gratuitamente.</p>
+                        <div class="d-flex justify-content-end mt-4">
+                            <button class="btn btn-primary me-2" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#loginModal">
+                                Login
+                            </button>
+                            <button class="btn btn-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#loginModal" onclick="document.getElementById('cadastro-tab').click()">
+                                Cadastre-se
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

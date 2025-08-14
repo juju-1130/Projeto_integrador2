@@ -19,7 +19,36 @@
     </head>
     <body id="page-top">
         <!-- Navigation-->
-        <?php include __DIR__ . '/../includes/nav_autenticado.php'; ?>
+        <nav class="navbar navbar-expand-lg bg-white text-uppercase fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img 
+                        src="../images/MKLOGO.png" 
+                        alt="MK Energia Solar" 
+                        class="img-fluid logo-resposivo">
+                </a>
+                <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item mx-0 mx-lg-1 w-auto">
+                            <a class="nav-link py-3 px-0 px-lg-3 rounded text-primary" href="contato.php">Fale Conosco</a>
+                        </li>
+                        <li class="nav-item mx-0 mx-lg-1 w-auto">
+                            <a class="nav-link py-3 px-0 px-lg-3 rounded text-primary" href="#" data-bs-toggle="modal" data-bs-target="#cadastroOrcamentoModal">Orçamento</a>
+                        </li>
+                        <li class="nav-item mx-0 mx-lg-1 w-auto">
+                            <a class="nav-link py-3 px-0 px-lg-3 rounded text-primary" href="projetos.php">Projetos</a>
+                        </li>
+                        <li class="nav-item mx-0 mx-lg-1 w-auto">
+                            <a class="nav-link py-3 px-0 px-lg-3 rounded bg-primary text-white" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login/Cadastre-se</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
         <!--Seção bem vindo-->
         <section class="page-section bg-primary text-white mb-0" id="title">
             <div class="container">
@@ -33,7 +62,7 @@
                 <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img class="w-100" src="../images/sistema1.jpg">
+                            <img class="w-100" src="../images/sistema1.jpg" alt="Image">
                             <div class="carousel-caption">
                                 <div class="container">
                                     <div class="row justify-content-center">
@@ -45,7 +74,7 @@
                             </div>
                         </div>
                         <div class="carousel-item">
-                            <img class="w-100" src="../images/sistema2.jpg">
+                            <img class="w-100" src="../images/sistema2.jpg" alt="Image">
                             <div class="carousel-caption">
                                 <div class="container">
                                     <div class="row justify-content-center">
@@ -57,7 +86,7 @@
                             </div>
                         </div>
                         <div class="carousel-item">
-                            <img class="w-100" src="../images/sistema3.jpg">
+                            <img class="w-100" src="../images/sistema3.jpg" alt="Image">
                             <div class="carousel-caption">
                                 <div class="container">
                                     <div class="row justify-content-center">
@@ -87,7 +116,6 @@
                 <div class="text-start mb-5">
                     <h2 class="page-section-heading text-uppercase text-primary d-inline-block">
                         Onde Estamos
-                        <span class="position-absolute bottom-0 start-50 translate-middle-x bg-primary" style="width: 80px; height: 3px;"></span>
                     </h2>
                 </div>
                 <div class="row g-4">
@@ -153,13 +181,12 @@
             <div class="container">
                 <h2 class="page-section-heading text-uppercase text-primary d-inline-block mb-5">
                 Projetos em destaque
-                    <span class="position-absolute bottom-0 start-50 translate-middle-x bg-primary" style="width: 80px; height: 3px;"></span>
                 </h2>
                 <!-- Primeiro Projeto -->
                 <div class="project-card mb-5 p-4 rounded-3 bg-light">
                     <div class="row align-items-center g-4">
                         <div class="col-lg-5 col-md-6">
-                            <img src="../images/projeto1.jpg" class="img-fluid rounded shadow projeto-img w-100 h-" alt="Sistema solar">
+                            <img src="../images/projeto1.jpg" class="img-fluid rounded shadow projeto-img" alt="Sistema solar residencial">
                         </div>
                         <div class="col-lg-7 col-md-6">
                             <div class="ps-lg-4">
@@ -202,14 +229,14 @@
                             </div>
                         </div>
                         <div class="col-lg-5 col-md-6 order-lg-2 order-2">
-                            <img src="../images/projeto2.jpg" class="img-fluid rounded shadow projeto-img" alt="Sistema solar">
+                            <img src="../images/projeto2.jpg" class="img-fluid rounded shadow projeto-img" alt="Sistema solar comercial">
                         </div>
                     </div>
                 </div>
             </div>
         </section>
         <!-- End section projetos-->
-        <!-- Seção sobre-->
+         <!-- Seção sobre-->
         <section class="page-section text-primary mb-0 pt-2" id="about">
             <div class="container">
                 <h2 class="page-section-heading text-start text-uppercase text-primary mb-4">Sobre nós</h2>
@@ -227,7 +254,26 @@
             </div>
         </section>
         <!-- Seção marcas -->
-        <?php include __DIR__ . '/../includes/marcas.php'; ?>
+        <section id="client-holder" data-aos="fade-up">
+            <div class="container">
+                <h2 class="page-section-heading text-start text-uppercase text-primary mb-3">Marcas que trabalhamos</h2>
+                <div class="row">
+                    <div class="inner-content pt-4 mb-4">
+                        <div class="logo-wrap">
+                            <div class="logos">
+                                <a href="#"><img src="../images/chint.png" alt="client"></a>
+                                <a href="#"><img src="../images/growatt.png" alt="client"></a>
+                                <a href="#"><img src="../images/solis.png" alt="client"></a>
+                                <a href="#"><img src="../images/saj.png" alt="client"></a>
+                                <a href="#"><img src="../images/sunova.jpg" alt="client"></a>
+                                <a href="#"><img src="../images/tsun.jpg" alt="client"></a>
+                                <a href="#"><img src="../images/osda.jpeg" alt="client"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <!-- Footer-->
         <?php include __DIR__ . '/../includes/footer.php'; ?>
         <!-- Modal Login/Cadastro -->
@@ -296,10 +342,6 @@
                                         <label for="confirmarSenha" class="form-label">Confirmar Senha</label>
                                         <input type="password" class="form-control" id="confirmarSenha" required>
                                     </div>
-                                    <div class="mb-3 form-check">
-                                        <input type="checkbox" class="form-check-input" id="aceitarTermos" required>
-                                        <label class="form-check-label" for="aceitarTermos">Eu aceito os <a href="#!" class="text-decoration-none">Termos de Serviço</a></label>
-                                    </div>
                                     <button type="submit" class="btn btn-primary w-100">Cadastrar</button>
                                 </form>
                             </div>
@@ -335,6 +377,29 @@
                             <a href="#" class="text-decoration-none" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#loginModal">
                                 <i class="fas fa-arrow-left me-2"></i>Voltar para Login
                             </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Cadastro para Orçamento -->
+        <div class="modal fade" id="cadastroOrcamentoModal" tabindex="-1" aria-labelledby="cadastroOrcamentoModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="cadastroOrcamentoModalLabel">Orçamento</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Para realizar um orçamento, é necessário ter um cadastro no sistema.</p>
+                        <p>Se você já tem conta, faça login. Caso contrário, cadastre-se gratuitamente.</p>
+                        <div class="d-flex justify-content-end mt-4">
+                            <button class="btn btn-primary me-2" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#loginModal">
+                                Login
+                            </button>
+                            <button class="btn btn-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#loginModal" onclick="document.getElementById('cadastro-tab').click()">
+                                Cadastre-se
+                            </button>
                         </div>
                     </div>
                 </div>

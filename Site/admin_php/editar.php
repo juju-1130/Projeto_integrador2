@@ -56,31 +56,11 @@
                 <h3 class="page-section-heading text-primary text-uppercase text-white">Atributos do orçamento</h3>
             </div>
         </section>
-        <!-- Masthead-->
-        <header>
 
-        <div class="container mt-5">
-            <table class="table table-bordered">
-            <tbody>
-                <tr><td>Tipos de telhado</td><td><a href="#" class="btn btn-sm btn-outline-primary" onclick="abrirModal('Tipos de telhado')">Editar</a></td></tr>
-                <tr><td>Tipos de fase</td><td><a href="#" class="btn btn-sm btn-outline-primary" onclick="abrirModal('Tipos de fase')">Editar</a></td></tr>
-                <tr><td>Concessionárias</td><td><a href="#" class="btn btn-sm btn-outline-primary" onclick="abrirModal('Concessionárias')">Editar</a></td></tr>
-                <tr><td>Modelos de placas</td><td><a href="#" class="btn btn-sm btn-outline-primary" onclick="abrirModal('Modelos de placas')">Editar</a></td></tr>
-                <tr><td>Inversores</td><td><a href="#" class="btn btn-sm btn-outline-primary" onclick="abrirModal('Inversores')">Editar</a></td></tr>
-                <tr><td>Kit solar</td><td><a href="kit_solar.php" class="btn btn-sm btn-outline-primary">Editar</a></td></tr>
-                <tr><td>Vendedores</td><td><a href="editar_vendedor.php" class="btn btn-sm btn-outline-primary">Editar</a></td></tr>
-                <tr><td>Projetos</td><td><a href="cadastrar.php" class="btn btn-sm btn-outline-primary">Editar</a></td></tr>
-            </tbody>
-            </table>
-        </div>
+        <?php include __DIR__ . '/../includes/atributos.php'; ?>
+
         <!-- Footer-->
-        <footer class="footer text-center bg-primary text-white py-5">
-            <div class="container">
-                <div class="mb-4">
-                    <img src="../images/MKLOGO.png" alt="MK Energia Solar" class="img-fluid footer-logo">
-                </div>
-            </div>
-        </footer>
+        <?php include __DIR__ . '/../includes/footer.php'; ?>
         <!-- Modal para Tipos de Telhado -->
         <div class="modal fade" id="modalTelhado" tabindex="-1" aria-labelledby="modalTelhadoLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">

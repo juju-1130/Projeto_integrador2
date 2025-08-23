@@ -129,13 +129,7 @@
             </div>
         </section>
         <!-- Footer-->
-         <footer class="footer text-center bg-primary text-white py-5">
-            <div class="container">
-                <div class="mb-4">
-                    <img src="../images/MKLOGO.png" alt="MK Energia Solar" class="img-fluid footer-logo">
-                </div>
-            </div>
-        </footer>
+        <?php include __DIR__ . '/../includes/footer.php'; ?>
         <!-- Modal Novo Vendedor -->
         <div class="modal fade" id="novoVendedorModal" tabindex="-1" aria-labelledby="novoVendedorModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">

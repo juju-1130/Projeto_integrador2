@@ -19,359 +19,132 @@
     </head>
     <body id="page-top">
         <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg bg-white text-uppercase fixed-top" id="mainNav">
-            <div class="container">
-                <a class="navbar-brand" href="index.html">
-                    <img 
-                        src="../images/MKLOGO.png" 
-                        alt="MK Energia Solar" 
-                        class="img-fluid logo-resposivo">
-                </a>
-                <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    Menu
-                    <i class="fas fa-bars"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item mx-0 mx-lg-1 w-auto">
-                            <a class="nav-link py-3 px-0 px-lg-3 rounded text-primary" href="contato.php">Fale Conosco</a>
-                        </li>
-                        <li class="nav-item mx-0 mx-lg-1 w-auto">
-                            <a class="nav-link py-3 px-0 px-lg-3 rounded text-primary" href="#" data-bs-toggle="modal" data-bs-target="#cadastroOrcamentoModal">Orçamento</a>
-                        </li>
-                        <li class="nav-item mx-0 mx-lg-1 w-auto">
-                            <a class="nav-link py-3 px-0 px-lg-3 rounded bg-primary" href="projetos.php">Projetos</a>
-                        </li>
-                        <li class="nav-item mx-0 mx-lg-1 w-auto">
-                            <a class="nav-link py-3 px-0 px-lg-3 rounded bg-primary text-white" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login/Cadastre-se</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <!--Seção título-->
-        <section class="page-section bg-primary text-white mb-0" id="title">
-            <div class="container">
-                <h5 class="page-section-heading text-uppercase text-white">Projetos Concluídos</h5>
-            </div>
-        </section>
+        <?php include __DIR__ . '/../includes/navbar.php'; ?>
         <!-- Masthead-->
+        <?php include __DIR__ . '/../includes/funcoes.php'; ?>
+        <?php echo gerarTituloPagina("Projetos Concluídos"); ?>
+
         <header>
-        <section class="page-section projects" id="projects" style="margin-top: 30px;">
+        <header>
+        <section class="page-section projects" id="projects">
             <div class="container">
-                <!-- Primeiro Projeto -->
-                <div class="project-card mb-5 p-4 rounded-3 bg-light">
-                    <div class="row align-items-center g-4">
-                        <div class="col-lg-5 col-md-6">
-                            <img src="../images/project1.png" class="img-fluid rounded shadow projeto-img" alt="Sistema solar residencial">
-                        </div>
-                        <div class="col-lg-7 col-md-6">
-                            <div class="ps-lg-4">
-                                <h3 class="project-title mb-3">Sistema solar de 6,27Kwp</h3>
-                                <ul class="project-features list-unstyled">
-                                    <li class="mb-2"><i class="fas fa-map-marker-alt text-primary me-2"></i> Cidade de Rolante</li>
-                                    <li class="mb-2"><i class="fas fa-solar-panel text-primary me-2"></i> 11 módulos de 570W</li>
-                                    <li class="mb-2"><i class="fas fa-bolt text-primary me-2"></i> Inversor Chint de 5Kw</li>
-                                    <li class="mb-2"><i class="fas fa-battery-three-quarters text-primary me-2"></i> Economia: R$ 350/mês</li>
-                                </ul>
-                                <div class="project-meta mt-3 small text-muted">
-                                    <span class="me-3"><i class="far fa-calendar-alt me-1"></i> Concluído: Jan/2023</span>
-                                </div>
-                                <div class="mt-3">
-                                    <span class="badge bg-primary me-2">Residencial</span>
-                                    <span class="badge bg-success">Sustentável</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card mb-5 p-4 rounded-3 bg-light">
-                    <div class="form-check select-project">
-                        <input class="form-check-input" type="checkbox" value="" id="selectProject1" data-bs-toggle="modal" data-bs-target="#editModal" data-project-id="1">
-                    </div>
-                    <div class="row align-items-center g-4">
-                        <div class="col-lg-5 col-md-6">
-                            <img src="../images/project2.png" class="img-fluid rounded shadow projeto-img" alt="Sistema solar residencial">
-                        </div>
-                        <div class="col-lg-7 col-md-6">
-                            <div class="ps-lg-4">
-                                <h3 class="project-title mb-3">Sistema solar de 5,49Kwp</h3>
-                                <ul class="project-features list-unstyled">
-                                    <li class="mb-2"><i class="fas fa-map-marker-alt text-primary me-2"></i> Cidade de Rolante</li>
-                                    <li class="mb-2"><i class="fas fa-solar-panel text-primary me-2"></i> 9 módulos de 610W</li>
-                                    <li class="mb-2"><i class="fas fa-bolt text-primary me-2"></i> Inversor Chint de 5Kw</li>
-                                    <li class="mb-2"><i class="fas fa-battery-three-quarters text-primary me-2"></i> Economia: R$ 350/mês</li>
-                                </ul>
-                                <div class="project-meta mt-3 small text-muted">
-                                    <span class="me-3"><i class="far fa-calendar-alt me-1"></i> Concluído: Jan/2023</span>
-                                </div>
-                                <div class="mt-3">
-                                    <span class="badge bg-primary me-2">Residencial</span>
-                                    <span class="badge bg-success">Sustentável</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card mb-5 p-4 rounded-3 bg-light">
-                    <div class="row align-items-center g-4">
-                        <div class="col-lg-5 col-md-6">
-                            <img src="../images/project3.jpg" class="img-fluid rounded shadow projeto-img" alt="Sistema solar residencial">
-                        </div>
-                        <div class="col-lg-7 col-md-6">
-                            <div class="ps-lg-4">
-                                <h3 class="project-title mb-3">Sistema solar de 5,13Kwp</h3>
-                                <ul class="project-features list-unstyled">
-                                    <li class="mb-2"><i class="fas fa-map-marker-alt text-primary me-2"></i> Cidade de Rolante</li>
-                                    <li class="mb-2"><i class="fas fa-solar-panel text-primary me-2"></i> 9 módulos de 570W</li>
-                                    <li class="mb-2"><i class="fas fa-bolt text-primary me-2"></i> Inversor Chint de 5Kw</li>
-                                    <li class="mb-2"><i class="fas fa-battery-three-quarters text-primary me-2"></i> Economia: R$ 350/mês</li>
-                                </ul>
-                                <div class="project-meta mt-3 small text-muted">
-                                    <span class="me-3"><i class="far fa-calendar-alt me-1"></i> Concluído: Jan/2023</span>
-                                </div>
-                                <div class="mt-3">
-                                    <span class="badge bg-primary me-2">Residencial</span>
-                                    <span class="badge bg-success">Sustentável</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card mb-5 p-4 rounded-3 bg-light">
-                    <div class="row align-items-center g-4">
-                        <div class="col-lg-5 col-md-6">
-                            <img src="../images/project4.jpg" class="img-fluid rounded shadow projeto-img" alt="Sistema solar residencial">
-                        </div>
-                        <div class="col-lg-7 col-md-6">
-                            <div class="ps-lg-4">
-                                <h3 class="project-title mb-3">Sistema solar de 5,13Kwp</h3>
-                                <ul class="project-features list-unstyled">
-                                    <li class="mb-2"><i class="fas fa-map-marker-alt text-primary me-2"></i> Cidade de Rolante</li>
-                                    <li class="mb-2"><i class="fas fa-solar-panel text-primary me-2"></i> 9 módulos de 570W</li>
-                                    <li class="mb-2"><i class="fas fa-bolt text-primary me-2"></i> Inversor Chint de 5Kw</li>
-                                    <li class="mb-2"><i class="fas fa-battery-three-quarters text-primary me-2"></i> Economia: R$ 350/mês</li>
-                                </ul>
-                                <div class="project-meta mt-3 small text-muted">
-                                    <span class="me-3"><i class="far fa-calendar-alt me-1"></i> Concluído: Jan/2023</span>
-                                </div>
-                                <div class="mt-3">
-                                    <span class="badge bg-primary me-2">Residencial</span>
-                                    <span class="badge bg-success">Sustentável</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card mb-5 p-4 rounded-3 bg-light">
-                    <div class="row align-items-center g-4">
-                        <div class="col-lg-5 col-md-6">
-                            <img src="../images/project5.jpg" class="img-fluid rounded shadow projeto-img" alt="Sistema solar residencial">
-                        </div>
-                        <div class="col-lg-7 col-md-6">
-                            <div class="ps-lg-4">
-                                <h3 class="project-title mb-3">Sistema solar de 5,13Kwp</h3>
-                                <ul class="project-features list-unstyled">
-                                    <li class="mb-2"><i class="fas fa-map-marker-alt text-primary me-2"></i> Cidade de Rolante</li>
-                                    <li class="mb-2"><i class="fas fa-solar-panel text-primary me-2"></i> 9 módulos de 570W</li>
-                                    <li class="mb-2"><i class="fas fa-bolt text-primary me-2"></i> Inversor Chint de 5Kw</li>
-                                    <li class="mb-2"><i class="fas fa-battery-three-quarters text-primary me-2"></i> Economia: R$ 350/mês</li>
-                                </ul>
-                                <div class="project-meta mt-3 small text-muted">
-                                    <span class="me-3"><i class="far fa-calendar-alt me-1"></i> Concluído: Jan/2023</span>
-                                </div>
-                                <div class="mt-3">
-                                    <span class="badge bg-primary me-2">Residencial</span>
-                                    <span class="badge bg-success">Sustentável</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card mb-5 p-4 rounded-3 bg-light">
-                    <div class="row align-items-center g-4">
-                        <div class="col-lg-5 col-md-6">
-                            <img src="../images/project6.jpg" class="img-fluid rounded shadow projeto-img" alt="Sistema solar residencial">
-                        </div>
-                        <div class="col-lg-7 col-md-6">
-                            <div class="ps-lg-4">
-                                <h3 class="project-title mb-3">Sistema solar de 5,13Kwp</h3>
-                                <ul class="project-features list-unstyled">
-                                    <li class="mb-2"><i class="fas fa-map-marker-alt text-primary me-2"></i> Cidade de Rolante</li>
-                                    <li class="mb-2"><i class="fas fa-solar-panel text-primary me-2"></i> 9 módulos de 570W</li>
-                                    <li class="mb-2"><i class="fas fa-bolt text-primary me-2"></i> Inversor Chint de 5Kw</li>
-                                    <li class="mb-2"><i class="fas fa-battery-three-quarters text-primary me-2"></i> Economia: R$ 350/mês</li>
-                                </ul>
-                                <div class="project-meta mt-3 small text-muted">
-                                    <span class="me-3"><i class="far fa-calendar-alt me-1"></i> Concluído: Jan/2023</span>
-                                </div>
-                                <div class="mt-3">
-                                    <span class="badge bg-primary me-2">Residencial</span>
-                                    <span class="badge bg-success">Sustentável</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card mb-5 p-4 rounded-3 bg-light">
-                    <div class="row align-items-center g-4">
-                        <div class="col-lg-5 col-md-6">
-                            <img src="../images/project7.jpg" class="img-fluid rounded shadow projeto-img" alt="Sistema solar residencial">
-                        </div>
-                        <div class="col-lg-7 col-md-6">
-                            <div class="ps-lg-4">
-                                <h3 class="project-title mb-3">Sistema solar de 5,13Kwp</h3>
-                                <ul class="project-features list-unstyled">
-                                    <li class="mb-2"><i class="fas fa-map-marker-alt text-primary me-2"></i> Cidade de Rolante</li>
-                                    <li class="mb-2"><i class="fas fa-solar-panel text-primary me-2"></i> 9 módulos de 570W</li>
-                                    <li class="mb-2"><i class="fas fa-bolt text-primary me-2"></i> Inversor Chint de 5Kw</li>
-                                    <li class="mb-2"><i class="fas fa-battery-three-quarters text-primary me-2"></i> Economia: R$ 350/mês</li>
-                                </ul>
-                                <div class="project-meta mt-3 small text-muted">
-                                    <span class="me-3"><i class="far fa-calendar-alt me-1"></i> Concluído: Jan/2023</span>
-                                </div>
-                                <div class="mt-3">
-                                    <span class="badge bg-primary me-2">Residencial</span>
-                                    <span class="badge bg-success">Sustentável</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php
+                $projetos = [
+                    [
+                        'imagem' => '../images/project1.png',
+                        'titulo' => 'Sistema solar de 6,27Kwp',
+                        'cidade' => 'Cidade de Rolante',
+                        'modulos' => '11 módulos de 570W',
+                        'inversor' => 'Inversor Chint de 5Kw',
+                        'economia' => 'Economia: R$ 350/mês',
+                        'data' => 'Concluído: Jan/2023',
+                        'categorias' => ['Residencial', 'Sustentável']
+                    ],
+                    [
+                        'imagem' => '../images/project2.png',
+                        'titulo' => 'Sistema solar de 5,49Kwp',
+                        'cidade' => 'Cidade de Rolante',
+                        'modulos' => '9 módulos de 610W',
+                        'inversor' => 'Inversor Chint de 5Kw',
+                        'economia' => 'Economia: R$ 350/mês',
+                        'data' => 'Concluído: Jan/2023',
+                        'categorias' => ['Residencial', 'Sustentável']
+                    ],
+                    [
+                        'imagem' => '../images/project3.jpg',
+                        'titulo' => 'Sistema solar de 5,13Kwp',
+                        'cidade' => 'Cidade de Rolante',
+                        'modulos' => '9 módulos de 570W',
+                        'inversor' => 'Inversor Chint de 5Kw',
+                        'economia' => 'Economia: R$ 350/mês',
+                        'data' => 'Concluído: Jan/2023',
+                        'categorias' => ['Residencial', 'Sustentável']
+                    ],
+                    [
+                        'imagem' => '../images/project4.jpg',
+                        'titulo' => 'Sistema solar de 5,13Kwp',
+                        'cidade' => 'Cidade de Rolante',
+                        'modulos' => '9 módulos de 570W',
+                        'inversor' => 'Inversor Chint de 5Kw',
+                        'economia' => 'Economia: R$ 350/mês',
+                        'data' => 'Concluído: Jan/2023',
+                        'categorias' => ['Residencial', 'Sustentável']
+                    ],
+                    [
+                        'imagem' => '../images/project5.jpg',
+                        'titulo' => 'Sistema solar de 5,13Kwp',
+                        'cidade' => 'Cidade de Rolante',
+                        'modulos' => '9 módulos de 570W',
+                        'inversor' => 'Inversor Chint de 5Kw',
+                        'economia' => 'Economia: R$ 350/mês',
+                        'data' => 'Concluído: Jan/2023',
+                        'categorias' => ['Residencial', 'Sustentável']
+                    ],
+                    [
+                        'imagem' => '../images/project6.jpg',
+                        'titulo' => 'Sistema solar de 5,13Kwp',
+                        'cidade' => 'Cidade de Rolante',
+                        'modulos' => '9 módulos de 570W',
+                        'inversor' => 'Inversor Chint de 5Kw',
+                        'economia' => 'Economia: R$ 350/mês',
+                        'data' => 'Concluído: Jan/2023',
+                        'categorias' => ['Residencial', 'Sustentável']
+                    ],
+                    [
+                        'imagem' => '../images/project7.jpg',
+                        'titulo' => 'Sistema solar de 5,13Kwp',
+                        'cidade' => 'Cidade de Rolante',
+                        'modulos' => '9 módulos de 570W',
+                        'inversor' => 'Inversor Chint de 5Kw',
+                        'economia' => 'Economia: R$ 350/mês',
+                        'data' => 'Concluído: Jan/2023',
+                        'categorias' => ['Residencial', 'Sustentável']
+                    ]
+                ];
+
+                function gerarProjeto($projeto) {
+                    $html = '<div class="project-card mb-5 p-4 rounded-3 bg-light">';
+                    $html .= '<div class="row align-items-center g-4">';
+                    $html .= '<div class="col-lg-5 col-md-6">';
+                    $html .= '<img src="' . $projeto['imagem'] . '" class="img-fluid rounded shadow projeto-img" alt="Sistema solar ' . strtolower($projeto['categorias'][0]) . '">';
+                    $html .= '</div>';
+                    $html .= '<div class="col-lg-7 col-md-6">';
+                    $html .= '<div class="ps-lg-4">';
+                    $html .= '<h3 class="project-title mb-3">' . $projeto['titulo'] . '</h3>';
+                    $html .= '<ul class="project-features list-unstyled">';
+                    $html .= '<li class="mb-2"><i class="fas fa-map-marker-alt text-primary me-2"></i> ' . $projeto['cidade'] . '</li>';
+                    $html .= '<li class="mb-2"><i class="fas fa-solar-panel text-primary me-2"></i> ' . $projeto['modulos'] . '</li>';
+                    $html .= '<li class="mb-2"><i class="fas fa-bolt text-primary me-2"></i> ' . $projeto['inversor'] . '</li>';
+                    $html .= '<li class="mb-2"><i class="fas fa-battery-three-quarters text-primary me-2"></i> ' . $projeto['economia'] . '</li>';
+                    $html .= '</ul>';
+                    $html .= '<div class="project-meta mt-3 small text-muted">';
+                    $html .= '<span class="me-3"><i class="far fa-calendar-alt me-1"></i> ' . $projeto['data'] . '</span>';
+                    $html .= '</div>';
+                    $html .= '<div class="mt-3">';
+                    
+                    foreach ($projeto['categorias'] as $categoria) {
+                        $badgeClass = ($categoria == 'Residencial') ? 'bg-primary' : 'bg-success';
+                        $html .= '<span class="badge ' . $badgeClass . ' me-2">' . $categoria . '</span>';
+                    }
+                    
+                    $html .= '</div>';
+                    $html .= '</div>';
+                    $html .= '</div>';
+                    $html .= '</div>';
+                    $html .= '</div>';
+                    
+                    return $html;
+                }
+
+                foreach ($projetos as $projeto) {
+                    echo gerarProjeto($projeto);
+                }
+                ?>
             </div>
         </section>
         <!-- End section projetos-->
         <!-- Footer-->
         <?php include __DIR__ . '/../includes/footer.php'; ?>
-        <!-- Modal Login/Cadastro -->
-        <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="loginModalLabel">Acesse sua conta</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <!-- Nav Login/Cadastro -->
-                        <ul class="nav nav-tabs nav-justified mb-4" id="myTab" role="tablist">
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login" type="button" role="tab" aria-controls="login" aria-selected="true">Login</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="cadastro-tab" data-bs-toggle="tab" data-bs-target="#cadastro" type="button" role="tab" aria-controls="cadastro" aria-selected="false">Cadastre-se</button>
-                            </li>
-                        </ul>
-                        
-                        <!-- Login/Cadastro -->
-                        <div class="tab-content">
-                            <!-- Login -->
-                            <div class="tab-pane active" id="login" role="tabpanel" aria-labelledby="login-tab">
-                                <form>
-                                    <div class="mb-3">
-                                        <label for="loginEmail" class="form-label">Email</label>
-                                        <input type="email" class="form-control" id="loginEmail" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="loginSenha" class="form-label">Senha</label>
-                                        <input type="password" class="form-control" id="loginSenha" required>
-                                    </div>
-                                    <div class="mb-3 form-check">
-                                        <input type="checkbox" class="form-check-input" id="lembrarLogin">
-                                        <label class="form-check-label" for="lembrarLogin">Lembrar de mim</label>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary w-100">Entrar</button>
-                                </form>
-                                <div class="text-center mt-3">
-                                    <a href="#" class="text-decoration-none" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#esqueciSenhaModal">Esqueci minha senha</a>
-                                </div>
-                            </div>
-                            
-                            <!-- Cadastro -->
-                            <div class="tab-pane" id="cadastro" role="tabpanel" aria-labelledby="cadastro-tab">
-                                <form>
-                                    <div class="mb-3">
-                                        <label for="cadastroNome" class="form-label">Nome Completo</label>
-                                        <input type="text" class="form-control" id="cadastroNome" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="cadastroEmail" class="form-label">Email</label>
-                                        <input type="email" class="form-control" id="cadastroEmail" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="cadastroTelefone" class="form-label">Telefone</label>
-                                        <input type="tel" class="form-control" id="cadastroTelefone" placeholder="(51) 99999-9999" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="cadastroSenha" class="form-label">Senha</label>
-                                        <input type="password" class="form-control" id="cadastroSenha" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="confirmarSenha" class="form-label">Confirmar Senha</label>
-                                        <input type="password" class="form-control" id="confirmarSenha" required>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary w-100">Cadastrar</button>
-                                </form>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Modal Esqueci a Senha -->
-        <div class="modal fade" id="esqueciSenhaModal" tabindex="-1" aria-labelledby="esqueciSenhaModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="esqueciSenhaModalLabel">Recuperar Senha</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="mb-3">
-                                <label for="usuarioRecuperacao" class="form-label">Usuário</label>
-                                <input type="text" class="form-control" id="usuarioRecuperacao" placeholder="Digite seu nome de usuário">
-                            </div>
-                            <div class="mb-3">
-                                <label for="emailRecuperacao" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="emailRecuperacao" placeholder="Digite o email cadastrado">
-                            </div>
-                            <button type="button" class="btn btn-primary w-100" disabled>
-                                Enviar Código de Verificação
-                            </button>
-                        </form>
-                        <div class="text-center mt-3">
-                            <a href="#" class="text-decoration-none" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#loginModal">
-                                <i class="fas fa-arrow-left me-2"></i>Voltar para Login
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Modal Cadastro para Orçamento -->
-        <div class="modal fade" id="cadastroOrcamentoModal" tabindex="-1" aria-labelledby="cadastroOrcamentoModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="cadastroOrcamentoModalLabel">Orçamento</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Para realizar um orçamento, é necessário ter um cadastro no sistema.</p>
-                        <p>Se você já tem conta, faça login. Caso contrário, cadastre-se gratuitamente.</p>
-                        <div class="d-flex justify-content-end mt-4">
-                            <button class="btn btn-primary me-2" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#loginModal">
-                                Login
-                            </button>
-                            <button class="btn btn-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#loginModal" onclick="document.getElementById('cadastro-tab').click()">
-                                Cadastre-se
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

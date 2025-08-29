@@ -20,143 +20,117 @@
     <body id="page-top">
         <!-- Navigation-->
         <?php include __DIR__ . '/../includes/nav_autenticado.php'; ?>
+        
         <!--Seção titulo-->
-        <section class="page-section bg-primary text-white mb-0" id="title">
-            <div class="container">
-                <h5 class="page-section-heading text-primary text-uppercase text-white">Orçamento</h5>
-            </div>
-        </section>
+        <?php include __DIR__ . '/../includes/funcoes.php'; ?>
+        <?php echo gerarTituloPagina("Orçamento"); ?>
+
+        <?php
+        $tipos_telhado = array("Cerâmico", "Fibrocimento", "Metálico", "Laje", "Solo");
+        $tipos_fase = array("Monofásico", "Bifásico", "Trifásico");
+        $concessionarias = array("RGE", "CEEE", "Certel");
+        $marcas_inversor = array("Chint", "Growatt", "Solis", "SAJ");
+        $potencias_placas = array("570W", "585W", "610W", "700W");
+        $meses = array(
+            "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+            "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+        );
+        
+        function gerarOptions($array, $selected = "") {
+            $options = "";
+            foreach ($array as $valor) {
+                $isSelected = ($valor == $selected) ? 'selected' : '';
+                $options .= "<option value=\"$valor\" $isSelected>$valor</option>";
+            }
+            return $options;
+        }
+        
+        function gerarTabelaMeses($meses) {
+            $html = '';
+            foreach ($meses as $mes) {
+                $html .= "
+                <tr>
+                    <td>$mes</td>
+                    <td><input type=\"number\" class=\"form-control\" name=\"consumo_$mes\"></td>
+                </tr>";
+            }
+            return $html;
+        }
+
+        ?>
         <header>
             <div class="text-center my-4">
                 <a href="meus_orcamentos.php" class="btn btn-outline-primary">
                     <i class="fas fa-list me-2"></i>Meus orçamentos
                 </a>
             </div>
-        <!--Seção dados orçamento-->
+            
+            <!--Seção dados orçamento-->
             <section class="page-section" id="orcamento">
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-lg-8">
-                            <div class="card shadow p-4">
-                                <h2 class="text-center text-primary mb-4">Preencha seus dados para o orçamento</h2>
-                                <div class="row mb-4">
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label">Sua cidade</label>
-                                        <input type="text" class="form-control" placeholder="Digite sua cidade">
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label">Seu telhado</label>
-                                        <select class="form-select">
-                                            <option>Cerâmico</option>
-                                            <option>Fibrocimento</option>
-                                            <option>Metálico</option>
-                                            <option>Laje</option>
-                                            <option>Solo</option>
-                                        </select>
-                                    </div>
+                            <form method="POST" action="">
+                                <div class="card shadow p-4">
+                                    <h2 class="text-center text-primary mb-4">Preencha seus dados para o orçamento</h2>
+                                    <div class="row mb-4">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Sua cidade</label>
+                                            <input type="text" class="form-control" name="cidade" placeholder="Digite sua cidade">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Seu telhado</label>
+                                            <select class="form-select" name="telhado">
+                                                <?php echo gerarOptions($tipos_telhado); ?>
+                                            </select>
+                                        </div>
 
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label">Tipo de fase</label>
-                                        <select class="form-select">
-                                            <option>Monofásico</option>
-                                            <option>Bifásico</option>
-                                            <option>Trifásico</option>
-                                        </select>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Tipo de fase</label>
+                                            <select class="form-select" name="fase">
+                                                <?php echo gerarOptions($tipos_fase); ?>
+                                            </select>
+                                        </div>
+                                        
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Concessionária</label>
+                                            <select class="form-select" name="concessionaria">
+                                                <?php echo gerarOptions($concessionarias); ?>
+                                            </select>
+                                        </div>
                                     </div>
-                                    
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label">Concessionária</label>
-                                        <select class="form-select">
-                                            <option>RGE</option>
-                                            <option>CEEE</option>
-                                            <option>Certel</option>
-                                        </select>
+                                    <div class="table-responsive mb-4">
+                                        <table class="table table-bordered">
+                                            <thead class="bg-primary text-white">
+                                                <tr>
+                                                    <th>Mês</th>
+                                                    <th>Consumo (kWh)</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php echo gerarTabelaMeses($meses); ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="row mb-4">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Marca inversor</label>
+                                            <select class="form-select" name="marca_inversor">
+                                                <?php echo gerarOptions($marcas_inversor); ?>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Potência placas</label>
+                                            <select class="form-select" name="potencia_placas">
+                                                <?php echo gerarOptions($potencias_placas); ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <a href="salvar_orçamento.php" class="btn btn-lg btn-primary">Calcular Orçamento</a>
                                     </div>
                                 </div>
-                                <div class="table-responsive mb-4">
-                                    <table class="table table-bordered">
-                                        <thead class="bg-primary text-white">
-                                            <tr>
-                                                <th>Mês</th>
-                                                <th>Consumo (kWh)</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Janeiro</td>
-                                                <td><input type="number" class="form-control"></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Fevereiro</td>
-                                                <td><input type="number" class="form-control"></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Março</td>
-                                                <td><input type="number" class="form-control"></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Abril</td>
-                                                <td><input type="number" class="form-control"></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Maio</td>
-                                                <td><input type="number" class="form-control"></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Junho</td>
-                                                <td><input type="number" class="form-control"></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Julho</td>
-                                                <td><input type="number" class="form-control"></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Agosto</td>
-                                                <td><input type="number" class="form-control"></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Setembro</td>
-                                                <td><input type="number" class="form-control"></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Outubro</td>
-                                                <td><input type="number" class="form-control"></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Novembro</td>
-                                                <td><input type="number" class="form-control"></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Dezembro</td>
-                                                <td><input type="number" class="form-control"></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="row mb-4">
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label">Marca inversor</label>
-                                        <select class="form-select">
-                                            <option>Chint</option>
-                                            <option>Growatt</option>
-                                            <option>Solis</option>
-                                            <option>SAJ</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label">Potência placas</label>
-                                        <select class="form-select">
-                                            <option>570W</option>
-                                            <option>585W</option>
-                                            <option>610W</option>
-                                            <option>700W</option>
-                                        </select>
-                                    </div>
-                                <!--Depois com banco de dados, ao clicar em calcular orçamento será feito uma logica e será carregado um orçamento especifico para o cliente-->
-                                <div class="text-center">
-                                    <a href="salvar_orçamento.php" class="btn btn-lg btn-primary">Calcular Orçamento</a>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>

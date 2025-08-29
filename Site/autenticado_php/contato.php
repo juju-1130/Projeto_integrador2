@@ -18,74 +18,73 @@
         <link href="../css/styles.css" rel="stylesheet" />
     </head>
     <body id="page-top">
+        <?php
+        include __DIR__ . '/../includes/funcoes.php';
+
+        $vendedores = [
+            [
+                'nome' => 'Jonathan Kirsch',
+                'numero' => '5551999999999',
+                'cargo' => 'Especialista em Energia Solar e CEO',
+                'descricao' => 'Atendimento personalizado para encontrar a melhor solução em energia solar para sua necessidade.',
+                'mensagem' => 'Olá Jonathan, gostaria de informações sobre energia solar'
+            ],
+            [
+                'nome' => 'Dhonavan Dias', 
+                'numero' => '5551999999998',
+                'cargo' => 'Consultor e Especialista em Energia Solar',
+                'descricao' => 'Especialista em projetos personalizados para maximizar sua economia com energia solar.',
+                'mensagem' => 'Olá Dhonavan, gostaria de informações sobre energia solar'
+            ],
+            [
+                'nome' => 'MK Energia Solar',
+                'numero' => '5551999999997',
+                'cargo' => 'Especialista em Garantir Maior Comodidade aos Clientes',
+                'descricao' => 'Empresa Especialista em Energia Solar',
+                'mensagem' => 'Olá MK, gostaria de informações sobre energia solar'
+            ]
+        ];
+
+        function gerarLinkWhatsApp($numero, $mensagem) {
+            return "https://wa.me/" . $numero . "?text=" . urlencode($mensagem);
+        }
+
+        function primeiroNome($nomeCompleto) {
+            $nomes = explode(' ', $nomeCompleto);
+            return $nomes[0];
+        }
+        ?>
+
         <!-- Navigation-->
         <?php include __DIR__ . '/../includes/nav_autenticado.php'; ?>
+        
         <!-- Masthead-->
-        <!--Seção titulo-->
-        <section class="page-section bg-primary text-white mb-0" id="title">
-            <div class="container">
-                <h5 class="page-section-heading text-primary text-uppercase text-white">Nossos Vendedores</h5>
-            </div>
-        </section>
-        <header>
+        <!--Seção título-->
+        <?php echo gerarTituloPagina('Nossos Vendedores'); ?>
+        
         <header>
         <!-- Seção Vendedores -->
-        <section class="page-section py-5" id="vendedores" style="margin-top: 80px;">
+        <section class="page-section py-5" id="vendedores" style="margin-top: 30px;">
             <div class="container">
                 <div class="row g-4">
-                    <!-- Vendedor Jonathan -->
+                    <?php foreach ($vendedores as $vendedor): ?>
                     <div class="col-lg-4 col-md-6">
                         <div class="card h-100 border-0 shadow-sm">
                             <div class="card-body text-center p-4">
                                 <div class="position-relative mb-4">
                                     <img src="../images/icone.png" class="rounded-circle shadow" width="120" height="120">
                                 </div>
-                                <h4 class="card-title mb-2">Jonathan Kirsch</h4>
-                                <p class="text-muted mb-3">Especialista em Energia Solar e CEO</p>
-                                <p class="card-text mb-4">Atendimento personalizado para encontrar a melhor solução em energia solar para sua necessidade.</p>
-                                <a href="https://wa.me/5551999999999?text=Olá Jonathan, gostaria de informações sobre energia solar" 
+                                <h4 class="card-title mb-2"><?php echo $vendedor['nome']; ?></h4>
+                                <p class="text-muted mb-3"><?php echo $vendedor['cargo']; ?></p>
+                                <p class="card-text mb-4"><?php echo $vendedor['descricao']; ?></p>
+                                <a href="<?php echo gerarLinkWhatsApp($vendedor['numero'], $vendedor['mensagem']); ?>" 
                                 class="btn btn-success w-100" target="_blank">
-                                    <i class="fab fa-whatsapp me-2"></i> Falar com Jonathan
+                                    <i class="fab fa-whatsapp me-2"></i> Falar com <?php echo primeiroNome($vendedor['nome']); ?>
                                 </a>
                             </div>
                         </div>
                     </div>
-                    
-                    <!-- Vendedor Dhonavan -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="card h-100 border-0 shadow-sm">
-                            <div class="card-body text-center p-4">
-                                <div class="position-relative mb-4">
-                                    <img src="../images/icone.png" class="rounded-circle shadow" width="120" height="120">
-                                </div>
-                                <h4 class="card-title mb-2">Dhonavan Dias</h4>
-                                <p class="text-muted mb-3">Consultor e Especialista em Energia Solar</p>
-                                <p class="card-text mb-4">Especialista em projetos personalizados para maximizar sua economia com energia solar.</p>
-                                <a href="https://wa.me/5551999999998?text=Olá Dhonavan, gostaria de informações sobre energia solar" 
-                                class="btn btn-success w-100" target="_blank">
-                                    <i class="fab fa-whatsapp me-2"></i> Falar com Dhonavan
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Vendedor MK -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="card h-100 border-0 shadow-sm">
-                            <div class="card-body text-center p-4">
-                                <div class="position-relative mb-4">
-                                    <img src="../images/icone.png" class="rounded-circle shadow" width="120" height="120">
-                                </div>
-                                <h4 class="card-title mb-2">MK Energia Solar</h4>
-                                <p class="text-muted mb-3">Especialista em Garantir Maior Comodidade aos Clientes</p>
-                                <p class="card-text mb-4">Empresa Especialista em Energia Solar</p>
-                                <a href="https://wa.me/5551999999997?text=Olá MK, gostaria de informações sobre energia solar" 
-                                class="btn btn-success w-100" target="_blank">
-                                    <i class="fab fa-whatsapp me-2"></i> Falar com MK
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
                 
                 <!-- Informação sobre horário comercial -->
@@ -100,8 +99,10 @@
                 </div>
             </div>
         </section>
+        
         <!-- Footer-->
         <?php include __DIR__ . '/../includes/footer.php'; ?>
+        
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

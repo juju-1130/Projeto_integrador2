@@ -16,135 +16,161 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="../css/styles.css" rel="stylesheet" />
+       
     </head>
     <body id="page-top">
         <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg bg-white text-uppercase fixed-top" id="mainNav">
-            <div class="container">
-                <a class="navbar-brand" href="index.html">
-                    <img 
-                        src="../images/MKLOGO.png" 
-                        alt="MK Energia Solar" 
-                        class="img-fluid logo-resposivo">
-                </a>
-                <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    Menu
-                    <i class="fas fa-bars"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item mx-0 mx-lg-1 w-100 w-lg-auto mb-2 mb-lg-0">
-                            <a class="btn btn-primary py-3 px-4 rounded" href="editar.html">Editar Dados</a>
-                        </li>
-                        <li class="nav-item mx-0 mx-lg-1 w-100 w-lg-auto">
-                            <div class="dropdown">
-                                <a class="btn btn-primary py-3 px-4 rounded dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fas fa-user me-2"></i>
-                                    <strong>Primeiro Nome</strong>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
-                                    <li><a class="dropdown-item" href="#" onclick="logout()">Sair</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <?php 
+        $pagina_parametros = [
+            'kit_solar.php' => ['editar_dados']
+        ];
+
+        include __DIR__ . '/../includes/nav_admin.php';
+        ?>
         <!--Seção titulo-->
-        <section class="page-section bg-primary text-white mb-0" id="title">
-            <div class="container">
-                <h3 class="page-section-heading text-primary text-uppercase text-white">Kit solar</h3>
-            </div>
-        </section>
-        <!-- Masthead-->
-        <header>
-        <!-- Tabela custos kit solar-->
+        <?php include __DIR__ . '/../includes/funcoes.php'; ?>
+        <?php echo gerarTituloPagina("Kit solar"); ?>
+
         <div class="container mt-5">
             <table class="table table-bordered">
-            <tbody>
-                <tr><td>Custo mão de obra por placa</td><td><a href="#" class="btn btn-sm btn-outline-primary" onclick="abrirModal('Mão de obra', '200.00')">Editar</a></td></tr>
-                <tr><td>Custo cabos</td><td><a href="#" class="btn btn-sm btn-outline-primary" onclick="abrirModal('Cabos', '180.00')">Editar</a></td></tr>
-                <tr><td>Custo trilho por placa</td><td><a href="#" class="btn btn-sm btn-outline-primary" onclick="abrirModal('Trilho', '80.00')">Editar</a></td></tr>
-                <tr><td>Custo conectores</td><td><a href="#" class="btn btn-sm btn-outline-primary" onclick="abrirModal('Conectores', '50.00')">Editar</a></td></tr>
-                <tr><td>Custos fixos</td><td><a href="#" class="btn btn-sm btn-outline-primary" onclick="abrirModal('Fixos', '400.00')">Editar</a></td></tr>
-                <tr><td>Custos extras</td><td><a href="#" class="btn btn-sm btn-outline-primary" onclick="abrirModal('Extra', '300.00')">Editar</a></td></tr>
-            </tbody>
+                <tbody>
+                    <tr>
+                        <td>Custo mão de obra por placa</td>
+                        <td class="text-end">
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#modalMaoObra" class="btn btn-sm btn-outline-primary">Editar</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Custo cabos</td>
+                        <td class="text-end">
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#modalCabos" class="btn btn-sm btn-outline-primary">Editar</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Custo trilho por placa</td>
+                        <td class="text-end">
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#modalTrilho" class="btn btn-sm btn-outline-primary">Editar</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Custo conectores</td>
+                        <td class="text-end">
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#modalConectores" class="btn btn-sm btn-outline-primary">Editar</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Custos fixos</td>
+                        <td class="text-end">
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#modalCustosFixos" class="btn btn-sm btn-outline-primary">Editar</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Custos extras</td>
+                        <td class="text-end">
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#modalCustosExtras" class="btn btn-sm btn-outline-primary">Editar</a>
+                        </td>
+                    </tr>
+                </tbody>
             </table>
         </div>
+
         <!-- Footer-->
-        <footer class="footer text-center bg-primary text-white py-5">
-            <div class="container">
-                <div class="mb-4">
-                    <img src="../images/MKLOGO.png" alt="MK Energia Solar" class="img-fluid footer-logo">
-                </div>
-            </div>
-        </footer>
-        <!-- Modal de Edição -->
-        <div class="modal fade" id="editarValorModal" tabindex="-1" aria-labelledby="editarValorModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+        <?php include __DIR__ . '/../includes/footer.php'; ?>
+
+        <!-- Mão de obra -->
+        <div class="modal fade" id="modalMaoObra" tabindex="-1" aria-hidden="true" aria-labelledby="titleMaoObra">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="editarValorModalLabel">Editar Valor</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title" id="titleMaoObra">Custo mão de obra por placa</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
                     </div>
-                    <div class="modal-body">
-                        <form id="formEditarValor">
-                            <div class="mb-3">
-                                <label for="itemNome" class="form-label">Item</label>
-                                <input type="text" class="form-control" id="itemNome" readonly>
-                            </div>
-                            <div class="mb-3">
-                                <label for="itemValor" class="form-label">Valor (R$)</label>
-                                <input type="number" step="0.01" class="form-control" id="itemValor" required>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary" onclick="salvarEdicao()">Salvar</button>
+                    <div class="modal-body p-0">
+                        <iframe src="../forms/form_custo.php?tipo=mao_obra" style="width: 100%; height: 350px; border: none;"></iframe>
                     </div>
                 </div>
             </div>
         </div>
-        <script>
-            let itemAtual = null;
-            
-            function abrirModal(item, valor) {
-                itemAtual = item;
-                
-                document.getElementById('itemNome').value = item;
-                document.getElementById('itemValor').value = valor;
-                
-                const modal = new bootstrap.Modal(document.getElementById('editarValorModal'));
-                modal.show();
-            }
-            
-            function salvarEdicao() {
-                const novoValor = document.getElementById('itemValor').value;
-                
-                
-                const modal = bootstrap.Modal.getInstance(document.getElementById('editarValorModal'));
-                modal.hide();
-                
-                const linhas = document.querySelectorAll('table tbody tr');
-                linhas.forEach(linha => {
-                    const td = linha.querySelector('td:first-child');
-                    if (td.textContent.includes(itemAtual)) {
-                        const valorTd = linha.querySelector('td:nth-child(2)');
-                        valorTd.innerHTML = `R$ ${novoValor} <button class="btn btn-sm btn-outline-primary ms-2" onclick="abrirModal('${itemAtual}', '${novoValor}')">Editar</button>`;
-                    }
-                });
-            }
-        </script>
+
+        <!-- Cabos -->
+        <div class="modal fade" id="modalCabos" tabindex="-1" aria-hidden="true" aria-labelledby="titleCabos">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title" id="titleCabos">Custo cabos</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                    </div>
+                    <div class="modal-body p-0">
+                        <iframe src="../forms/form_custo.php?tipo=cabos" style="width: 100%; height: 350px; border: none;"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trilho -->
+        <div class="modal fade" id="modalTrilho" tabindex="-1" aria-hidden="true" aria-labelledby="titleTrilho">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title" id="titleTrilho">Custo trilho por placa</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                    </div>
+                    <div class="modal-body p-0">
+                        <iframe src="../forms/form_custo.php?tipo=trilho" style="width: 100%; height: 350px; border: none;"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Conectores -->
+        <div class="modal fade" id="modalConectores" tabindex="-1" aria-hidden="true" aria-labelledby="titleConectores">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title" id="titleConectores">Custo conectores</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                    </div>
+                    <div class="modal-body p-0">
+                        <iframe src="../forms/form_custo.php?tipo=conectores" style="width: 100%; height: 350px; border: none;"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Custos fixos -->
+        <div class="modal fade" id="modalCustosFixos" tabindex="-1" aria-hidden="true" aria-labelledby="titleCustosFixos">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title" id="titleCustosFixos">Custos fixos</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                    </div>
+                    <div class="modal-body p-0">
+                        <iframe src="../forms/form_custo.php?tipo=custos_fixos" style="width: 100%; height: 350px; border: none;"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Custos extras -->
+        <div class="modal fade" id="modalCustosExtras" tabindex="-1" aria-hidden="true" aria-labelledby="titleCustosExtras">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title" id="titleCustosExtras">Custos extras</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                    </div>
+                    <div class="modal-body p-0">
+                        <iframe src="../forms/form_custo.php?tipo=custos_extras" style="width: 100%; height: 350px; border: none;"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- * *                               SB Forms JS                               * *-->
-        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     </body>
 </html>

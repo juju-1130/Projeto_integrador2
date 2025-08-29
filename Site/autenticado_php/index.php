@@ -21,11 +21,9 @@
         <!-- Navigation-->
         <?php include __DIR__ . '/../includes/nav_autenticado.php'; ?>
         <!--Seção bem vindo-->
-        <section class="page-section bg-primary text-white mb-0" id="title">
-            <div class="container">
-                <h5 class="page-section-heading text-uppercase text-white">Seja Bem Vindo à <br> MK Energia Solar</h5>
-            </div>
-        </section>
+        <?php include __DIR__ . '/../includes/funcoes.php'; ?>
+        <?php echo gerarTituloPagina("Seja Bem Vindo à <br> MK energia solar"); ?>
+        
         <!-- Masthead-->
         <header>
         <!-- Começo carrossel -->
@@ -230,116 +228,6 @@
         <?php include __DIR__ . '/../includes/marcas.php'; ?>
         <!-- Footer-->
         <?php include __DIR__ . '/../includes/footer.php'; ?>
-        <!-- Modal Login/Cadastro -->
-        <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="loginModalLabel">Acesse sua conta</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <!-- Nav Login/Cadastro -->
-                        <ul class="nav nav-tabs nav-justified mb-4" id="myTab" role="tablist">
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login" type="button" role="tab" aria-controls="login" aria-selected="true">Login</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="cadastro-tab" data-bs-toggle="tab" data-bs-target="#cadastro" type="button" role="tab" aria-controls="cadastro" aria-selected="false">Cadastre-se</button>
-                            </li>
-                        </ul>
-                        
-                        <!-- Login/Cadastro -->
-                        <div class="tab-content">
-                            <!-- Login -->
-                            <div class="tab-pane active" id="login" role="tabpanel" aria-labelledby="login-tab">
-                                <form>
-                                    <div class="mb-3">
-                                        <label for="loginEmail" class="form-label">Email</label>
-                                        <input type="email" class="form-control" id="loginEmail" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="loginSenha" class="form-label">Senha</label>
-                                        <input type="password" class="form-control" id="loginSenha" required>
-                                    </div>
-                                    <div class="mb-3 form-check">
-                                        <input type="checkbox" class="form-check-input" id="lembrarLogin">
-                                        <label class="form-check-label" for="lembrarLogin">Lembrar de mim</label>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary w-100">Entrar</button>
-                                </form>
-                                <div class="text-center mt-3">
-                                    <a href="#" class="text-decoration-none" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#esqueciSenhaModal">Esqueci minha senha</a>
-                                </div>
-                            </div>
-                            
-                            <!-- Cadastro -->
-                            <div class="tab-pane" id="cadastro" role="tabpanel" aria-labelledby="cadastro-tab">
-                                <form>
-                                    <div class="mb-3">
-                                        <label for="cadastroNome" class="form-label">Nome Completo</label>
-                                        <input type="text" class="form-control" id="cadastroNome" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="cadastroEmail" class="form-label">Email</label>
-                                        <input type="email" class="form-control" id="cadastroEmail" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="cadastroTelefone" class="form-label">Telefone</label>
-                                        <input type="tel" class="form-control" id="cadastroTelefone" placeholder="(51) 99999-9999" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="cadastroSenha" class="form-label">Senha</label>
-                                        <input type="password" class="form-control" id="cadastroSenha" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="confirmarSenha" class="form-label">Confirmar Senha</label>
-                                        <input type="password" class="form-control" id="confirmarSenha" required>
-                                    </div>
-                                    <div class="mb-3 form-check">
-                                        <input type="checkbox" class="form-check-input" id="aceitarTermos" required>
-                                        <label class="form-check-label" for="aceitarTermos">Eu aceito os <a href="#!" class="text-decoration-none">Termos de Serviço</a></label>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary w-100">Cadastrar</button>
-                                </form>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Modal Esqueci a Senha -->
-        <div class="modal fade" id="esqueciSenhaModal" tabindex="-1" aria-labelledby="esqueciSenhaModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="esqueciSenhaModalLabel">Recuperar Senha</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="mb-3">
-                                <label for="usuarioRecuperacao" class="form-label">Usuário</label>
-                                <input type="text" class="form-control" id="usuarioRecuperacao" placeholder="Digite seu nome de usuário">
-                            </div>
-                            <div class="mb-3">
-                                <label for="emailRecuperacao" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="emailRecuperacao" placeholder="Digite o email cadastrado">
-                            </div>
-                            <button type="button" class="btn btn-primary w-100" disabled>
-                                Enviar Código de Verificação
-                            </button>
-                        </form>
-                        <div class="text-center mt-3">
-                            <a href="#" class="text-decoration-none" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#loginModal">
-                                <i class="fas fa-arrow-left me-2"></i>Voltar para Login
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

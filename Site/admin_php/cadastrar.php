@@ -18,54 +18,17 @@
         <link href="../css/styles.css" rel="stylesheet" />
     </head>
     <body id="page-top">
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg bg-white text-uppercase fixed-top" id="mainNav">
-            <div class="container">
-                <a class="navbar-brand" href="index.php">
-                    <img 
-                        src="../images/MKLOGO.png" 
-                        alt="MK Energia Solar" 
-                        class="img-fluid logo-resposivo">
-                </a>
-                <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    Menu
-                    <i class="fas fa-bars"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item mx-0 mx-lg-1 w-100 w-lg-auto mb-2 mb-lg-0">
-                            <a class="btn btn-primary py-3 px-4 rounded me-2" href="#" data-bs-toggle="modal" data-bs-target="#newProjectModal">Novo</a>
-                        </li>
-                        <li class="nav-item mx-0 mx-lg-1 w-100 w-lg-auto">
-                            <a id="btnEditarProjeto" class="btn btn-primary py-3 px-4 rounded me-2" href="#">Editar Projeto</a>
-                        </li>
-                        <li class="nav-item mx-0 mx-lg-1 w-100 w-lg-auto">
-                            <a id="btnExcluirProjeto" class="btn btn-primary py-3 px-4 rounded" href="#">Excluir Projeto</a>
-                        </li>
-                        <li class="nav-item mx-0 mx-lg-1 w-100 w-lg-auto">
-                            <a class="btn btn-primary py-3 px-4 rounded" href="editar.html">Editar Dados</a>
-                        </li>
-                        <li class="nav-item mx-0 mx-lg-1 w-100 w-lg-auto">
-                            <div class="dropdown w-100">
-                                <a class="btn btn-primary py-3 px-4 rounded dropdown-toggle text-start" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fas fa-user me-2"></i>
-                                    <strong>Primeiro Nome</strong>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-end w-100" aria-labelledby="dropdownMenuLink">
-                                    <li><a class="dropdown-item" href="#" onclick="logout()">Sair</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <?php 
+            $pagina_parametros = [
+                'cadastrar.php' => ['novo', 'editar_projeto', 'excluir_projeto', 'editar_dados'],
+            ];
+
+            include __DIR__ . '/../includes/nav_admin.php';
+        ?>
         <!--Seção titulo-->
-        <section class="page-section bg-primary text-white mb-0" id="title">
-            <div class="container">
-                <h5 class="page-section-heading text-primary text-uppercase text-white">Projetos Concluídos</h5>
-            </div>
-        </section>
+        <?php include __DIR__ . '/../includes/funcoes.php'; ?>
+        <?php echo gerarTituloPagina("Projetos concluídos"); ?>
+
         <!-- Masthead-->
         <header>
         <!-- Seção de projetos-->
@@ -159,13 +122,7 @@
         </section>
         <!-- End section projetos-->
         <!-- Footer-->
-         <footer class="footer text-center bg-primary text-white py-5">
-            <div class="container">
-                <div class="mb-4">
-                    <img src="../images/MKLOGO.png" alt="MK Energia Solar" class="img-fluid footer-logo">
-                </div>
-            </div>
-        </footer>
+        <?php include __DIR__ . '/../includes/footer.php'; ?>
         <!-- Modal Novo Projeto-->
         <div class="modal fade" id="newProjectModal" tabindex="-1" aria-labelledby="newProjectModalLabel" aria-hidden="true">
         <div class="modal-dialog">

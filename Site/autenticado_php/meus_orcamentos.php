@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
+        <meta name="description" content="MK Energia Solar - Orçamentos" />
         <meta name="author" content="" />
-        <title>MK Energia Solar</title>
+        <title>MK Energia Solar - Meus Orçamentos</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
@@ -19,45 +19,118 @@
     </head>
     <body id="page-top">
         <!-- Navigation-->
-        <?php include __DIR__ . '/../includes/nav_autenticado.php'; ?>
+        <?php 
+        // Inclui a navegação
+        include __DIR__ . '/../includes/nav_autenticado.php'; 
+        
+        $orcamentos = [
+            [
+                'id' => 1,
+                'titulo' => 'Sistema Fotovoltaico 7,5kWp',
+                'descricao' => 'Sistema fotovoltaico com 18 painéis 610W e 1 inversor monofásico 7,5kw',
+                'arquivo' => '../images/orcamento.pdf',
+                'data' => '15/10/2023',
+                'valor' => 'R$ 28.450,00',
+            ],
+            [
+                'id' => 2,
+                'titulo' => 'Sistema Fotovoltaico 15kWp',
+                'descricao' => 'Sistema para comércio com 42 painéis e 1 inversor trifásico 15kw',
+                'arquivo' => '../images/orcamento.pdf',
+                'data' => '18/10/2023',
+                'valor' => 'R$ 79.800,00',
+            ],
+        ];
+        
+        ?>
+        
         <!--Seção bem vindo-->
-        <section class="page-section bg-primary text-white mb-0" id="title">
-            <div class="container">
-                <h5 class="page-section-heading text-primary text-uppercase text-white">Meus orçamentos</h5>
-            </div>
-        </section>
+        <?php 
+        include __DIR__ . '/../includes/funcoes.php'; 
+        echo gerarTituloPagina("Meus Orçamentos"); 
+        ?>
+
         <section class="page-section" id="meus-orcamentos">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-10">
-                        <div class="card shadow p-4 mb-4">
-                            <h4 class="text-center text-primary mb-3">Orçamento 1</h4>
-                            <embed src="../images/orcamento.pdf#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf" class="w-100 rounded border mb-3" style="height: 85vh;">
-                            <div class="text-end mb-5">
-                                <a href="../images/orcamento.pdf" download="Orçamento_1.pdf" class="btn btn-outline-success">
-                                    <i class="fas fa-download me-2"></i>Salvar PDF
-                                </a>
+                        <?php if (count($orcamentos) > 0): ?>
+                            <?php foreach ($orcamentos as $orcamento): ?>
+                                <div class="card shadow p-4 mb-5 orcamento-card">
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <div>
+                                            <h4 class="text-primary mb-0"><?php echo $orcamento['titulo']; ?></h4>
+                                            <p class="text-muted mb-0 mt-1"><?php echo $orcamento['descricao']; ?></p>
+                                        </div>
+                                        <div class="text-end">
+                                            <span class="text-muted small"><?php echo $orcamento['data']; ?></span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <div class="bg-light p-3 rounded">
+                                                <strong>Valor do Projeto:</strong> 
+                                                <span class="text-success"><?php echo $orcamento['valor']; ?></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="bg-light p-3 rounded">
+                                                <strong>Número do Orçamento:</strong> 
+                                                <span>#MK<?php echo str_pad($orcamento['id'], 4, '0', STR_PAD_LEFT); ?></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <embed src="<?php echo $orcamento['arquivo']; ?>#toolbar=0&navpanes=0&scrollbar=0" 
+                                           type="application/pdf" 
+                                           class="w-100 rounded border mb-3" 
+                                           style="height: 75vh;">
+                                    
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <a href="contato.php?orcamento=<?php echo $orcamento['id']; ?>" class="btn btn-primary">
+                                                <i class="fas fa-comments me-2"></i>Tirar Dúvidas
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="<?php echo $orcamento['arquivo']; ?>" 
+                                               download="Orçamento_MK<?php echo str_pad($orcamento['id'], 4, '0', STR_PAD_LEFT); ?>.pdf" 
+                                               class="btn btn-outline-success btn-download">
+                                                <i class="fas fa-download me-2"></i>Salvar PDF
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <div class="card shadow p-5 text-center">
+                                <div class="empty-state">
+                                    <i class="fas fa-file-pdf"></i>
+                                    <h3>Nenhum orçamento encontrado</h3>
+                                    <p class="mb-4">Você ainda não possui orçamentos gerados.</p>
+                                    <a href="contato.php" class="btn btn-primary btn-lg">
+                                        <i class="fas fa-calendar-check me-2"></i>Solicitar Primeiro Orçamento
+                                    </a>
+                                </div>
                             </div>
-
-                            <h4 class="text-center text-primary mb-3">Orçamento 2</h4>
-                            <embed src="../images/orcamento.pdf#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf" class="w-100 rounded border mb-3" style="height: 85vh;">
-                            <div class="text-end">
-                                <a href="../images/orcamento.pdf" download="Orçamento_2.pdf" class="btn btn-outline-success">
-                                    <i class="fas fa-download me-2"></i>Salvar PDF
-                                </a>
-                            </div>
-                        </div>
+                        <?php endif; ?>
+                        
+                        <?php if (count($orcamentos) > 0): ?>
                         <div class="text-center mt-4">
                             <a href="contato.php" class="btn btn-primary btn-lg">
                                 <i class="fas fa-calendar-check me-2"></i>Solicitar Visita
                             </a>
                         </div>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
         </section>
+        
         <!-- Footer-->
         <?php include __DIR__ . '/../includes/footer.php'; ?>
+        
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

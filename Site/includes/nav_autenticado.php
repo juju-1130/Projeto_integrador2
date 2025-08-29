@@ -12,10 +12,16 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item mx-0 mx-lg-1 w-100 w-lg-auto"><a class="nav-link py-3 px-0 px-lg-3 rounded text-primary " href="contato.php">Fale Conosco</a></li>
-                <li class="nav-item mx-0 mx-lg-1 w-100 w-lg-auto"><a class="nav-link py-3 px-0 px-lg-3 rounded text-primary" href="orcamento.php">Orçamento</a></li>
-                <li class="nav-item mx-0 mx-lg-1 w-100 w-lg-auto"><a class="nav-link py-3 px-0 px-lg-3 rounded text-primary" href="projetos.php">Projetos</a></li>
-                <li class="nav-item mx-0 mx-lg-1 w-100 w-lg-auto">
+                <li class="nav-item mx-0 mx-lg-1 w-auto">
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded text-primary " href="contato.php">Fale Conosco</a>
+                </li>
+                <li class="nav-item mx-0 mx-lg-1 w-auto">
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded text-primary" href="orcamento.php">Orçamento</a>
+                </li>
+                <li class="nav-item mx-0 mx-lg-1 w-auto">
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded text-primary" href="projetos.php">Projetos</a>
+                </li>
+                <li class="nav-item mx-0 mx-lg-1 w-auto">
                     <div class="dropdown">
                         <a class="btn btn-primary py-3 px-4 rounded dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-user me-2"></i>

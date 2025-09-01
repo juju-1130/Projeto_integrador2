@@ -21,7 +21,7 @@
                                     Lembrar de mim
                                 </label>
                             </div>
-                            <button type="submit" class="btn btn-primary w-100">Entrar</button>
+                            <a href="../Site/admin_php/index.php" class="btn btn-primary w-100">Login</a>
                         </form>
                         <div class="mt-3 text-center">
                             <a href="cadastrar.php" data-bs-toggle="modal" data-bs-target="#cadastrarModal" data-bs-dismiss="modal">Cadastrar</a> |

@@ -38,27 +38,29 @@
             exit;
         }
         ?>
+        
+        <div class="p-3">
+            <form method="post" action="" id="formCusto">
+                <input type="hidden" name="tipo" value="<?php echo htmlspecialchars($tipo); ?>">
                 
-        <form method="post" action="" id="formCusto">
-            <input type="hidden" name="tipo" value="<?php echo htmlspecialchars($tipo); ?>">
-            
-            <div class="mb-3">
-                <label for="custo" class="form-label">Item</label>
-                <input type="text" name="custo" id="custo" class="form-control" value="<?php echo htmlspecialchars($nomeItem); ?>" readonly>
-            </div>
-            
-            <div class="mb-4">
-                <label for="valor" class="form-label">Valor (R$):</label>
-                <input type="number" name="valor" id="valor" class="form-control" step="0.01" value="<?php echo $valorAtual; ?>" required>
-            </div>
-            
-            <div class="form-divider"></div>
-            
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button type="button" class="btn btn-secondary me-md-2" data-bs-dismiss="modal">Cancelar</button>
-                <button type="submit" class="btn btn-primary">Salvar</button>
-            </div>
-        </form>
+                <div class="mb-3">
+                    <label for="custo" class="form-label">Item</label>
+                    <input type="text" name="custo" id="custo" class="form-control" value="<?php echo htmlspecialchars($nomeItem); ?>" readonly>
+                </div>
+                
+                <div class="mb-4">
+                    <label for="valor" class="form-label">Valor (R$):</label>
+                    <input type="number" name="valor" id="valor" class="form-control" step="0.01" value="<?php echo $valorAtual; ?>" required>
+                </div>
+                
+                <div class="form-divider"></div>
+                
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <a href="../admin_php/kit_solar.php" target="_parent" class="btn btn-secondary me-md-2">Cancelar</a>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
     </div>
 </body>
 </html>

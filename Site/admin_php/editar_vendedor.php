@@ -1,27 +1,3 @@
-<?php
-$isIframeRequest = isset($_GET['tipo']) && !isset($_GET['modal']);
-
-if ($isIframeRequest) {
-    $tipo = $_GET['tipo'] ?? '';
-    $id = $_GET['id'] ?? '';
-
-    switch($tipo) {
-        case 'novo_vendedor':
-            include __DIR__ . '/crud_vendedor/novo_vendedor.php';
-            exit;
-        case 'editar_vendedor':
-            include __DIR__ . '/crud_vendedor/editar_vendedores.php';
-            exit;
-        case 'excluir_vendedor':
-            include __DIR__ . '/crud_vendedor/excluir_vendedor.php';
-            exit;
-        default:
-            echo '<div class="p-3">Tipo de formulário não reconhecido</div>';
-            exit;
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="pt-BR">
     <head>
@@ -34,7 +10,7 @@ if ($isIframeRequest) {
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-        <!-- Font Awesome para o ícone -->
+        <!-- Font Awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
         <!-- Core theme CSS -->
         <link href="../css/styles.css" rel="stylesheet" />
@@ -43,9 +19,8 @@ if ($isIframeRequest) {
         <!-- Navigation-->
         <?php 
         $pagina_parametros = [
-            'editar_vendedor.php' => ['novo_vendedor', 'editar_vendedor', 'excluir_vendedor', 'editar_dados'],
+            'editar_vendedor.php' => ['editar_dados'],
         ];
-
         include __DIR__ . '/../includes/nav_admin.php';
         ?>
 
@@ -53,7 +28,7 @@ if ($isIframeRequest) {
         <?php include __DIR__ . '/../includes/funcoes.php'; ?>
         <?php echo gerarTituloPagina("Vendedores"); ?>
 
-        <!-- BOTÃO NOVO VENDEDOR -->
+        <!-- Botão Novo Vendedor -->
         <div class="container">
             <div class="d-flex justify-content-end mb-4">
                 <a href="editar_vendedor.php?modal=novo_vendedor" class="btn btn-primary">
@@ -138,20 +113,20 @@ if ($isIframeRequest) {
         <!-- Footer-->
         <?php include __DIR__ . '/../includes/footer.php'; ?>
 
-        <?php if (isset($_GET['modal'])): ?>
-        <div class="modal-overlay">
-            <div class="modal-content">
-                <div class="d-flex justify-content-between align-items-center bg-primary text-white px-3 py-2">
-                    <h5 class="m-0"><?php echo ucfirst(str_replace('_', ' ', htmlspecialchars($_GET['modal']))); ?></h5>
-                    <a href="editar_vendedor.php" class="btn-close btn-close-white" aria-label="Fechar"></a>
-                </div>
-                <iframe src="editar_vendedor.php?tipo=<?php echo htmlspecialchars($_GET['modal']); ?><?php echo isset($_GET['id']) ? '&id=' . htmlspecialchars($_GET['id']) : ''; ?>" 
-                style="width: 100%; height: calc(100% - 50px); border: none;"></iframe>
-            </div>
-        </div>
-        <?php endif; ?>
-
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
+
+<?php if (isset($_GET['modal'])): ?>
+<div class="modal-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; display: flex; justify-content: center; align-items: center;">
+    <div class="modal-content" style="background: white; width: 80%; height: 80%; border-radius: 5px; position: relative;">
+        <div class="d-flex justify-content-between align-items-center bg-primary text-white px-3 py-2">
+            <h5 class="m-0"><?php echo ucfirst(str_replace('_', ' ', htmlspecialchars($_GET['modal']))); ?></h5>
+            <a href="editar_vendedor.php" target="_parent" class="btn-close btn-close-white" aria-label="Fechar"></a>
+        </div>
+        <iframe src="editar_iframe.php?tipo=<?php echo htmlspecialchars($_GET['modal']); ?><?php echo isset($_GET['id']) ? '&id=' . htmlspecialchars($_GET['id']) : ''; ?>" 
+        style="width: 100%; height: calc(100% - 50px); border: none;"></iframe>
+    </div>
+</div>
+<?php endif; ?>

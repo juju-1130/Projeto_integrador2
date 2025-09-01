@@ -42,6 +42,8 @@
             ],
         ];
         
+        $whatsapp_number = "5551998224220";
+        
         ?>
         
         <!--Seção bem vindo-->
@@ -55,7 +57,11 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-10">
                         <?php if (count($orcamentos) > 0): ?>
-                            <?php foreach ($orcamentos as $orcamento): ?>
+                            <?php foreach ($orcamentos as $orcamento): 
+                                // Criar mensagem pré-definida para WhatsApp
+                                $whatsapp_message = rawurlencode("Olá! Gostaria de tirar dúvidas sobre o orçamento #MK" . str_pad($orcamento['id'], 4, '0', STR_PAD_LEFT) . " - " . $orcamento['titulo']);
+                                $whatsapp_link = "https://wa.me/{$whatsapp_number}?text={$whatsapp_message}";
+                            ?>
                                 <div class="card shadow p-4 mb-5 orcamento-card">
                                     <div class="d-flex justify-content-between align-items-center mb-3">
                                         <div>
@@ -89,8 +95,8 @@
                                     
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div>
-                                            <a href="contato.php?orcamento=<?php echo $orcamento['id']; ?>" class="btn btn-primary">
-                                                <i class="fas fa-comments me-2"></i>Tirar Dúvidas
+                                            <a href="<?php echo $whatsapp_link; ?>" target="_blank" class="btn btn-primary">
+                                                <i class="fab fa-whatsapp me-2"></i>Tirar Dúvidas via WhatsApp
                                             </a>
                                         </div>
                                         <div>

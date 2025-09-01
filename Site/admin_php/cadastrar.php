@@ -8,19 +8,21 @@
         <title>MK Energia Solar</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <link rel="stylesheet" href="极速快3://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="../css/styles.css" rel="stylesheet" />
     </head>
     <body id="page-top">
         <?php 
             $pagina_parametros = [
-                'cadastrar.php' => ['novo', 'editar_projeto', 'excluir_projeto', 'editar_dados'],
+                'cadastrar.php' => ['editar_dados'],
             ];
 
             include __DIR__ . '/../includes/nav_admin.php';
@@ -29,11 +31,21 @@
         <?php include __DIR__ . '/../includes/funcoes.php'; ?>
         <?php echo gerarTituloPagina("Projetos concluídos"); ?>
 
+        <!-- Botão Novo Projeto -->
+        <div class="container">
+            <div class="d-flex justify-content-end mb-4">
+                <a href="cadastrar.php?modal=novo" class="btn btn-primary">
+                    <i class="fas fa-plus me-2"></i> Novo Projeto
+                </a>
+            </div>
+        </div>
+
         <!-- Masthead-->
         <header>
         <!-- Seção de projetos-->
         <section class="page-section projects" id="projects">
             <div class="container">
+                <!-- Projeto 1 -->
                 <div class="project-card mb-5 p-4 rounded-3 bg-light">
                     <div class="row align-items-center g-4">
                         <div class="col-lg-5 col-md-6">
@@ -56,12 +68,20 @@
                                     <span class="badge bg-success">Sustentável</span>
                                 </div>
                                 <div class="mt-4">
-                                    <button class="btn btn-warning mt-3" onclick="destacarProjeto(this)">Destacar Projeto</button>
+                                    <div class="btn-group" role="group">
+                                        <button class="btn btn-outline-warning btn-sm" onclick="destacarProjeto(this)" title="Destacar projeto">
+                                            <i class="fas fa-star me-1"></i> Destacar
+                                        </button>
+                                        <a href="cadastrar.php?modal=editar_projeto&id=1" class="btn btn-warning btn-sm">Editar</a>
+                                        <a href="cadastrar.php?modal=excluir_projeto&id=1" class="btn btn-danger btn-sm">Excluir</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                
+                <!-- Projeto 2 -->
                 <div class="project-card mb-5 p-4 rounded-3 bg-light">
                     <div class="row align-items-center g-4">
                         <div class="col-lg-5 col-md-6">
@@ -84,12 +104,20 @@
                                     <span class="badge bg-success">Sustentável</span>
                                 </div>
                                 <div class="mt-4">
-                                    <button class="btn btn-warning mt-3" onclick="destacarProjeto(this)">Destacar Projeto</button>
+                                    <div class="btn-group" role="group">
+                                        <button class="btn btn-outline-warning btn-sm" onclick="destacarProjeto(this)" title="Destacar projeto">
+                                            <i class="fas fa-star me-1"></i> Destacar
+                                        </button>
+                                        <a href="cadastrar.php?modal=editar_projeto&id=2" class="btn btn-warning btn-sm">Editar</a>
+                                        <a href="cadastrar.php?modal=excluir_projeto&id=2" class="btn btn-danger btn-sm">Excluir</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                
+                <!-- Projeto 3 -->
                 <div class="project-card mb-5 p-4 rounded-3 bg-light">
                     <div class="row align-items-center g-4">
                         <div class="col-lg-5 col-md-6">
@@ -112,7 +140,13 @@
                                     <span class="badge bg-success">Sustentável</span>
                                 </div>
                                 <div class="mt-4">
-                                    <button class="btn btn-warning mt-3" onclick="destacarProjeto(this)">Destacar Projeto</button>
+                                    <div class="btn-group" role="group">
+                                        <button class="btn btn-outline-warning btn-sm" onclick="destacarProjeto(this)" title="Destacar projeto">
+                                            <i class="fas fa-star me-1"></i> Destacar
+                                        </button>
+                                        <a href="cadastrar.php?modal=editar_projeto&id=3" class="btn btn-warning btn-sm">Editar</a>
+                                        <a href="cadastrar.php?modal=excluir_projeto&id=3" class="btn btn-danger btn-sm">Excluir</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -123,339 +157,11 @@
         <!-- End section projetos-->
         <!-- Footer-->
         <?php include __DIR__ . '/../includes/footer.php'; ?>
-        <!-- Modal Novo Projeto-->
-        <div class="modal fade" id="newProjectModal" tabindex="-1" aria-labelledby="newProjectModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content p-3">
-            <div class="modal-header">
-                <h5 class="modal-title" id="newProjectModalLabel">Novo Projeto</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-            </div>
-            <div class="modal-body">
-                <form id="formNovoProjeto">
-                <div class="mb-3">
-                    <label class="form-label">Cidade</label>
-                    <input type="text" class="form-control" name="cidade">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Placas</label>
-                    <input type="text" class="form-control" name="placas">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Inversor</label>
-                    <input type="text" class="form-control" name="inversor">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Economia</label>
-                    <input type="text" class="form-control" name="economia">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Conclusão</label>
-                    <input type="text" class="form-control" name="conclusao">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Imagem</label>
-                    <input type="file" class="form-control" name="imagem">
-                </div>
-                <button type="submit" class="btn btn-primary w-100">Adicionar Projeto</button>
-                </form>
-            </div>
-            </div>
-        </div>
-        </div>
 
-        <!-- Modal de Edição -->
-        <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content p-3">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="editModalLabel">Editar Projeto</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="formEditarProjeto">
-                            <div class="mb-3">
-                                <label class="form-label">Título do Projeto</label>
-                                <input type="text" class="form-control" name="titulo" required>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Cidade</label>
-                                <input type="text" class="form-control" name="cidade">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Placas</label>
-                                <input type="text" class="form-control" name="placas">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Inversor</label>
-                                <input type="text" class="form-control" name="inversor">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Economia</label>
-                                <input type="text" class="form-control" name="economia">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Conclusão</label>
-                                <input type="text" class="form-control" name="conclusao">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Imagem</label>
-                                <input type="file" class="form-control" name="imagem">
-                            </div>
-                            <button type="submit" class="btn btn-primary w-100">Salvar Alterações</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal de Confirmação -->
-        <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="confirmModalLabel">Confirmação</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-                    </div>
-                    <div class="modal-body" id="confirmModalBody">
-                        Tem certeza que deseja excluir este projeto?
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-danger" id="confirmDelete">Excluir</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        
         <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            let modoEdicaoAtivo = false;
-            let modoExclusaoAtivo = false;
-            let projetoSelecionado = null;
-            
-            const btnEditar = document.querySelector('#btnEditarProjeto');
-            const btnExcluir = document.querySelector('#btnExcluirProjeto');
-            
-            function getAllProjectCards() {
-                return document.querySelectorAll('.project-card');
-            }
-            
-            function saveOriginalButtons() {
-                getAllProjectCards().forEach(card => {
-                    const btnDestacar = card.querySelector('.btn-warning[onclick="destacarProjeto(this)"]');
-                    if (btnDestacar) {
-                        card.setAttribute('data-original-btn', btnDestacar.outerHTML);
-                    }
-                });
-            }
-            
-            function restoreOriginalButtons() {
-                getAllProjectCards().forEach(card => {
-                    const originalBtn = card.getAttribute('data-original-btn');
-                    if (originalBtn) {
-                        const btnContainer = card.querySelector('.mt-4');
-                        if (btnContainer) {
-                            btnContainer.innerHTML = originalBtn;
-                        }
-                    }
-                });
-            }
-            
-            btnEditar.addEventListener('click', () => {
-                if (modoExclusaoAtivo) {
-                    desativarModoExclusao();
-                    modoExclusaoAtivo = false;
-                    btnExcluir.classList.remove('active');
-                    btnExcluir.textContent = 'Excluir projeto';
-                }
-                
-                modoEdicaoAtivo = !modoEdicaoAtivo;
-                
-                if (modoEdicaoAtivo) {
-                    saveOriginalButtons();
-                    btnEditar.classList.add('active');
-                    btnEditar.textContent = 'Sair do Modo Edição';
-                    ativarModoEdicao();
-                } else {
-                    btnEditar.classList.remove('active');
-                    btnEditar.textContent = 'Editar projeto';
-                    desativarModoEdicao();
-                    restoreOriginalButtons();
-                }
-            });
-            
-            btnExcluir.addEventListener('click', () => {
-                if (modoEdicaoAtivo) {
-                    desativarModoEdicao();
-                    modoEdicaoAtivo = false;
-                    btnEditar.classList.remove('active');
-                    btnEditar.textContent = 'Editar projeto';
-                    restoreOriginalButtons();
-                }
-                
-                modoExclusaoAtivo = !modoExclusaoAtivo;
-                
-                if (modoExclusaoAtivo) {
-                    saveOriginalButtons();
-                    btnExcluir.classList.add('active');
-                    btnExcluir.textContent = 'Sair do Modo Exclusão';
-                    ativarModoExclusao();
-                } else {
-                    btnExcluir.classList.remove('active');
-                    btnExcluir.textContent = 'Excluir projeto';
-                    desativarModoExclusao();
-                    restoreOriginalButtons();
-                }
-            });
-            
-            function ativarModoEdicao() {
-                getAllProjectCards().forEach(card => {
-                    const btnDestacar = card.querySelector('.btn-warning[onclick="destacarProjeto(this)"]');
-                    if (btnDestacar) {
-                        btnDestacar.style.display = 'none';
-                    }
-                    
-                    const btnEditarCard = document.createElement('button');
-                    btnEditarCard.className = 'btn btn-sm btn-warning position-absolute top-0 end-0 m-3';
-                    btnEditarCard.innerHTML = '<i class="fas fa-edit"></i>';
-                    btnEditarCard.style.width = '30px';
-                    btnEditarCard.style.height = '30px';
-                    btnEditarCard.style.zIndex = '10';
-                    btnEditarCard.style.borderRadius = '4px';
-                    btnEditarCard.setAttribute('data-edicao', 'true');
-                    
-                    btnEditarCard.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        projetoSelecionado = card;
-                        abrirModalEdicao(card);
-                    });
-                    
-                    card.style.position = 'relative';
-                    card.style.boxShadow = '0 0 0 3px rgba(13, 110, 253, 0.5)';
-                    card.appendChild(btnEditarCard);
-                });
-            }
-            
-            function desativarModoEdicao() {
-                getAllProjectCards().forEach(card => {
-                    const btnEditar = card.querySelector('[data-edicao="true"]');
-                    if (btnEditar) {
-                        btnEditar.remove();
-                    }
-                    card.style.boxShadow = '';
-                    
-                    const btnDestacar = card.querySelector('.btn-warning[onclick="destacarProjeto(this)"]');
-                    if (btnDestacar) {
-                        btnDestacar.style.display = '';
-                    }
-                });
-            }
-            
-            function ativarModoExclusao() {
-                getAllProjectCards().forEach(card => {
-                    const btnDestacar = card.querySelector('.btn-warning[onclick="destacarProjeto(this)"]');
-                    if (btnDestacar) {
-                        btnDestacar.style.display = 'none';
-                    }
-                    
-                    const btnExcluirCard = document.createElement('button');
-                    btnExcluirCard.className = 'btn btn-sm btn-danger position-absolute top-0 end-0 m-3';
-                    btnExcluirCard.innerHTML = '<i class="fas fa-trash"></i>';
-                    btnExcluirCard.style.width = '30px';
-                    btnExcluirCard.style.height = '30px';
-                    btnExcluirCard.style.zIndex = '10';
-                    btnExcluirCard.style.borderRadius = '4px';
-                    btnExcluirCard.setAttribute('data-exclusao', 'true');
-                    
-                    btnExcluirCard.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        projetoSelecionado = card;
-                        abrirModalConfirmacao();
-                    });
-                    
-                    card.style.position = 'relative';
-                    card.style.boxShadow = '0 0 0 3px rgba(220, 53, 69, 0.5)';
-                    card.appendChild(btnExcluirCard);
-                });
-            }
-            
-            function desativarModoExclusao() {
-                getAllProjectCards().forEach(card => {
-                    const btnExcluir = card.querySelector('[data-exclusao="true"]');
-                    if (btnExcluir) {
-                        btnExcluir.remove();
-                    }
-                    card.style.boxShadow = '';
-                    
-                    const btnDestacar = card.querySelector('.btn-warning[onclick="destacarProjeto(this)"]');
-                    if (btnDestacar) {
-                        btnDestacar.style.display = '';
-                    }
-                });
-            }
-            
-            function abrirModalEdicao(card) {
-                const cidade = card.querySelector('.project-features li:nth-child(1)').textContent.replace('Cidade de ', '').trim();
-                const placas = card.querySelector('.project-features li:nth-child(2)').textContent.replace(' módulos de ', '|').split('|')[0].trim();
-                const inversor = card.querySelector('.project-features li:nth-child(3)').textContent.replace('Inversor ', '').trim();
-                const economia = card.querySelector('.project-features li:nth-child(4)').textContent.replace('Economia: ', '').trim();
-                const conclusao = card.querySelector('.project-meta span').textContent.replace('Concluído: ', '').trim();
-                const titulo = card.querySelector('.project-title').textContent.trim();
-                
-                const editModal = document.getElementById('editModal');
-                editModal.querySelector('[name="titulo"]').value = titulo;
-                editModal.querySelector('[name="cidade"]').value = cidade;
-                editModal.querySelector('[name="placas"]').value = placas;
-                editModal.querySelector('[name="inversor"]').value = inversor;
-                editModal.querySelector('[name="economia"]').value = economia;
-                editModal.querySelector('[name="conclusao"]').value = conclusao;
-                
-                const modal = new bootstrap.Modal(editModal);
-                modal.show();
-            }
-            
-            function abrirModalConfirmacao() {
-                const modal = new bootstrap.Modal(document.getElementById('confirmModal'));
-                modal.show();
-            }
-            
-            // Formulário de edição
-            document.getElementById('formEditarProjeto').addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                if (projetoSelecionado) {
-                    const titulo = this.querySelector('[name="titulo"]').value;
-                    const cidade = this.querySelector('[name="cidade"]').value;
-                    const placas = this.querySelector('[name="placas"]').value;
-                    const inversor = this.querySelector('[name="inversor"]').value;
-                    const economia = this.querySelector('[name="economia"]').value;
-                    const conclusao = this.querySelector('[name="conclusao"]').value;
-                    
-                    projetoSelecionado.querySelector('.project-title').textContent = titulo;
-                    projetoSelecionado.querySelector('.project-features li:nth-child(1)').innerHTML = `<i class="fas fa-map-marker-alt text-primary me-2"></i> Cidade de ${cidade}`;
-                    projetoSelecionado.querySelector('.project-features li:nth-child(2)').innerHTML = `<i class="fas fa-solar-panel text-primary me-2"></i> ${placas} módulos de 570W`;
-                    projetoSelecionado.querySelector('.project-features li:nth-child(3)').innerHTML = `<i class="fas fa-bolt text-primary me-2"></i> Inversor ${inversor}`;
-                    projetoSelecionado.querySelector('.project-features li:nth-child(4)').innerHTML = `<i class="fas fa-battery-three-quarters text-primary me-2"></i> Economia: ${economia}`;
-                    projetoSelecionado.querySelector('.project-meta span').innerHTML = `<i class="far fa-calendar-alt me-1"></i> Concluído: ${conclusao}`;
-                    
-                    const modal = bootstrap.Modal.getInstance(document.getElementById('editModal'));
-                    modal.hide();
-                    
-                    projetoSelecionado = null;
-                }
-            });
-            
-            document.getElementById('confirmDelete').addEventListener('click', function() {
-                if (projetoSelecionado) {
-                    projetoSelecionado.remove();
-                    const modal = bootstrap.Modal.getInstance(document.getElementById('confirmModal'));
-                    modal.hide();
-                    projetoSelecionado = null;
-                }
-            });
-        });
-
         function destacarProjeto(button) {
             const card = button.closest('.project-card');
 
@@ -485,17 +191,19 @@
             localStorage.setItem('projetosDestacados', JSON.stringify(projetosDestacados));
             alert('Projeto destacado com sucesso!');
         }
-
         </script>
-
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- * *                               SB Forms JS                               * *-->
-        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     </body>
 </html>
+
+<?php if (isset($_GET['modal'])): ?>
+<div class="modal-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; display: flex; justify-content: center; align-items: center;">
+    <div class="modal-content" style="background: white; width: 80%; height: 80%; border-radius: 5px; position: relative;">
+        <div class="d-flex justify-content-between align-items-center bg-primary text-white px-3 py-2">
+            <h5 class="m-0"><?php echo ucfirst(str_replace('_', ' ', htmlspecialchars($_GET['modal']))); ?></h5>
+            <a href="cadastrar.php" target="_parent" class="btn-close btn-close-white" aria-label="Fechar"></a>
+        </div>
+        <iframe src="editar_iframe.php?tipo=<?php echo htmlspecialchars($_GET['modal']); ?><?php echo isset($_GET['id']) ? '&id=' . htmlspecialchars($_GET['id']) : ''; ?>" 
+        style="width: 100%; height: calc(100% - 50px); border: none;"></iframe>
+    </div>
+</div>
+<?php endif; ?>

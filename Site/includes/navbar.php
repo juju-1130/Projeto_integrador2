@@ -2,7 +2,7 @@
             <div class="container">
                 <a class="navbar-brand" href="index.php">
                     <img 
-                        src="../images/MKLOGO.png" 
+                        src="images/MKLOGO.png" 
                         alt="MK Energia Solar" 
                         class="img-fluid logo-resposivo">
                 </a>

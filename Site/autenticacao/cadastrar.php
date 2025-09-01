@@ -27,7 +27,7 @@
                                 <label class="form-label">Confirmar Senha</label>
                                 <input type="password" name="senha" class="form-control" required>
                             </div>
-                            <button type="submit" class="btn btn-primary w-100">Cadastrar</button>
+                            <a href="../Site/autenticado_php/index.php" class="btn btn-primary w-100">Cadastrar</a>
                         </form>
                         <div class="mt-3 text-center">
                             <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss="modal">Já tenho conta</a>

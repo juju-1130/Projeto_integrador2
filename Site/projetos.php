@@ -15,13 +15,16 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="../css/styles.css" rel="stylesheet" />
+        <link href="css/styles.css" rel="stylesheet" />
     </head>
     <body id="page-top">
         <!-- Navigation-->
-        <?php include __DIR__ . '/../includes/navbar.php'; ?>
+        <?php include __DIR__ . '/includes/navbar.php'; ?>
+        <?php include __DIR__ . '/autenticacao/login.php'; ?>
+        <?php include __DIR__ . '/autenticacao/cadastrar.php'; ?>
+        <?php include __DIR__ . '/autenticacao/esquecisenha.php'; ?>
         <!-- Masthead-->
-        <?php include __DIR__ . '/../includes/funcoes.php'; ?>
+        <?php include __DIR__ . '/includes/funcoes.php'; ?>
         <?php echo gerarTituloPagina("Projetos Concluídos"); ?>
 
         <header>
@@ -31,7 +34,7 @@
                 <?php
                 $projetos = [
                     [
-                        'imagem' => '../images/project1.png',
+                        'imagem' => 'images/project1.png',
                         'titulo' => 'Sistema solar de 6,27Kwp',
                         'cidade' => 'Cidade de Rolante',
                         'modulos' => '11 módulos de 570W',
@@ -41,7 +44,7 @@
                         'categorias' => ['Residencial', 'Sustentável']
                     ],
                     [
-                        'imagem' => '../images/project2.png',
+                        'imagem' => 'images/project2.png',
                         'titulo' => 'Sistema solar de 5,49Kwp',
                         'cidade' => 'Cidade de Rolante',
                         'modulos' => '9 módulos de 610W',
@@ -51,7 +54,7 @@
                         'categorias' => ['Residencial', 'Sustentável']
                     ],
                     [
-                        'imagem' => '../images/project3.jpg',
+                        'imagem' => 'images/project3.jpg',
                         'titulo' => 'Sistema solar de 5,13Kwp',
                         'cidade' => 'Cidade de Rolante',
                         'modulos' => '9 módulos de 570W',
@@ -61,7 +64,7 @@
                         'categorias' => ['Residencial', 'Sustentável']
                     ],
                     [
-                        'imagem' => '../images/project4.jpg',
+                        'imagem' => 'images/project4.jpg',
                         'titulo' => 'Sistema solar de 5,13Kwp',
                         'cidade' => 'Cidade de Rolante',
                         'modulos' => '9 módulos de 570W',
@@ -71,7 +74,7 @@
                         'categorias' => ['Residencial', 'Sustentável']
                     ],
                     [
-                        'imagem' => '../images/project5.jpg',
+                        'imagem' => 'images/project5.jpg',
                         'titulo' => 'Sistema solar de 5,13Kwp',
                         'cidade' => 'Cidade de Rolante',
                         'modulos' => '9 módulos de 570W',
@@ -81,7 +84,7 @@
                         'categorias' => ['Residencial', 'Sustentável']
                     ],
                     [
-                        'imagem' => '../images/project6.jpg',
+                        'imagem' => 'images/project6.jpg',
                         'titulo' => 'Sistema solar de 5,13Kwp',
                         'cidade' => 'Cidade de Rolante',
                         'modulos' => '9 módulos de 570W',
@@ -91,7 +94,7 @@
                         'categorias' => ['Residencial', 'Sustentável']
                     ],
                     [
-                        'imagem' => '../images/project7.jpg',
+                        'imagem' => 'images/project7.jpg',
                         'titulo' => 'Sistema solar de 5,13Kwp',
                         'cidade' => 'Cidade de Rolante',
                         'modulos' => '9 módulos de 570W',
@@ -144,7 +147,7 @@
         </section>
         <!-- End section projetos-->
         <!-- Footer-->
-        <?php include __DIR__ . '/../includes/footer.php'; ?>
+        <?php include __DIR__ . '/includes/footer.php'; ?>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

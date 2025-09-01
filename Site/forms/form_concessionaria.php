@@ -11,24 +11,10 @@
   <div class="container p-0">
     <div class="d-flex justify-content-between align-items-center bg-primary text-white px-3 py-2">
       <h5 class="m-0">Concessionárias</h5>
-      <a href="../admin/editar.php" target="_parent" class="btn-close btn-close-white" aria-label="Fechar"></a>
+      <a href="../admin_php/editar.php" target="_parent" class="btn-close btn-close-white" aria-label="Fechar"></a>
     </div>
 
     <div class="p-3">
-      <?php
-      // Processar o formulário se foi enviado
-      if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-          $nomeConcessionaria = $_POST['nomeConcessionaria'];
-          
-          // Aqui você salva no banco de dados
-          // ...
-          
-          // Redireciona de volta para a página principal
-          echo '<script>window.parent.location.href = "../admin/editar.php?success=1";</script>';
-          exit;
-      }
-      ?>
-      
       <form method="POST" action="">
         <div class="mb-3">
           <label for="nomeConcessionaria" class="form-label">Nome da Concessionária</label>

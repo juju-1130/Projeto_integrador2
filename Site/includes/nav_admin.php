@@ -3,9 +3,9 @@ $pagina_atual = basename($_SERVER['PHP_SELF']);
 $parametros = $_GET;
 
 $botoes_por_pagina = [
-    'cadastrar.php' => ['novo', 'editar_projeto', 'excluir_projeto', 'editar_dados'],
+    'cadastrar.php' => ['editar_dados'],
     'editar.php' => ['home'],
-    'editar_vendedor.php' => ['novo_vendedor', 'editar_vendedor', 'excluir_vendedor', 'editar_dados'],
+    'editar_vendedor.php' => ['editar_dados'],
     'index.php' => ['editar_dados'],
     'kit_solar.php' => ['editar_dados']
 ];
@@ -16,7 +16,33 @@ function mostrar_botao($tipo_botao) {
     global $botoes_ativos;
     return in_array($tipo_botao, $botoes_ativos);
 }
+
+if (isset($_GET['sair']) && $_GET['sair'] == 'true') {
+    header('Location: ../index.php');
+    exit;
+}
 ?>
+
+<?php if (isset($_GET['confirmar_logout'])): ?>
+<div class="modal fade show" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-modal="true" role="dialog" style="display: block;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="logoutModalLabel">Confirmação de Logout</h5>
+                <button type="button" class="btn-close" onclick="window.location.href='<?= $pagina_atual ?>'" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Tem certeza que deseja sair do sistema?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="window.location.href='<?= $pagina_atual ?>'">Cancelar</button>
+                <a href="<?= $pagina_atual ?>?sair=true" class="btn btn-primary">Sair</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-backdrop fade show"></div>
+<?php endif; ?>
 
 <nav class="navbar navbar-expand-lg bg-white text-uppercase fixed-top" id="mainNav">
     <div class="container">
@@ -89,7 +115,7 @@ function mostrar_botao($tipo_botao) {
                             <strong>Primeiro Nome</strong>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end w-100" aria-labelledby="dropdownMenuLink">
-                            <li><a class="dropdown-item" href="#" onclick="logout()">Sair</a></li>
+                            <li><a class="dropdown-item" href="<?= $pagina_atual ?>?confirmar_logout=true">Sair</a></li>
                         </ul>
                     </div>
                 </li>

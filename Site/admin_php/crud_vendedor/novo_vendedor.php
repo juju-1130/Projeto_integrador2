@@ -5,13 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Novo Vendedor</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../css/styles.css" rel="stylesheet" />
+  <link href="../../css/styles.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
   <div class="container p-0">
     <div class="d-flex justify-content-between align-items-center bg-primary text-white px-3 py-2">
         <h5 class="m-0">Novo Vendedor</h5>
-        <a href="../admin_php/editar_vendedor.php" class="btn-close btn-close-white" aria-label="Fechar"></a>
+        <a href="editar_vendedor.php" target="_parent" class="btn-close btn-close-white" aria-label="Fechar"></a>
     </div>
 
     <div class="p-3">
@@ -52,7 +53,7 @@
         </div>
 
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <a href="../admin_php/editar_vendedor.php" class="btn btn-secondary me-md-2">Cancelar</a>
+            <a href="editar_vendedor.php" target="_parent" class="btn btn-secondary me-md-2">Cancelar</a>
             <button type="submit" class="btn btn-primary">Salvar Vendedor</button>
         </div>
       </form>

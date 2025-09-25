@@ -17,7 +17,7 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: pi2
+      MYSQL_DATABASE: pi2_db
       MYSQL_USER: user
       MYSQL_PASSWORD: user123
     ports:

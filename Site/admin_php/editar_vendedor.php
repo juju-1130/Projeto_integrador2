@@ -1,27 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>MK Energia Solar - Vendedores</title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <!-- Bootstrap CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-        <!-- Core theme CSS -->
-        <link href="../css/styles.css" rel="stylesheet" />
-    </head>
+    <?php include __DIR__ . '/head.php'; ?>
     <body id="page-top">
         <!-- Navigation-->
         <?php 
         $pagina_parametros = [
             'editar_vendedor.php' => ['editar_dados'],
         ];
-        include __DIR__ . '/../includes/nav_admin.php';
+        include __DIR__ . '/../includes/navbar.php';
         ?>
 
         <!--Seção titulo-->

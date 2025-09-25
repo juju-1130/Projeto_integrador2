@@ -5,6 +5,7 @@ require __DIR__ . '/../vendor/autoload.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: esqueci_senha.php');
@@ -14,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $email = trim($_POST['email'] ?? '');
 $telefone = trim($_POST['telefone'] ?? '');
 
+// Validações
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     $_SESSION['erro'] = 'E-mail inválido';
     header('Location: esqueci_senha.php');
@@ -26,6 +28,7 @@ if (empty($telefone)) {
     exit;
 }
 
+// Verifica usuário
 $stmt = $conn->prepare("SELECT usuario_id, nome_usuario FROM Usuario WHERE email_usuario = ? AND telefone_usuario = ?");
 $stmt->bind_param('ss', $email, $telefone);
 $stmt->execute();
@@ -41,6 +44,7 @@ $user = $res->fetch_assoc();
 $codigo = strval(rand(100000, 999999));
 $expira = date('Y-m-d H:i:s', strtotime('+15 minutes'));
 
+// Atualiza código no banco
 $upd = $conn->prepare("UPDATE Usuario SET codigo_recuperacao = ?, expira_em = ? WHERE usuario_id = ?");
 $upd->bind_param('ssi', $codigo, $expira, $user['usuario_id']);
 
@@ -50,33 +54,30 @@ if (!$upd->execute()) {
     exit;
 }
 
+// Configuração do PHPMailer com tratamento de erro melhorado
 $mail = new PHPMailer(true);
 
 try {
-    // Configurações SMTP
+    // Configurações do servidor
+    $mail->SMTPDebug = SMTP::DEBUG_SERVER; // Ativa debug detalhado
     $mail->isSMTP();
     $mail->Host = 'smtp.elasticemail.com';
     $mail->SMTPAuth = true;
-    $mail->Username = 'janjulia401@gmail.com'; // ⚠️ SUBSTITUA pelo email que usou no cadastro
-    $mail->Password = '75B8ADF888C2570CD4FB502EDBA6C5E4DA9F8D0CABFA8DBAACA504923AC747D3D928520EEE8BFFEBEF6B6BF047D1CC00'; // Sua API Key
+    $mail->Username = 'seu-email@gmail.com'; // SUBSTITUA pelo seu e-mail
+    $mail->Password = 'sua-api-key'; // SUA API KEY REAL
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port = 2525;
     $mail->CharSet = 'UTF-8';
     
-    // Para melhor compatibilidade, adicione estas linhas:
-    $mail->SMTPOptions = array(
-        'ssl' => array(
-            'verify_peer' => false,
-            'verify_peer_name' => false,
-            'allow_self_signed' => true
-        )
-    );
+    // Configurações de timeout
+    $mail->Timeout = 30;
+    $mail->SMTPKeepAlive = true;
 
     // Remetente e destinatário
-    $mail->setFrom('janjulia401@gmail.com', 'Suporte do Sistema'); // ⚠️ MESMO EMAIL do Username
+    $mail->setFrom('seu-email@gmail.com', 'Suporte do Sistema');
     $mail->addAddress($email, $user['nome_usuario']);
     
-    // Conteúdo do email
+    // Conteúdo
     $mail->isHTML(true);
     $mail->Subject = 'Código de Recuperação de Senha';
     $mail->Body = "
@@ -101,16 +102,17 @@ try {
     if ($mail->send()) {
         $_SESSION['msg'] = '✅ Código enviado para seu e-mail!';
     } else {
-        throw new Exception('Falha no envio');
+        throw new Exception('Falha no envio do e-mail');
     }
     
 } catch (Exception $e) {
-    // Log de erro e fallback
-    error_log("Elastic Email Error: " . $e->getMessage());
+    // Log detalhado do erro
+    error_log("ERRO PHPMailer: " . $e->getMessage());
     
-    // Modo debug - mostra código na tela
+    // Modo fallback - mostra código na tela para testes
     $_SESSION['debug_codigo'] = $codigo;
-    $_SESSION['msg'] = '📧 Email não enviado. Use este código para teste: ' . $codigo;
+    $_SESSION['msg'] = '📧 Problema no envio de e-mail. Use este código: ' . $codigo;
+    $_SESSION['erro_email'] = $e->getMessage(); // Para debug
 }
 
 $_SESSION['recupera_email'] = $email;

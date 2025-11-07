@@ -7,8 +7,8 @@
         <tr><td>Modelos de placas</td><td><a href="editar.php?modal=placa" class="btn btn-sm btn-outline-primary">Editar</a></td></tr>
         <tr><td>Inversores</td><td><a href="editar.php?modal=inversor" class="btn btn-sm btn-outline-primary">Editar</a></td></tr>
         <tr><td>Kit solar</td><td><a href="kit_solar.php" class="btn btn-sm btn-outline-primary">Editar</a></td></tr>
-        <tr><td>Vendedores</td><td><a href="editar_vendedor.php" class="btn btn-sm btn-outline-primary">Editar</a></td></tr>
-        <tr><td>Projetos</td><td><a href="cadastrar.php" class="btn btn-sm btn-outline-primary">Editar</a></td></tr>
+        <tr><td>Vendedores</td><td><a href="../vendedor.php" class="btn btn-sm btn-outline-primary">Editar</a></td></tr>
+        <tr><td>Projetos</td><td><a href="../projetos.php" class="btn btn-sm btn-outline-primary">Editar</a></td></tr>
     </tbody>
     </table>
 </div>

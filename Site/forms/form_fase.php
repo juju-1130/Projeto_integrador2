@@ -1,12 +1,34 @@
+<?php
+include_once '../conexao.php';
+
+if($_POST && isset($_POST['tipoFase'])){
+    $tipoFase = $_POST['tipoFase'];
+    
+    $sql = "INSERT INTO Fase (tipo_fase) VALUES (?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $tipoFase);
+    
+    if($stmt->execute()){
+        echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                Fase adicionada com sucesso!
+                <button type='button' class='btn-close' data-bs-dismiss='alert'></button>
+              </div>";
+    } else{
+        echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                Erro ao adicionar fase: " . $conn->error . "
+                <button type='button' class='btn-close' data-bs-dismiss='alert'></button>
+              </div>";
+    }
+    $stmt->close();
+}
+
+$sql = "SELECT * FROM Fase ORDER BY fase_id DESC";
+$result = $conn->query($sql);
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fase</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../css/styles.css" rel="stylesheet" />
-</head>
+  <?php include __DIR__ . '/../head.php'; ?>
 <body>
   <div class="container p-0">
     <div class="d-flex justify-content-between align-items-center bg-primary text-white px-3 py-2">
@@ -38,30 +60,30 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Monofásico</td>
-            <td>
-              <a href="editar_item.php?tipo=fase&id=1" class="btn btn-warning btn-sm">Editar</a>
-              <a href="excluir_item.php?tipo=fase&id=1" class="btn btn-danger btn-sm">Excluir</a>
-            </td>
-          </tr>
-          <tr>
-            <td>Bifásico</td>
-            <td>
-              <a href="editar_item.php?tipo=fase&id=2" class="btn btn-warning btn-sm">Editar</a>
-              <a href="excluir_item.php?tipo=fase&id=2" class="btn btn-danger btn-sm">Excluir</a>
-            </td>
-          </tr>
-          <tr>
-            <td>Trifásico</td>
-            <td>
-              <a href="editar_item.php?tipo=fase&id=3" class="btn btn-warning btn-sm">Editar</a>
-              <a href="excluir_item.php?tipo=fase&id=3" class="btn btn-danger btn-sm">Excluir</a>
-            </td>
-          </tr>
+          <?php
+          if($result && $result->num_rows > 0){
+              while ($row = $result->fetch_assoc()){
+                  echo "<tr>";
+                  echo "<td>{$row['tipo_fase']}</td>";
+                  echo "<td>";
+                  echo "<a href='../forms/editar_fase.php?id={$row['fase_id']}' class='btn btn-warning btn-sm'>Editar</a> ";
+                  echo "<a href='../forms/excluir_fase.php?id={$row['fase_id']}' class='btn btn-danger btn-sm' onclick='return confirm(\"Tem certeza que deseja excluir?\")'>Excluir</a>";
+                  echo "</td>";
+                  echo "</tr>";
+              }
+          } else {
+              echo "<tr><td colspan='2' class='text-center'>Nenhuma fase cadastrada.</td></tr>";
+          }
+          ?>
         </tbody>
       </table>
     </div>
   </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
+<?php
+$conn->close();
+?>

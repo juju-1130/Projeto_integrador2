@@ -1,12 +1,34 @@
+<?php
+include_once '../conexao.php';
+
+if($_POST && isset($_POST['nomeConcessionaria'])){
+    $nomeConcessionaria = $_POST['nomeConcessionaria'];
+    
+    $sql = "INSERT INTO Concessionaria (nome_concessionaria) VALUES (?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $nomeConcessionaria);
+    
+    if($stmt->execute()){
+        echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                Concessionária adicionada com sucesso!
+                <button type='button' class='btn-close' data-bs-dismiss='alert'></button>
+              </div>";
+    } else{
+        echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                Erro ao adicionar concessionária: " . $conn->error . "
+                <button type='button' class='btn-close' data-bs-dismiss='alert'></button>
+              </div>";
+    }
+    $stmt->close();
+}
+
+$sql = "SELECT * FROM Concessionaria ORDER BY concessionaria_id DESC";
+$result = $conn->query($sql);
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Concessionária</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../css/styles.css" rel="stylesheet" />
-</head>
+  <?php include __DIR__ . '/../head.php'; ?>
 <body>
   <div class="container p-0">
     <div class="d-flex justify-content-between align-items-center bg-primary text-white px-3 py-2">
@@ -22,7 +44,7 @@
         </div>
         
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-          <a href="../admin/editar.php" target="_parent" class="btn btn-secondary me-md-2">Cancelar</a>
+          <a href="../admin_php/editar.php" target="_parent" class="btn btn-secondary me-md-2">Cancelar</a>
           <button type="submit" class="btn btn-primary">Adicionar Concessionária</button>
         </div>
       </form>
@@ -38,18 +60,30 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>CEE</td>
-            <td>
-              <a href="editar_item.php?tipo=concessionaria&id=1" class="btn btn-warning btn-sm">Editar</a>
-              <a href="excluir_item.php?tipo=concessionaria&id=1" class="btn btn-danger btn-sm">Excluir</a>
-            </td>
-          </tr>
-          <tr>
-            <td>RGE</td>
-            <td>
-              <a href="editar_item.php?tipo=concessionaria&id=2" class="btn btn-warning btn-sm">Editar</a>
-              <a href="excluir_item.php?tipo=concessionaria&id=2" class="btn btn-danger btn-sm">Excluir</a>
-            </td>
-          </tr>
+          <?php
+          if($result && $result->num_rows > 0){
+              while ($row = $result->fetch_assoc()){
+                  echo "<tr>";
+                  echo "<td>{$row['nome_concessionaria']}</td>";
+                  echo "<td>";
+                  echo "<a href='../forms/editar_concessionaria.php?id={$row['concessionaria_id']}' class='btn btn-warning btn-sm'>Editar</a> ";
+                  echo "<a href='../forms/excluir_concessionaria.php?id={$row['concessionaria_id']}' class='btn btn-danger btn-sm' onclick='return confirm(\"Tem certeza que deseja excluir?\")'>Excluir</a>";
+                  echo "</td>";
+                  echo "</tr>";
+              }
+          } else {
+              echo "<tr><td colspan='2' class='text-center'>Nenhuma concessionária cadastrada.</td></tr>";
+          }
+          ?>
         </tbody>
+      </table>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+<?php
+$conn->close();
+?>

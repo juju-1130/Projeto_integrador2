@@ -1,6 +1,10 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-    <?php include __DIR__ . '/head.php'; ?>
+    <?php include __DIR__ . '/../head.php'; ?>
     <body id="page-top">
         <!-- Navigation-->
         <?php 

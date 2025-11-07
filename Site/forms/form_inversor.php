@@ -1,3 +1,35 @@
+<?php
+include_once '../conexao.php';
+
+// CREATE - Adicionar novo inversor
+if($_POST && isset($_POST['marca']) && isset($_POST['potencia']) && isset($_POST['valor'])){
+    $marca = $_POST['marca'];
+    $potencia = $_POST['potencia'];
+    $valor = $_POST['valor'];
+    
+    $sql = "INSERT INTO Inversor (marca_inversor, potencia_inversor, valor_inversor) VALUES (?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ssd", $marca, $potencia, $valor);
+    
+    if($stmt->execute()){
+        echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                Inversor adicionado com sucesso!
+                <button type='button' class='btn-close' data-bs-dismiss='alert'></button>
+              </div>";
+    } else{
+        echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                Erro ao adicionar inversor: " . $conn->error . "
+                <button type='button' class='btn-close' data-bs-dismiss='alert'></button>
+              </div>";
+    }
+    $stmt->close();
+}
+
+// READ - Buscar todos os inversores
+$sql = "SELECT * FROM Inversor ORDER BY inversor_id DESC";
+$result = $conn->query($sql);
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -22,13 +54,13 @@
             <input type="text" class="form-control" id="marca" name="marca" required>
           </div>
           <div class="col">
-            <label for="potencia" class="form-label">Potência</label>
+            <label for="potencia" class="form-label">Potência(kW)</label>
             <input type="text" class="form-control" id="potencia" name="potencia" required>
           </div>
         </div>
         <div class="mb-3">
-          <label for="valor" class="form-label">Valor</label>
-          <input type="text" class="form-control" id="valor" name="valor" required>
+          <label for="valor" class="form-label">Valor (R$)</label>
+          <input type="number" step="0.01" class="form-control" id="valor" name="valor" placeholder="Ex: 1100.00" required>
         </div>
 
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -50,27 +82,33 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Chint</td>
-            <td>5kW</td>
-            <td>R$ 1100,00</td>
-            <td>
-              <a href="editar_item.php?tipo=inversor&id=1" class="btn btn-warning btn-sm">Editar</a>
-              <a href="excluir_item.php?tipo=inversor&id=1" class="btn btn-danger btn-sm">Excluir</a>
-            </td>
-          </tr>
-          <tr>
-            <td>Growatt</td>
-            <td>3kW</td>
-            <td>R$ 900,00</td>
-            <td>
-              <a href="editar_item.php?tipo=inversor&id=2" class="btn btn-warning btn-sm">Editar</a>
-              <a href="excluir_item.php?tipo=inversor&id=2" class="btn btn-danger btn-sm">Excluir</a>
-            </td>
-          </tr>
+          <?php
+          if($result && $result->num_rows > 0){
+              while ($row = $result->fetch_assoc()){
+                  $valor_formatado = "R$ " . number_format($row['valor_inversor'], 2, ',', '.');
+                  echo "<tr>";
+                  echo "<td>{$row['marca_inversor']}</td>";
+                  echo "<td>{$row['potencia_inversor']}kW</td>";
+                  echo "<td>{$valor_formatado}</td>";
+                  echo "<td>";
+                  echo "<a href='../forms/editar_inversor.php?id={$row['inversor_id']}' class='btn btn-warning btn-sm'>Editar</a> ";
+                  echo "<a href='../forms/excluir_inversor.php?id={$row['inversor_id']}' class='btn btn-danger btn-sm' onclick='return confirm(\"Tem certeza que deseja excluir?\")'>Excluir</a>";
+                  echo "</td>";
+                  echo "</tr>";
+              }
+          } else {
+              echo "<tr><td colspan='4' class='text-center'>Nenhum inversor cadastrado.</td></tr>";
+          }
+          ?>
         </tbody>
       </table>
     </div>
   </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
+<?php
+$conn->close();
+?>

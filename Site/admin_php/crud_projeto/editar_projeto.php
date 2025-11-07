@@ -1,134 +1,224 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Editar Projeto</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../../css/styles.css" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
-<body>
 <?php
-$projetos = [
-    1 => [
-      'titulo' => 'Sistema solar de 6,27Kwp',
-      'cidade' => 'Rolante',
-      'placas' => '11',
-      'potencia' => '570',
-      'inversor' => 'Chint de 5Kw',
-      'economia' => 'R$ 350/mês',
-      'conclusao' => 'Jan/2023',
-      'tipo' => 'Residencial'
-    ],
-    2 => [
-      'titulo' => 'Sistema solar de 5,49Kwp',
-      'cidade' => 'Rolante',
-      'placas' => '9',
-      'potencia' => '610',
-      'inversor' => 'Chint de 5Kw',
-      'economia' => 'R$ 350/mês',
-      'conclusao' => 'Jan/2023',
-      'tipo' => 'Residencial'
-    ],
-    3 => [
-      'titulo' => 'Sistema solar de 5,13Kwp',
-      'cidade' => 'Rolante',
-      'placas' => '9',
-      'potencia' => '570',
-      'inversor' => 'Chint de 5Kw',
-      'economia' => 'R$ 350/mês',
-      'conclusao' => 'Jan/2023',
-      'tipo' => 'Residencial'
-    ]
-];
+require '../../conexao.php';
 
-$id = $_GET['id'] ?? '';
-$projeto = $projetos[$id] ?? null;
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $id = $_POST['id'];
+    $titulo = $_POST['titulo'];
+    $cidade = $_POST['cidade'];
+    $quantidade_placas = $_POST['quantidade_placas'];
+    $placa_id = $_POST['placa_id'];
+    $inversor_id = $_POST['inversor_id'];
+    $economia = $_POST['economia'];
+    $conclusao = $_POST['conclusao'];
+    $tipo = $_POST['tipo'];
+    $caracteristica = $_POST['caracteristica'];
 
-if ($projeto): 
-?>
-<div class="container p-0">
-    <div class="d-flex justify-content-between align-items-center bg-primary text-white px-3 py-2">
-        <h5 class="m-0">Editar Projeto</h5>
-        <a href="cadastrar.php" target="_parent" class="btn-close btn-close-white" aria-label="Fechar"></a>
-    </div>
-
-    <div class="p-3">
-      <form method="POST" action="atualizar_projeto.php">
-        <input type="hidden" name="id" value="<?php echo $id; ?>">
-        <div class="row mb-3">
-          <div class="col">
-            <label for="titulo" class="form-label">Título do Projeto</label>
-            <input type="text" class="form-control" id="titulo" name="titulo" value="<?php echo $projeto['titulo']; ?>" required>
-          </div>
-          
-          <div class="col">
-            <label for="cidade" class="form-label">Cidade</label>
-            <input type="text" class="form-control" id="cidade" name="cidade" value="<?php echo $projeto['cidade']; ?>" required>
-          </div>
-        </div>
-
-        <div class="row mb-3">
-          <div class="col-md-4">
-            <label for="placas" class="form-label">Quantidade de Placas</label>
-            <input type="number" class="form-control" id="placas" name="placas" value="<?php echo $projeto['placas']; ?>" required>
-          </div>
-          <div class="col-md-4">
-            <label for="potencia" class="form-label">Potência das Placas (W)</label>
-              <select class="form-select" id="potencia" name="potencia" required>
-                <option value="570" <?php echo $projeto['potencia'] == '570' ? 'selected' : ''; ?>>570W</option>
-                <option value="585" <?php echo $projeto['potencia'] == '585' ? 'selected' : ''; ?>>585W</option>
-                <option value="610" <?php echo $projeto['potencia'] == '610' ? 'selected' : ''; ?>>610W</option>
-                <option value="700" <?php echo $projeto['potencia'] == '700' ? 'selected' : ''; ?>>700W</option>
-              </select>          
-            </div>
-          <div class="col-md-4">
-            <label for="inversor" class="form-label">Inversor</label>
-              <select class="form-select" id="inversor" name="inversor" required>
-                <option value="chint" <?php echo $projeto['inversor'] == 'chint' ? 'selected' : ''; ?>>Chint</option>
-                <option value="growatt" <?php echo $projeto['inversor'] == 'growatt' ? 'selected' : ''; ?>>Growatt</option>
-                <option value="solis" <?php echo $projeto['inversor'] == 'solis' ? 'selected' : ''; ?>>Solis</option>
-                <option value="saj" <?php echo $projeto['inversor'] == 'saj' ? 'selected' : ''; ?>>SAJ</option>
-              </select>           </div>
-        </div>
-        <div class="row mb-3">
-          <div class="col md-4">
-            <label for="economia" class="form-label">Economia Mensal</label>
-            <input type="text" class="form-control" id="economia" name="economia" value="<?php echo $projeto['economia']; ?>" required>
-          </div>
-          
-          <div class="col md-4">
-            <label for="conclusao" class="form-label">Data de Conclusão</label>
-            <input type="text" class="form-control" id="conclusao" name="conclusao" value="<?php echo $projeto['conclusao']; ?>" required>
-          </div>
-          
-          <div class="col md-4">
-            <label for="tipo" class="form-label">Tipo de Projeto</label>
-            <select class="form-select" id="tipo" name="tipo" required>
-              <option value="Residencial" <?php echo $projeto['tipo'] == 'Residencial' ? 'selected' : ''; ?>>Residencial</option>
-              <option value="Comercial" <?php echo $projeto['tipo'] == 'Comercial' ? 'selected' : ''; ?>>Comercial</option>
-              <option value="Industrial" <?php echo $projeto['tipo'] == 'Industrial' ? 'selected' : ''; ?>>Industrial</option>
-            </select>
-          </div>
-        </div>
+    if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] == 0) {
+        $imagem_nome = $_FILES['imagem']['name'];
+        $imagem_temp = $_FILES['imagem']['tmp_name'];
+        $upload_dir = '../../uploads/projetos/';
         
-        <div class="mb-3">
-          <label for="imagem" class="form-label">Atualizar Imagem</label>
-          <input type="file" class="form-control" id="imagem" name="imagem" accept="image/*">
+        // Criar diretório se não existir
+        if (!is_dir($upload_dir)) {
+            mkdir($upload_dir, 0777, true);
+        }
+        
+        $imagem_path = $upload_dir . $imagem_nome;
+        
+        if (move_uploaded_file($imagem_temp, $imagem_path)) {
+            $sql = "UPDATE projeto SET titulo=?, cidade=?, quantidade_placas=?, placa_id=?, inversor_id=?, economia=?, conclusao=?, tipo=?, caracteristica=?, imagem=? WHERE projeto_id=?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("ssiiidssssi", $titulo, $cidade, $quantidade_placas, $placa_id, $inversor_id, $economia, $conclusao, $tipo, $caracteristica, $imagem_nome, $id);
+        } else {
+            echo '<div class="alert alert-danger alert-dismissible fade show m-3" role="alert">
+                    Erro ao fazer upload da imagem.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>';
+        }
+    } else {
+        $sql = "UPDATE projeto SET titulo=?, cidade=?, quantidade_placas=?, placa_id=?, inversor_id=?, economia=?, conclusao=?, tipo=?, caracteristica=? WHERE projeto_id=?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ssiiidsssi", $titulo, $cidade, $quantidade_placas, $placa_id, $inversor_id, $economia, $conclusao, $tipo, $caracteristica, $id);
+    }
+
+    if ($stmt->execute()) {
+        echo '<div class="alert alert-success alert-dismissible fade show m-3" role="alert">
+                Projeto atualizado com sucesso!
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>';
+    } else {
+        echo '<div class="alert alert-danger alert-dismissible fade show m-3" role="alert">
+                Erro ao atualizar projeto: ' . $stmt->error . '
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>';
+    }
+}
+
+$id = $_GET['id'] ?? 0;
+$sql = "SELECT * FROM projeto WHERE projeto_id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $id);
+$stmt->execute();
+$projeto = $stmt->get_result()->fetch_assoc();
+
+if (!$projeto) {
+    die('<div class="alert alert-danger m-3">Projeto não encontrado!</div>');
+}
+
+// Buscar placas e inversores para os selects
+$placas = $conn->query("SELECT placa_id, marca_placa, potencia_placa FROM Placa");
+$inversores = $conn->query("SELECT inversor_id, marca_inversor, potencia_inversor FROM Inversor");
+?>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/head.php'; ?>    
+
+    <body>
+        <div class="container p-0">
+            <div class="d-flex justify-content-between align-items-center bg-primary text-white px-3 py-2">
+                <h5 class="m-0">Editar Projeto</h5>
+                <a href="../../projetos.php" target="_parent" class="btn-close btn-close-white" aria-label="Fechar"></a>
+            </div>
+            <div class="p-3">
+                <form method="post" enctype="multipart/form-data" onsubmit="return validarFormulario()">
+                    <input type="hidden" name="id" value="<?= $projeto['projeto_id'] ?>">
+
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label class="form-label">Título:</label>
+                            <input type="text" name="titulo" class="form-control" value="<?= htmlspecialchars($projeto['titulo']) ?>" required>
+                        </div>
+                        <div class="col">
+                            <label class="form-label">Cidade:</label>
+                            <input type="text" name="cidade" class="form-control" value="<?= htmlspecialchars($projeto['cidade']) ?>">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <label class="form-label">Quantidade de Placas:</label>
+                            <input type="number" name="quantidade_placas" class="form-control" min="0" value="<?= $projeto['quantidade_placas'] ?>">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Placa:</label>
+                            <select name="placa_id" class="form-select" required>
+                                <option value="">-- selecione --</option>
+                                <?php while ($p = $placas->fetch_assoc()): ?>
+                                    <option value="<?= $p['placa_id'] ?>" <?= $p['placa_id'] == $projeto['placa_id'] ? 'selected' : '' ?>>
+                                        <?= htmlspecialchars($p['marca_placa']) ?> (<?= $p['potencia_placa'] ?>W)
+                                    </option>
+                                <?php endwhile; ?>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Inversor:</label>
+                            <select name="inversor_id" class="form-select" required>
+                                <option value="">-- selecione --</option>
+                                <?php while ($i = $inversores->fetch_assoc()): ?>
+                                    <option value="<?= $i['inversor_id'] ?>" <?= $i['inversor_id'] == $projeto['inversor_id'] ? 'selected' : '' ?>>
+                                        <?= htmlspecialchars($i['marca_inversor']) ?> (<?= $i['potencia_inversor'] ?> kW)
+                                    </option>
+                                <?php endwhile; ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <label class="form-label">Economia Mensal (R$):</label>
+                            <input type="number" step="0.01" name="economia" class="form-control" min="0" value="<?= $projeto['economia'] ?>">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Data de Conclusão:</label>
+                            <input type="date" name="conclusao" class="form-control" value="<?= $projeto['conclusao'] ?>">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Tipo:</label>
+                            <input type="text" name="tipo" class="form-control" value="<?= htmlspecialchars($projeto['tipo']) ?>">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Característica:</label>
+                        <textarea name="caracteristica" class="form-control" rows="4"><?= htmlspecialchars($projeto['caracteristica']) ?></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Imagem Atual:</label><br>
+                        <?php if ($projeto['imagem']): ?>
+                            <img src="../uploads/projetos/<?= $projeto['imagem'] ?>" width="150" class="img-thumbnail mb-2">
+                            <br>
+                            <small class="text-muted"><?= $projeto['imagem'] ?></small>
+                        <?php else: ?>
+                            <span class="text-muted">Nenhuma imagem cadastrada</span>
+                        <?php endif; ?>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Nova Imagem (opcional):</label>
+                        <input type="file" name="imagem" accept="image/*" class="form-control" onchange="validarImagem(this)">
+                        <small class="text-muted">Tamanho máximo: 5MB. Formatos: JPG, PNG, GIF</small>
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="../../projetos.php" target="_parent" class="btn btn-secondary me-md-2">Cancelar</a>
+                        <button type="submit" class="btn btn-primary">Atualizar Projeto</button>
+                    </div>
+                </form>
+            </div>
         </div>
 
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <a href="cadastrar.php" target="_parent" class="btn btn-secondary me-md-2">Cancelar</a>
-            <button type="submit" class="btn btn-primary">Salvar Alterações</button>
-        </div>
-      </form>
-    </div>
-</div>
-<?php else: ?>
-<div class="container p-0">
-    <div class="alert alert-danger">Projeto não encontrado.</div>
-</div>
-<?php endif; ?>
-</body>
+        <script>
+        function validarImagem(input) {
+            if (input.files && input.files[0]) {
+                const file = input.files[0];
+                const maxSize = 5 * 1024 * 1024; // 5MB
+                const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
+                
+                if (file.size > maxSize) {
+                    alert('A imagem é muito grande. Por favor, selecione uma imagem menor que 5MB.');
+                    input.value = ''; // Limpa o campo
+                    return false;
+                }
+                
+                if (!allowedTypes.includes(file.type)) {
+                    alert('Tipo de arquivo não permitido. Use apenas JPG, PNG ou GIF.');
+                    input.value = ''; // Limpa o campo
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function validarFormulario() {
+            const titulo = document.querySelector('input[name="titulo"]').value.trim();
+            const placa = document.querySelector('select[name="placa_id"]').value;
+            const inversor = document.querySelector('select[name="inversor_id"]').value;
+            
+            if (!titulo) {
+                alert('Por favor, preencha o título do projeto.');
+                return false;
+            }
+            
+            if (!placa) {
+                alert('Por favor, selecione uma placa.');
+                return false;
+            }
+            
+            if (!inversor) {
+                alert('Por favor, selecione um inversor.');
+                return false;
+            }
+            
+            // Validar imagem novamente antes do envio
+            const imagemInput = document.querySelector('input[name="imagem"]');
+            if (imagemInput.files.length > 0) {
+                return validarImagem(imagemInput);
+            }
+            
+            return true;
+        }
+        </script>
+    </body>
 </html>

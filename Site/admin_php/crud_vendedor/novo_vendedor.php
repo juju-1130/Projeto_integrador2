@@ -1,63 +1,124 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Novo Vendedor</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../../css/styles.css" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
-<body>
-  <div class="container p-0">
-    <div class="d-flex justify-content-between align-items-center bg-primary text-white px-3 py-2">
-        <h5 class="m-0">Novo Vendedor</h5>
-        <a href="editar_vendedor.php" target="_parent" class="btn-close btn-close-white" aria-label="Fechar"></a>
-    </div>
+<html lang="pt-br">
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/head.php'; ?>    
 
-    <div class="p-3">
-      <form method="POST" action="salvar_vendedor.php">
-        <div class="row mb-3">
-          <div class="col">
-            <label for="nome" class="form-label">Nome</label>
-            <input type="text" class="form-control" id="nome" name="nome" required>
-          </div>
-          <div class="col">
-            <label for="cargo" class="form-label">Cargo/Especialidade</label>
-            <input type="text" class="form-control" id="cargo" name="cargo" required>
-          </div>
-        </div>
-        
-        <div class="mb-3">
-          <label for="descricao" class="form-label">Descrição</label>
-          <textarea class="form-control" id="descricao" name="descricao" rows="3" required></textarea>
-        </div>
-        
-        <div class="row mb-3">
-          <div class="col-md-6">
-            <label for="whatsapp" class="form-label">Número do WhatsApp</label>
-            <div class="input-group">
-                <span class="input-group-text"><i class="fab fa-whatsapp"></i></span>
-                <input type="text" class="form-control" id="whatsapp" name="whatsapp" placeholder="5511999999999" required>
+    <?php
+    require '../../conexao.php';
+
+    if (isset($_GET['sucesso']) && $_GET['sucesso'] == 1) {
+        echo '<div class="alert alert-success alert-dismissible fade show m-3" role="alert">
+                Vendedor salvo com sucesso!
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>';
+    }
+
+    if (isset($_GET['erro'])) {
+        echo '<div class="alert alert-danger alert-dismissible fade show m-3" role="alert">
+                Erro: ' . htmlspecialchars($_GET['erro']) . '
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>';
+    }
+    ?>
+
+    <body>
+        <div class="container p-0">
+            <div class="d-flex justify-content-between align-items-center bg-primary text-white px-3 py-2">
+                <h5 class="m-0">Novo Vendedor</h5>
+                <a href="../../vendedor.php" target="_parent" class="btn-close btn-close-white" aria-label="Fechar"></a>
             </div>
-          </div>
-          <div class="col-md-6">
-            <label for="mensagem" class="form-label">Mensagem Padrão</label>
-            <input type="text" class="form-control" id="mensagem" name="mensagem" value="Olá, gostaria de informações sobre energia solar" required>
-          </div>
-        </div>
-        
-        <div class="mb-3">
-          <label for="foto" class="form-label">Foto do Vendedor</label>
-          <input type="file" class="form-control" id="foto" name="foto" accept="image/*">
+            <div class="p-3">
+                <form method="post" action="salvar_vendedor.php" enctype="multipart/form-data" onsubmit="return validarFormulario()">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Nome do Vendedor:</label>
+                            <input type="text" name="nome_vendedor" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Cargo:</label>
+                            <input type="text" name="cargo" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Descrição:</label>
+                        <textarea name="descricao" class="form-control" rows="4" required></textarea>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Telefone:</label>
+                            <input type="text" name="telefone_vendedor" class="form-control" placeholder="(11) 99999-9999">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Link do WhatsApp:</label>
+                            <input type="url" name="link_vendedor" class="form-control" placeholder="https://wa.me/5511999999999">
+                            <small class="text-muted">Link completo do WhatsApp (ex: https://wa.me/5511999999999)</small>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Foto:</label>
+                        <input type="file" name="foto_vendedor" accept="image/*" class="form-control" onchange="validarImagem(this)">
+                        <small class="text-muted">Tamanho máximo: 5MB. Formatos: JPG, PNG, GIF. Recomendado: 120x120px</small>
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="../../vendedor.php" target="_parent" class="btn btn-secondary me-md-2">Cancelar</a>
+                        <button type="submit" class="btn btn-primary">Salvar Vendedor</button>
+                    </div>
+                </form>
+            </div>
         </div>
 
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <a href="editar_vendedor.php" target="_parent" class="btn btn-secondary me-md-2">Cancelar</a>
-            <button type="submit" class="btn btn-primary">Salvar Vendedor</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</body>
+        <script>
+        function validarImagem(input) {
+            if (input.files && input.files[0]) {
+                const file = input.files[0];
+                const maxSize = 5 * 1024 * 1024; 
+                const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
+                
+                if (file.size > maxSize) {
+                    alert('A imagem é muito grande. Por favor, selecione uma imagem menor que 5MB.');
+                    input.value = ''; 
+                    return false;
+                }
+                
+                if (!allowedTypes.includes(file.type)) {
+                    alert('Tipo de arquivo não permitido. Use apenas JPG, PNG ou GIF.');
+                    input.value = ''; 
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function validarFormulario() {
+            const nome = document.querySelector('input[name="nome_vendedor"]').value.trim();
+            const cargo = document.querySelector('input[name="cargo"]').value.trim();
+            const descricao = document.querySelector('textarea[name="descricao"]').value.trim();
+            
+            if (!nome) {
+                alert('Por favor, preencha o nome do vendedor.');
+                return false;
+            }
+            
+            if (!cargo) {
+                alert('Por favor, preencha o cargo do vendedor.');
+                return false;
+            }
+            
+            if (!descricao) {
+                alert('Por favor, preencha a descrição do vendedor.');
+                return false;
+            }
+            
+            const imagemInput = document.querySelector('input[name="foto_vendedor"]');
+            if (imagemInput.files.length > 0) {
+                return validarImagem(imagemInput);
+            }
+            
+            return true;
+        }
+        </script>
+    </body>
 </html>

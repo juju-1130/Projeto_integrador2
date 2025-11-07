@@ -5,7 +5,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
 if (isset($_GET['sair'])) {
     session_destroy();
-    header("Location: index.php" . str_replace('?sair=true', '', $_SERVER['REQUEST_URI']));
+    header("Location: ../index.php" . str_replace('?sair=true', '', $_SERVER['REQUEST_URI']));
     exit;
 }
 

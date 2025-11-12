@@ -243,6 +243,16 @@ if (session_status() == PHP_SESSION_NONE) {
         <!-- Footer-->
         <?php include __DIR__ . '/includes/footer.php'; ?>
 
+        <script>
+        <?php if (isset($_GET['show_login']) && $_GET['show_login'] == '1'): ?>
+            document.addEventListener('DOMContentLoaded', function() {
+                var loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+                loginModal.show();
+                
+                history.replaceState({}, document.title, '<?= BASE_URL ?>/index.php');
+            });
+        <?php endif; ?>
+        </script>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

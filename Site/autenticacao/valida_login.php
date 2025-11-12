@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim($_POST['email']);
     $senha = $_POST['senha'];
 
-    $sql = "SELECT usuario_id, senha_usuario, nome_usuario, tipo_usuario 
+    $sql = "SELECT usuario_id, senha_usuario, nome_usuario, email_usuario, telefone_usuario, tipo_usuario 
             FROM Usuario 
             WHERE email_usuario = ?";
     $stmt = $conn->prepare($sql);
@@ -18,18 +18,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user = $result->fetch_assoc();
 
         if (password_verify($senha, $user['senha_usuario'])) {
-            // Limpa a sessão antes de setar novos valores
+            // Garante nova sessão limpa
             session_regenerate_id(true);
-            
-            // Seta variáveis de sessão
+
+            // 🔹 Variáveis de sessão padrão para todo o sistema
             $_SESSION['usuario_id'] = $user['usuario_id'];
             $_SESSION['nome_usuario'] = $user['nome_usuario'];
-            $_SESSION['tipo_usuario'] = (int)$user['tipo_usuario']; // Garante que é inteiro
+            $_SESSION['email_usuario'] = $user['email_usuario'];
+            $_SESSION['telefone_usuario'] = $user['telefone_usuario'];
+            $_SESSION['tipo_usuario'] = (int)$user['tipo_usuario'];
             $_SESSION['logado'] = true;
 
-            // Debug (remover em produção)
-            error_log("Login bem-sucedido - Tipo usuário: " . $_SESSION['tipo_usuario']);
-            
+            // Log para depuração (pode remover em produção)
+            error_log("Login bem-sucedido: ID {$user['usuario_id']} - Tipo {$user['tipo_usuario']}");
+
+            // Redireciona após login
             header("Location: ../index.php");
             exit;
         } else {

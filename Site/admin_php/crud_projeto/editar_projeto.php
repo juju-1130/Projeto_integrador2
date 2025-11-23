@@ -1,5 +1,6 @@
 <?php
 require '../../conexao.php';
+include __DIR__ . '/../../includes/funcoes.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $_POST['id'];
@@ -41,14 +42,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bind_param("ssiiidsssi", $titulo, $cidade, $quantidade_placas, $placa_id, $inversor_id, $economia, $conclusao, $tipo, $caracteristica, $id);
     }
 
-    if ($stmt->execute()) {
+    if (isset($stmt) && $stmt->execute()) {
         echo '<div class="alert alert-success alert-dismissible fade show m-3" role="alert">
                 Projeto atualizado com sucesso!
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>';
+        
+        // Recarregar os dados atualizados
+        $sql = "SELECT * FROM projeto WHERE projeto_id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $projeto = $stmt->get_result()->fetch_assoc();
     } else {
         echo '<div class="alert alert-danger alert-dismissible fade show m-3" role="alert">
-                Erro ao atualizar projeto: ' . $stmt->error . '
+                Erro ao atualizar projeto: ' . (isset($stmt) ? $stmt->error : 'Erro na preparação da query') . '
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>';
     }
@@ -59,7 +67,8 @@ $sql = "SELECT * FROM projeto WHERE projeto_id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $id);
 $stmt->execute();
-$projeto = $stmt->get_result()->fetch_assoc();
+$result = $stmt->get_result();
+$projeto = $result->fetch_assoc();
 
 if (!$projeto) {
     die('<div class="alert alert-danger m-3">Projeto não encontrado!</div>');
@@ -91,7 +100,7 @@ $inversores = $conn->query("SELECT inversor_id, marca_inversor, potencia_inverso
                         </div>
                         <div class="col">
                             <label class="form-label">Cidade:</label>
-                            <input type="text" name="cidade" class="form-control" value="<?= htmlspecialchars($projeto['cidade']) ?>">
+                            <?php echo gerarCampoCidade('cidade', $projeto['cidade']); ?>
                         </div>
                     </div>
 
@@ -104,7 +113,9 @@ $inversores = $conn->query("SELECT inversor_id, marca_inversor, potencia_inverso
                             <label class="form-label">Placa:</label>
                             <select name="placa_id" class="form-select" required>
                                 <option value="">-- selecione --</option>
-                                <?php while ($p = $placas->fetch_assoc()): ?>
+                                <?php 
+                                $placas->data_seek(0); // Reset do ponteiro do resultado
+                                while ($p = $placas->fetch_assoc()): ?>
                                     <option value="<?= $p['placa_id'] ?>" <?= $p['placa_id'] == $projeto['placa_id'] ? 'selected' : '' ?>>
                                         <?= htmlspecialchars($p['marca_placa']) ?> (<?= $p['potencia_placa'] ?>W)
                                     </option>
@@ -115,7 +126,9 @@ $inversores = $conn->query("SELECT inversor_id, marca_inversor, potencia_inverso
                             <label class="form-label">Inversor:</label>
                             <select name="inversor_id" class="form-select" required>
                                 <option value="">-- selecione --</option>
-                                <?php while ($i = $inversores->fetch_assoc()): ?>
+                                <?php 
+                                $inversores->data_seek(0); // Reset do ponteiro do resultado
+                                while ($i = $inversores->fetch_assoc()): ?>
                                     <option value="<?= $i['inversor_id'] ?>" <?= $i['inversor_id'] == $projeto['inversor_id'] ? 'selected' : '' ?>>
                                         <?= htmlspecialchars($i['marca_inversor']) ?> (<?= $i['potencia_inversor'] ?> kW)
                                     </option>
@@ -158,7 +171,7 @@ $inversores = $conn->query("SELECT inversor_id, marca_inversor, potencia_inverso
                     <div class="mb-3">
                         <label class="form-label">Nova Imagem (opcional):</label>
                         <input type="file" name="imagem" accept="image/*" class="form-control" onchange="validarImagem(this)">
-                        <small class="text-muted">Tamanho máximo: 5MB. Formatos: JPG, PNG, GIF</small>
+                        <small class="text-muted">Tamanho máximo: 10MB. Formatos: JPG, PNG, GIF, WEBP</small>
                     </div>
 
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -169,22 +182,24 @@ $inversores = $conn->query("SELECT inversor_id, marca_inversor, potencia_inverso
             </div>
         </div>
 
+        <?php carregarAPICidades(); ?>
+
         <script>
         function validarImagem(input) {
             if (input.files && input.files[0]) {
                 const file = input.files[0];
-                const maxSize = 5 * 1024 * 1024; // 5MB
-                const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
+                const maxSize = 10 * 1024 * 1024; // 10MB
+                const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
                 
                 if (file.size > maxSize) {
-                    alert('A imagem é muito grande. Por favor, selecione uma imagem menor que 5MB.');
-                    input.value = ''; // Limpa o campo
+                    alert('A imagem é muito grande. Por favor, selecione uma imagem menor que 10MB.');
+                    input.value = ''; 
                     return false;
                 }
                 
                 if (!allowedTypes.includes(file.type)) {
-                    alert('Tipo de arquivo não permitido. Use apenas JPG, PNG ou GIF.');
-                    input.value = ''; // Limpa o campo
+                    alert('Tipo de arquivo não permitido. Use apenas JPG, PNG, GIF ou WEBP.');
+                    input.value = ''; 
                     return false;
                 }
             }
@@ -211,7 +226,6 @@ $inversores = $conn->query("SELECT inversor_id, marca_inversor, potencia_inverso
                 return false;
             }
             
-            // Validar imagem novamente antes do envio
             const imagemInput = document.querySelector('input[name="imagem"]');
             if (imagemInput.files.length > 0) {
                 return validarImagem(imagemInput);

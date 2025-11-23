@@ -22,16 +22,46 @@ if(!$inversor){
     die("Inversor não encontrado.");
 }
 
-if($_POST && isset($_POST['marca']) && isset($_POST['potencia']) && isset($_POST['valor'])){
+if($_POST && isset($_POST['nome']) && isset($_POST['marca']) && isset($_POST['potencia']) && isset($_POST['valor'])){
+    $nome = $_POST['nome'];
     $marca = $_POST['marca'];
+    $tipo = $_POST['tipo'];
     $potencia = $_POST['potencia'];
+    $eficiencia = $_POST['eficiencia'];
+    $fase = $_POST['fase'];
+    $entradas = $_POST['entradas'];
+    $mppt = $_POST['mppt'];
+    $overload = $_POST['overload'];
     $valor = $_POST['valor'];
     
-    $sql = "UPDATE Inversor SET marca_inversor = ?, potencia_inversor = ?, valor_inversor = ? WHERE inversor_id = ?";
+    $sql = "UPDATE Inversor SET 
+                nome_inversor = ?, 
+                marca_inversor = ?, 
+                tipo_inversor = ?, 
+                potencia_inversor = ?, 
+                eficiencia = ?, 
+                fase = ?, 
+                entradas = ?, 
+                mppt = ?, 
+                overload = ?, 
+                valor_inversor = ? 
+            WHERE inversor_id = ?";
     $stmt = $conn->prepare($sql);
     
     if($stmt){
-        $stmt->bind_param("ssdi", $marca, $potencia, $valor, $inversor_id);
+        $stmt->bind_param("sssddsiiidi", 
+            $nome,          // s
+            $marca,         // s
+            $tipo,          // s
+            $potencia,      // d
+            $eficiencia,    // d
+            $fase,          // s
+            $entradas,      // i
+            $mppt,          // i
+            $overload,      // i
+            $valor,         // d
+            $inversor_id    // i
+        );
         
         if($stmt->execute()){
             header("Location: form_inversor.php");
@@ -66,17 +96,58 @@ if($_POST && isset($_POST['marca']) && isset($_POST['potencia']) && isset($_POST
       <form method="POST" action="">
         <div class="row mb-3">
           <div class="col">
-            <label for="marca" class="form-label">Marca</label>
-            <input type="text" class="form-control" id="marca" name="marca" value="<?php echo htmlspecialchars($inversor['marca_inversor']); ?>" required>
+              <label class="form-label">Nome</label>
+              <input type="text" class="form-control" name="nome" value="<?php echo htmlspecialchars($inversor['nome_inversor']); ?>" required>
           </div>
           <div class="col">
-            <label for="potencia" class="form-label">Potência</label>
+            <label for="marca" class="form-label">Marca</label>
+            <select name="marca" class="form-control" required>
+                  <option value="Chint" <?php echo ($inversor['marca_inversor'] == 'Chint') ? 'selected' : ''; ?>>CHINT</option>
+                  <option value="Growatt" <?php echo ($inversor['marca_inversor'] == 'Growatt') ? 'selected' : ''; ?>>GROWATT</option>
+                  <option value="Solis" <?php echo ($inversor['marca_inversor'] == 'Solis') ? 'selected' : ''; ?>>SOLIS</option>
+                  <option value="SAJ" <?php echo ($inversor['marca_inversor'] == 'SAJ') ? 'selected' : ''; ?>>SAJ</option>
+            </select>
+          </div>
+          <div class="col">
+            <label for="potencia" class="form-label">Potência(kW)</label>
             <input type="text" class="form-control" id="potencia" name="potencia" value="<?php echo htmlspecialchars($inversor['potencia_inversor']); ?>" required>
           </div>
         </div>
-        <div class="mb-3">
-          <label for="valor" class="form-label">Valor (R$)</label>
-          <input type="number" step="0.01" class="form-control" id="valor" name="valor" value="<?php echo number_format($inversor['valor_inversor'], 2, '.', ''); ?>" required>
+        <div class="row mb-3">
+            <div class="col">
+                <label class="form-label">Tipo</label>
+                <input type="text" class="form-control" name="tipo" value="<?php echo htmlspecialchars($inversor['tipo_inversor']); ?>" required>
+            </div>
+            <div class="col">
+                <label class="form-label">Eficiência (%)</label>
+                <input type="number" step="0.01" class="form-control" name="eficiencia" value="<?php echo htmlspecialchars($inversor['eficiencia']); ?>" required>
+            </div>
+            <div class="col">
+                <label class="form-label">Fase</label>
+                <select name="fase" class="form-control" required>
+                    <option value="Monofasico" <?php echo ($inversor['fase'] == 'Monofasico') ? 'selected' : ''; ?>>Monofásico</option>
+                    <option value="Bifasico" <?php echo ($inversor['fase'] == 'Bifasico') ? 'selected' : ''; ?>>Bifásico</option>
+                    <option value="Trifasico" <?php echo ($inversor['fase'] == 'Trifasico') ? 'selected' : ''; ?>>Trifásico</option>
+                </select>
+            </div>
+            <div class="col">
+                <label class="form-label">Entradas</label>
+                <input type="number" class="form-control" name="entradas" value="<?php echo htmlspecialchars($inversor['entradas']); ?>" required>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <label class="form-label">MPPT</label>
+                <input type="number" class="form-control" name="mppt" value="<?php echo htmlspecialchars($inversor['mppt']); ?>" required>
+            </div>
+            <div class="col">
+                <label class="form-label">Overload</label>
+                <input type="number" class="form-control" name="overload" value="<?php echo htmlspecialchars($inversor['overload']); ?>" required>
+            </div>
+            <div class="col">
+                <label for="valor" class="form-label">Valor (R$)</label>
+                <input type="number" step="0.01" class="form-control" id="valor" name="valor" value="<?php echo number_format($inversor['valor_inversor'], 2, '.', ''); ?>" required>
+            </div>
         </div>
 
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">

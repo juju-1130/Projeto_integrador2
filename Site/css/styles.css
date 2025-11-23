@@ -11817,4 +11817,83 @@ border-radius: 8px;
 overflow: hidden;
 box-shadow: 0 5px 25px rgba(0,0,0,0.5);
 }
+
+/* Estilos para o Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1050;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.modal-content {
+    background: white;
+    width: 95%;
+    max-width: 900px;
+    height: 90vh;
+    border-radius: 8px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.modal-header {
+    background: #0d6efd;
+    color: white;
+    padding: 15px 20px;
+    border-bottom: 1px solid #dee2e6;
+    flex-shrink: 0;
+}
+
+.modal-header h5 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.modal-content iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    flex: 1;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .modal-overlay {
+        padding: 15px;
+    }
+    
+    .modal-content {
+        width: 98%;
+        height: 85vh;
+    }
+    
+    .modal-header {
+        padding: 12px 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .modal-overlay {
+        padding: 10px;
+    }
+    
+    .modal-content {
+        width: 100%;
+        height: 90vh;
+        border-radius: 0;
+    }
+}
+
+
 }

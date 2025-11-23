@@ -32,17 +32,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Log para depuração (pode remover em produção)
             error_log("Login bem-sucedido: ID {$user['usuario_id']} - Tipo {$user['tipo_usuario']}");
 
-            // Redireciona após login
-            header("Location: ../index.php");
+            // Fechar modal e recarregar a página
+            echo "<script>
+                localStorage.setItem('loginSuccess', 'true');
+                window.location.href = '../index.php';
+            </script>";
             exit;
         } else {
-            $_SESSION['erro_login'] = "Senha incorreta!";
-            header("Location: ../autenticacao/login.php");
+            // Mensagem única para ambos os casos de erro
+            echo "<script>
+                localStorage.setItem('loginError', 'Usuário ou senha incorretos!');
+                window.location.href = '../index.php?show_login=1';
+            </script>";
             exit;
         }
     } else {
-        $_SESSION['erro_login'] = "Usuário não encontrado!";
-        header("Location: ../autenticacao/login.php");
+        // Mensagem única para ambos os casos de erro
+        echo "<script>
+            localStorage.setItem('loginError', 'Usuário ou senha incorretos!');
+            window.location.href = '../index.php?show_login=1';
+        </script>";
         exit;
     }
 }

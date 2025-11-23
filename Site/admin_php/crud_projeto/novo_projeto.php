@@ -4,9 +4,12 @@
 
     <?php
     require '../../conexao.php';
+    include __DIR__ . '/../../includes/funcoes.php';
 
+    // Mensagens de feedback
     if (isset($_GET['sucesso']) && $_GET['sucesso'] == 1) {
         echo '<div class="alert alert-success alert-dismissible fade show m-3" role="alert">
+                <i class="fas fa-check-circle me-2"></i>
                 Projeto salvo com sucesso!
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>';
@@ -14,6 +17,7 @@
 
     if (isset($_GET['erro'])) {
         echo '<div class="alert alert-danger alert-dismissible fade show m-3" role="alert">
+                <i class="fas fa-exclamation-triangle me-2"></i>
                 Erro: ' . htmlspecialchars($_GET['erro']) . '
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>';
@@ -38,7 +42,7 @@
                         </div>
                         <div class="col">
                             <label class="form-label">Cidade:</label>
-                            <input type="text" name="cidade" class="form-control">
+                            <?php echo gerarCampoCidade(); ?>
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -90,31 +94,35 @@
                     <div class="mb-3">
                         <label class="form-label">Imagem:</label>
                         <input type="file" name="imagem" accept="image/*" class="form-control" onchange="validarImagem(this)">
-                        <small class="text-muted">Tamanho máximo: 5MB. Formatos: JPG, PNG, GIF</small>
+                        <small class="text-muted">Tamanho máximo: 10MB. Formatos: JPG, PNG, GIF, WEBP</small>
                     </div>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                         <a href="../../projetos.php" target="_parent" class="btn btn-secondary me-md-2">Cancelar</a>
-                        <button type="submit" class="btn btn-primary">Salvar Projeto</button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save me-2"></i>Salvar Projeto
+                        </button>
                     </div>
                 </form>
             </div>
         </div>
 
+        <?php carregarAPICidades(); ?>
+
         <script>
         function validarImagem(input) {
             if (input.files && input.files[0]) {
                 const file = input.files[0];
-                const maxSize = 5 * 1024 * 1024; 
-                const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
+                const maxSize = 10 * 1024 * 1024; // 10MB
+                const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
                 
                 if (file.size > maxSize) {
-                    alert('A imagem é muito grande. Por favor, selecione uma imagem menor que 5MB.');
+                    alert('A imagem é muito grande. Por favor, selecione uma imagem menor que 10MB.');
                     input.value = ''; 
                     return false;
                 }
                 
                 if (!allowedTypes.includes(file.type)) {
-                    alert('Tipo de arquivo não permitido. Use apenas JPG, PNG ou GIF.');
+                    alert('Tipo de arquivo não permitido. Use apenas JPG, PNG, GIF ou WEBP.');
                     input.value = ''; 
                     return false;
                 }
@@ -149,6 +157,17 @@
             
             return true;
         }
+
+        // Fechar automaticamente o alerta após 5 segundos
+        document.addEventListener('DOMContentLoaded', function() {
+            const alertas = document.querySelectorAll('.alert');
+            alertas.forEach(alerta => {
+                setTimeout(() => {
+                    const bsAlert = new bootstrap.Alert(alerta);
+                    bsAlert.close();
+                }, 5000);
+            });
+        });
         </script>
     </body>
 </html>

@@ -55,7 +55,7 @@ $result = $stmt->get_result();
                                                         </span>
                                                     </td>
                                                     <td class="fw-bold text-success fs-5">
-                                                        R$ <?= number_format($o['valor_total_final'], 2, ',', '.') ?>
+                                                        R$ <?= number_format(floatval($o['valor_total_final']), 2, ',', '.') ?>
                                                     </td>
                                                     <td>
                                                         <a href="gerar_pdf.php?id=<?= $o['orcamento_id'] ?>" target="_blank" class="btn-pdf">
@@ -85,7 +85,7 @@ $result = $stmt->get_result();
                         <a href="../contato.php" class="btn btn-primary btn-lg">
                             <i class="fas fa-calendar-check me-2"></i>Solicitar Visita Técnica
                         </a>
-                        <a href="orcamento.php" class="btn btn-outline-primary btn-lg ms-2">
+                        <a href="../orcamento.php" class="btn btn-outline-primary btn-lg ms-2">
                             <i class="fas fa-plus me-2"></i>Novo Orçamento
                         </a>
                     </div>

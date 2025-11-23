@@ -24,9 +24,10 @@ if($_POST && isset($_POST['tipo'])){
         }
     }
     
-    $sql = "INSERT INTO Telhado (tipo_telhado, foto_telhado) VALUES (?, ?)";
+    $valor = $_POST['valor'];
+    $sql = "INSERT INTO Telhado (tipo_telhado, foto_telhado, valor) VALUES (?, ?, ?)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ss", $tipo, $imagem_nome);
+    $stmt->bind_param("ssd", $tipo, $imagem_nome, $valor);
     
     if($stmt->execute()){
         echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
@@ -52,7 +53,7 @@ $result = $conn->query($sql);
   <body>
     <div class="container p-0">
       <div class="d-flex justify-content-between align-items-center bg-primary text-white px-3 py-2">
-        <h5 class="m-0">Tipos de Telhado</h5>
+        <h5 class="m-0">Tipos de Telhado/Estrutura</h5>
         <a href="../admin_php/editar.php" target="_parent" class="btn-close btn-close-white" aria-label="Fechar"></a>
       </div>
 
@@ -60,8 +61,12 @@ $result = $conn->query($sql);
         <form method="POST" action="" enctype="multipart/form-data">
           <div class="row mb-3">
             <div class="col">
-              <label for="tipo" class="form-label">Tipo do Telhado</label>
+              <label for="tipo" class="form-label">Tipo do Telhado/Estrutura</label>
               <input type="text" class="form-control" id="tipo" name="tipo" required>
+            </div>
+            <div class="col">
+              <label for="valor" class="form-label">Valor (R$)</label>
+              <input type="number" step="0.01" class="form-control" id="valor" name="valor" required>
             </div>
             <div class="col">
               <label for="imagem" class="form-label">Imagem do Telhado</label>
@@ -83,6 +88,7 @@ $result = $conn->query($sql);
             <tr>
               <th>Tipo</th>
               <th>Imagem</th>
+              <th>Valor</th>
               <th>Ações</th>
             </tr>
           </thead>
@@ -94,6 +100,7 @@ $result = $conn->query($sql);
                     echo "<tr>";
                     echo "<td>{$row['tipo_telhado']}</td>";
                     echo "<td><img src='{$imagem_path}' width='50' alt='{$row['tipo_telhado']}' style='object-fit: cover;'></td>";
+                    echo "<td>R$ " . number_format($row['valor'], 2, ',', '.') . "</td>";
                     echo "<td>";
                     echo "<a href='../forms/editar_telhado.php?id={$row['telhado_id']}' class='btn btn-warning btn-sm'>Editar</a> ";
                     echo "<a href='../forms/excluir_telhado.php?id={$row['telhado_id']}' class='btn btn-danger btn-sm' onclick='return confirm(\"Tem certeza que deseja excluir?\")'>Excluir</a>";

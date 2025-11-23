@@ -47,9 +47,9 @@ function mostrar_botao($tipo_botao) {
             <div class="modal-body">
                 <p>Tem certeza que deseja sair do sistema?</p>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" onclick="window.location.href='<?= basename($_SERVER['PHP_SELF']) ?>'">Cancelar</button>
-                <a href="<?= basename($_SERVER['PHP_SELF']) ?>?sair=true" class="btn btn-primary">Sair</a>
+            <div class="modal-footer d-flex justify-content-center gap-2">
+                <a href="<?= basename($_SERVER['PHP_SELF']) ?>" class="btn btn-secondary btn-sm">Cancelar</a>
+                <a href="<?= basename($_SERVER['PHP_SELF']) ?>?sair=true" class="btn btn-primary btn-sm">Sair</a>
             </div>
         </div>
     </div>

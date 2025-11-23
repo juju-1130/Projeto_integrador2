@@ -3,7 +3,6 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// Iniciar sessão se não estiver iniciada
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -146,58 +145,16 @@ if (session_status() == PHP_SESSION_NONE) {
         <section class="page-section projects" id="projects">
             <div class="container">
                 <h2 class="page-section-heading text-uppercase text-primary d-inline-block mb-5">
-                Projetos em destaque
+                    Projetos em destaque
                 </h2>
-                <!-- Primeiro Projeto -->
-                <div class="project-card mb-5 p-4 rounded-3 bg-light">
-                    <div class="row align-items-center g-4">
-                        <div class="col-lg-5 col-md-6">
-                            <img src="images/projeto1.jpg" class="img-fluid rounded shadow projeto-img" alt="Sistema solar residencial">
-                        </div>
-                        <div class="col-lg-7 col-md-6">
-                            <div class="ps-lg-4">
-                                <h3 class="project-title mb-3">Sistema solar de 5,13Kwp</h3>
-                                <ul class="project-features list-unstyled">
-                                    <li class="mb-2"><i class="fas fa-map-marker-alt text-primary me-2"></i> Cidade de Rolante</li>
-                                    <li class="mb-2"><i class="fas fa-solar-panel text-primary me-2"></i> 9 módulos de 570W</li>
-                                    <li class="mb-2"><i class="fas fa-bolt text-primary me-2"></i> Inversor Chint de 5Kw</li>
-                                    <li class="mb-2"><i class="fas fa-battery-three-quarters text-primary me-2"></i> Economia: R$ 350/mês</li>
-                                </ul>
-                                <div class="project-meta mt-3 small text-muted">
-                                    <span class="me-3"><i class="far fa-calendar-alt me-1"></i> Concluído: Jan/2023</span>
-                                </div>
-                                <div class="mt-3">
-                                    <span class="badge bg-primary me-2">Residencial</span>
-                                    <span class="badge bg-success">Sustentável</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                
+                <div id="projetos-destacados-container">
                 </div>
-                <div class="project-card mb-5 p-4 rounded-3 bg-light">
-                    <div class="row align-items-center g-4">
-                        <div class="col-lg-7 col-md-6 order-lg-1 order-1">
-                            <div class="pe-lg-4">
-                                <h3 class="project-title mb-3">Sistema solar de 35,34Kwp</h3>
-                                <ul class="project-features list-unstyled">
-                                    <li class="mb-2"><i class="fas fa-map-marker-alt text-primary me-2"></i> Cidade de Rolante</li>
-                                    <li class="mb-2"><i class="fas fa-solar-panel text-primary me-2"></i> 62 módulos de 570W</li>
-                                    <li class="mb-2"><i class="fas fa-bolt text-primary me-2"></i> Inversor Chint de 25Kw</li>
-                                    <li class="mb-2"><i class="fas fa-battery-three-quarters text-primary me-2"></i> Economia: R$ 2.100/mês</li>
-                                </ul>
-                                <div class="project-meta mt-3 small text-muted">
-                                    <span class="me-3"><i class="far fa-calendar-alt me-1"></i> Concluído: Mar/2023</span>
-                                </div>
-                                <div class="mt-3">
-                                    <span class="badge bg-warning text-dark me-2">Empresarial</span>
-                                    <span class="badge bg-success">Alta eficiência</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-5 col-md-6 order-lg-2 order-2">
-                            <img src="images/projeto2.jpg" class="img-fluid rounded shadow projeto-img" alt="Sistema solar comercial">
-                        </div>
-                    </div>
+
+                <div id="sem-projetos-destacados" class="text-center py-5" style="display: none;">
+                    <i class="fas fa-star fa-3x text-muted mb-3"></i>
+                    <h4 class="text-muted">Nenhum projeto em destaque</h4>
+                    <p class="text-muted">Os projetos destacados aparecerão aqui.</p>
                 </div>
             </div>
         </section>
@@ -220,26 +177,7 @@ if (session_status() == PHP_SESSION_NONE) {
             </div>
         </section>
         <!-- Seção marcas -->
-        <section id="client-holder" data-aos="fade-up">
-            <div class="container">
-                <h2 class="page-section-heading text-start text-uppercase text-primary mb-3">Marcas que trabalhamos</h2>
-                <div class="row">
-                    <div class="inner-content pt-4 mb-4">
-                        <div class="logo-wrap">
-                            <div class="logos">
-                                <a href="#"><img src="images/chint.png" alt="client"></a>
-                                <a href="#"><img src="images/growatt.png" alt="client"></a>
-                                <a href="#"><img src="images/solis.png" alt="client"></a>
-                                <a href="#"><img src="images/saj.png" alt="client"></a>
-                                <a href="#"><img src="images/sunova.jpg" alt="client"></a>
-                                <a href="#"><img src="images/tsun.jpg" alt="client"></a>
-                                <a href="#"><img src="images/osda.jpeg" alt="client"></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <?php include __DIR__ . '/includes/marcas.php'; ?>
         <!-- Footer-->
         <?php include __DIR__ . '/includes/footer.php'; ?>
 
@@ -248,10 +186,148 @@ if (session_status() == PHP_SESSION_NONE) {
             document.addEventListener('DOMContentLoaded', function() {
                 var loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
                 loginModal.show();
-                
                 history.replaceState({}, document.title, '<?= BASE_URL ?>/index.php');
             });
         <?php endif; ?>
+        // Função para carregar e exibir projetos destacados
+        function carregarProjetosDestacados() {
+            const container = document.getElementById('projetos-destacados-container');
+            const semProjetosMsg = document.getElementById('sem-projetos-destacados');
+            const projetosDestacados = JSON.parse(localStorage.getItem('projetosDestacados')) || [];
+
+            // Limpar container
+            container.innerHTML = '';
+
+            if (projetosDestacados.length === 0) {
+                semProjetosMsg.style.display = 'block';
+                container.style.display = 'none';
+                return;
+            }
+
+            semProjetosMsg.style.display = 'none';
+            container.style.display = 'block';
+
+            // Gerar HTML para cada projeto destacado
+            projetosDestacados.forEach((projeto, index) => {
+                const isEven = index % 2 === 0;
+                
+                const projetoHTML = `
+                    <div class="project-card mb-5 p-4 rounded-3 bg-light">
+                        <div class="row align-items-center g-4">
+                            <div class="col-lg-5 col-md-6 ${!isEven ? 'order-lg-2 order-2' : ''}">
+                                <img src="${projeto.imagem}" 
+                                    class="img-fluid rounded shadow projeto-img" 
+                                    alt="${projeto.titulo}">
+                            </div>
+                            <div class="col-lg-7 col-md-6 ${!isEven ? 'order-lg-1 order-1' : ''}">
+                                <div class="${isEven ? 'ps-lg-4' : 'pe-lg-4'}">
+                                    <h3 class="project-title mb-3">${projeto.titulo}</h3>
+                                    <div class="project-features">
+                                        ${projeto.detalhes}
+                                    </div>
+                                    <div class="project-meta mt-3 small text-muted">
+                                        ${projeto.meta}
+                                    </div>
+                                    <div class="mt-3">
+                                        ${projeto.tags.join('')}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += projetoHTML;
+            });
+        }
+
+        // Carregar projetos destacados quando a página carregar
+        document.addEventListener('DOMContentLoaded', function() {
+            carregarProjetosDestacados();
+        });
+
+        // Atualizar projetos destacados quando o localStorage mudar (em outras abas)
+        window.addEventListener('storage', function(e) {
+            if (e.key === 'projetosDestacados') {
+                carregarProjetosDestacados();
+            }
+        });
+
+        // Gerenciar mensagens de login/cadastro
+        document.addEventListener('DOMContentLoaded', function() {
+            // Verificar se deve mostrar modal de login
+            <?php if (isset($_GET['show_login']) && $_GET['show_login'] == '1'): ?>
+                var loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+                loginModal.show();
+                history.replaceState({}, document.title, '<?= BASE_URL ?>/index.php');
+            <?php endif; ?>
+            
+            // Verificar se deve mostrar modal de cadastro
+            <?php if (isset($_GET['show_cadastro']) && $_GET['show_cadastro'] == '1'): ?>
+                var cadastroModal = new bootstrap.Modal(document.getElementById('cadastrarModal'));
+                cadastroModal.show();
+                history.replaceState({}, document.title, '<?= BASE_URL ?>/index.php');
+            <?php endif; ?>
+
+            // Verificar mensagens do localStorage
+            const loginError = localStorage.getItem('loginError');
+            const loginSuccess = localStorage.getItem('loginSuccess');
+            const cadastroError = localStorage.getItem('cadastroError');
+            const cadastroSuccess = localStorage.getItem('cadastroSuccess');
+
+            if (loginError) {
+                mostrarMensagemLogin(loginError, 'error');
+                localStorage.removeItem('loginError');
+            }
+
+            if (loginSuccess) {
+                window.location.reload();
+                localStorage.removeItem('loginSuccess');
+            }
+
+            if (cadastroError) {
+                mostrarMensagemCadastro(cadastroError, 'error');
+                localStorage.removeItem('cadastroError');
+            }
+
+            if (cadastroSuccess) {
+                mostrarMensagemCadastro(cadastroSuccess, 'success');
+                localStorage.removeItem('cadastroSuccess');
+                
+                // Fechar modal de cadastro após 2 segundos e abrir login
+                setTimeout(() => {
+                    var cadastroModal = bootstrap.Modal.getInstance(document.getElementById('cadastrarModal'));
+                    var loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+                    cadastroModal.hide();
+                    loginModal.show();
+                }, 2000);
+            }
+        });
+
+        function mostrarMensagemLogin(mensagem, tipo) {
+            const container = document.getElementById('login-message-container');
+            if (!container) return;
+            
+            container.innerHTML = `
+                <div class="alert alert-${tipo === 'error' ? 'danger' : 'success'} alert-dismissible fade show" role="alert">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    ${mensagem}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            `;
+        }
+
+        function mostrarMensagemCadastro(mensagem, tipo) {
+            const container = document.getElementById('cadastro-message-container');
+            if (!container) return;
+            
+            container.innerHTML = `
+                <div class="alert alert-${tipo === 'error' ? 'danger' : 'success'} alert-dismissible fade show" role="alert">
+                    <i class="fas ${tipo === 'error' ? 'fa-exclamation-triangle' : 'fa-check-circle'} me-2"></i>
+                    ${mensagem}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            `;
+        }
         </script>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -261,6 +337,5 @@ if (session_status() == PHP_SESSION_NONE) {
         <!-- * *                               SB Forms JS                               * *-->
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     </body>
 </html>

@@ -2,6 +2,7 @@
 session_start();
 require 'conexao.php';
 
+$is_admin = isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 1;
 
 function buscarVendedores($conn) {
     $sql = "SELECT * FROM Vendedor ORDER BY nome_vendedor";

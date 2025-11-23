@@ -46,11 +46,12 @@ if($_POST && isset($_POST['tipo'])){
         }
     }
     
-    $sql = "UPDATE Telhado SET tipo_telhado = ?, foto_telhado = ? WHERE telhado_id = ?";
+    $valor = $_POST['valor'];
+    $sql = "UPDATE Telhado SET tipo_telhado = ?, foto_telhado = ?, valor = ? WHERE telhado_id = ?";
     $stmt = $conn->prepare($sql);
     
     if($stmt){
-        $stmt->bind_param("ssi", $tipo, $imagem_nome, $telhado_id);
+        $stmt->bind_param("ssdi", $tipo, $imagem_nome, $valor, $telhado_id);
         
         if($stmt->execute()){
             header("Location: form_telhado.php");
@@ -71,7 +72,7 @@ if($_POST && isset($_POST['tipo'])){
     <body>
     <div class="container p-0">
         <div class="d-flex justify-content-between align-items-center bg-primary text-white px-3 py-2">
-        <h5 class="m-0">Editar Telhado</h5>
+        <h5 class="m-0">Editar Telhado/EStrutura</h5>
         <a href="form_telhado.php" class="btn-close btn-close-white" aria-label="Fechar"></a>
         </div>
 
@@ -79,8 +80,13 @@ if($_POST && isset($_POST['tipo'])){
         <form method="POST" action="" enctype="multipart/form-data">
             <div class="row mb-3">
             <div class="col">
-                <label for="tipo" class="form-label">Tipo do Telhado</label>
+                <label for="tipo" class="form-label">Tipo do Telhado/Estrutura</label>
                 <input type="text" class="form-control" id="tipo" name="tipo" value="<?php echo htmlspecialchars($telhado['tipo_telhado']); ?>" required>
+            </div>
+            <div class="col">
+                <label for="valor" class="form-label">Valor (R$)</label>
+                <input type="number" step="0.01" class="form-control" id="valor" name="valor" 
+                    value="<?php echo htmlspecialchars($telhado['valor']); ?>" required>
             </div>
             <div class="col">
                 <label for="imagem" class="form-label">Imagem do Telhado</label>
@@ -88,7 +94,6 @@ if($_POST && isset($_POST['tipo'])){
                 <?php if($telhado['foto_telhado']): ?>
                 <div class="mt-2">
                     <small>Imagem atual:</small><br>
-                    <!-- CORREÇÃO: Usando foto_telhado em vez de imagem_telhado -->
                     <img src="../uploads/telhados/<?php echo $telhado['foto_telhado']; ?>" width="100" alt="Imagem atual">
                 </div>
                 <?php endif; ?>

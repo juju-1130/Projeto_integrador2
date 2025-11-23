@@ -138,9 +138,11 @@ $projetos = buscarProjetos($conn);
                                         <!-- Botões de ação (apenas para admin) -->
                                         <div class="mt-4">
                                             <div class="btn-group" role="group">
-                                                <button class="btn btn-outline-warning btn-sm" onclick="destacarProjeto(this)" title="Destacar projeto">
+                                                <button class="btn btn-outline-warning btn-sm" 
+                                                        onclick="destacarProjeto(this, <?php echo $projeto['id']; ?>)" 
+                                                        title="Destacar projeto">
                                                     <i class="fas fa-star me-1"></i> Destacar
-                                                </button>                        
+                                                </button>                     
                                                 <a href="projetos.php?modal=editar_projeto&id=<?php echo $projeto['id']; ?>" 
                                                     class="btn btn-warning btn-sm">Editar</a>
                                                 <a href="projetos.php?modal=excluir_projeto&id=<?php echo $projeto['id']; ?>" 
@@ -160,37 +162,60 @@ $projetos = buscarProjetos($conn);
         
         <!-- Footer-->
         <?php include __DIR__ . '/includes/footer.php'; ?>
-
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         
         <script>
-        function destacarProjeto(button) {
-            const card = button.closest('.project-card');
-            const titulo = card.querySelector('.project-title')?.innerText;
-            const imagem = card.querySelector('img')?.getAttribute('src');
-            const detalhes = card.querySelector('.project-features')?.innerHTML;
-            const meta = card.querySelector('.project-meta')?.innerHTML;
-            const tags = card.querySelectorAll('.badge');
-
-            const novoProjeto = {
-                titulo,
-                imagem,
-                detalhes,
-                meta,
-                tags: Array.from(tags).map(tag => tag.outerHTML)
-            };
-
-            const projetosDestacados = JSON.parse(localStorage.getItem('projetosDestacados')) || [];
-            const LIMITE = 2;
-
-            projetosDestacados.unshift(novoProjeto); 
-            if (projetosDestacados.length > LIMITE) {
-                projetosDestacados.pop(); 
+        function destacarProjeto(button, projetoId) {
+            if (!projetoId) {
+                alert('Erro: ID do projeto não encontrado');
+                return;
             }
 
+            const card = button.closest('.project-card');
+            const projetoData = {
+                id: projetoId,
+                titulo: card.querySelector('.project-title')?.innerText,
+                imagem: card.querySelector('img')?.getAttribute('src'),
+                detalhes: card.querySelector('.project-features')?.innerHTML,
+                meta: card.querySelector('.project-meta')?.innerHTML,
+                tags: Array.from(card.querySelectorAll('.badge')).map(tag => tag.outerHTML),
+                timestamp: new Date().getTime() // Adiciona timestamp para controle
+            };
+
+            if (!projetoData.titulo || !projetoData.imagem) {
+                alert('Erro: Dados do projeto incompletos');
+                return;
+            }
+
+            const projetosDestacados = JSON.parse(localStorage.getItem('projetosDestacados')) || [];
+            
+            // Verifica se o projeto já está destacado
+            const jaDestacadoIndex = projetosDestacados.findIndex(proj => proj.id === projetoId);
+            if (jaDestacadoIndex !== -1) {
+                alert('Este projeto já está em destaque!');
+                return;
+            }
+
+            const LIMITE = 2;
+            
+            // Se já atingiu o limite, remove o mais antigo (primeiro da array)
+            if (projetosDestacados.length >= LIMITE) {
+                const projetoRemovido = projetosDestacados.shift(); // Remove o primeiro (mais antigo)
+                console.log('Projeto removido dos destacados:', projetoRemovido.titulo);
+            }
+
+            // Adiciona o novo projeto no final (mais recente)
+            projetosDestacados.push(projetoData);
             localStorage.setItem('projetosDestacados', JSON.stringify(projetosDestacados));
+            
             alert('Projeto destacado com sucesso!');
+        }
+
+        function removerProjetoDestacado(projetoId) {
+            const projetosDestacados = JSON.parse(localStorage.getItem('projetosDestacados')) || [];
+            const novosProjetos = projetosDestacados.filter(proj => proj.id !== projetoId);
+            localStorage.setItem('projetosDestacados', JSON.stringify(novosProjetos));
+            alert('Projeto removido dos destacados!');
+            location.reload(); 
         }
         </script>
 
@@ -234,5 +259,8 @@ $projetos = buscarProjetos($conn);
             </div>
         </div>
         <?php endif; ?>
+
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>

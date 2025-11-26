@@ -29,7 +29,7 @@ $result = $stmt->get_result();
                             <?php if ($result->num_rows > 0): ?>
                                 <div class="table-responsive">
                                     <table class="table table-hover">
-                                        <thead class="text-white">
+                                        <thead class="text-black">
                                             <tr>
                                                 <th><i class="fas fa-hashtag me-2"></i>ID</th>
                                                 <th><i class="fas fa-calendar me-2"></i>Data</th>
@@ -58,8 +58,9 @@ $result = $stmt->get_result();
                                                         R$ <?= number_format(floatval($o['valor_total_final']), 2, ',', '.') ?>
                                                     </td>
                                                     <td>
-                                                        <a href="gerar_pdf.php?id=<?= $o['orcamento_id'] ?>" target="_blank" class="btn-pdf">
-                                                            <i class="fas fa-file-pdf me-2"></i>Ver PDF
+                                                        <a href="../orcamento/gerar_pdf.php?id=<?= $o['orcamento_id'] ?>" 
+                                                        class="btn-pdf" >
+                                                        <i class="fas fa-file-pdf"></i> Gerar PDF
                                                         </a>
                                                     </td>
                                                 </tr>

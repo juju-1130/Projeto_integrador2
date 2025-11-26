@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // ====== DADOS DO FORMULÁRIO ======
     $modo_rapido = isset($_POST['modo_rapido']) ? (int)$_POST['modo_rapido'] : 0;
-    $cidade_cliente = trim($_POST['cidade_cliente']);
+    $cidade_cliente = isset($_POST['cidade_cliente']) ? trim($_POST['cidade_cliente']) : ''; // CORREÇÃO AQUI
     $consumos = $_POST['consumo_mes'];
     $tarifa = isset($_POST['tarifa']) ? (float)$_POST['tarifa'] : 0.85;
     $telhado_id = (int)$_POST['telhado_id'];
@@ -24,6 +24,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $marca_inversor = trim($_POST['marca_inversor']);
     $tipo_instalacao = trim($_POST['tipo_instalacao']);
     $observacoes = trim($_POST['observacoes'] ?? '');
+
+    // ====== VALIDAÇÃO BÁSICA ======
+    if (empty($cidade_cliente)) {
+        die("Erro: O campo cidade é obrigatório.");
+    }
 
     // ====== CÁLCULO DO CONSUMO MÉDIO ======
     $consumo_mensal_medio_kwh = array_sum($consumos) / 12;

@@ -85,6 +85,18 @@ if(!$inversor){
               <strong>Valor:</strong> R$ <?php echo number_format($inversor['valor_inversor'], 2, ',', '.'); ?>
             </div>
           </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <strong>Status:</strong> 
+              <?php 
+              if($inversor['ativo']) {
+                  echo '<span class="badge bg-success">Ativo</span> (disponível para orçamentos)';
+              } else {
+                  echo '<span class="badge bg-secondary">Inativo</span> (não disponível para novos orçamentos)';
+              }
+              ?>
+            </div>
+          </div>
         </div>
       </div>
 

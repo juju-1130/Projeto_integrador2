@@ -13,13 +13,14 @@ if($_POST && isset($_POST['marca']) && isset($_POST['potencia']) && isset($_POST
     $entradas = $_POST['entradas'];
     $mppt = $_POST['mppt'];
     $overload = $_POST['overload'];
+    $ativo = isset($_POST['ativo']) ? 1 : 0;
     
     $sql = "INSERT INTO Inversor 
-        (nome_inversor, marca_inversor, tipo_inversor, potencia_inversor, eficiencia, fase, entradas, mppt, overload, valor_inversor)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";   
+        (nome_inversor, marca_inversor, tipo_inversor, potencia_inversor, eficiencia, fase, entradas, mppt, overload, valor_inversor, ativo)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";   
     $stmt = $conn->prepare($sql);
     $stmt->bind_param(
-        "sssddsiiid",
+        "sssddsiiidi",
         $nome,          // s
         $marca,         // s
         $tipo,          // s
@@ -29,9 +30,9 @@ if($_POST && isset($_POST['marca']) && isset($_POST['potencia']) && isset($_POST
         $entradas,      // i
         $mppt,          // i
         $overload,      // i
-        $valor          // d
+        $valor,         // d
+        $ativo          // i
     );
-
     
     if($stmt->execute()){
         echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
@@ -124,6 +125,16 @@ $result = $conn->query($sql);
                 <input type="number" step="0.01" class="form-control" id="valor" name="valor" placeholder="Ex: 1100.00" required>
             </div>
         </div>
+        <div class="row mb-3">
+            <div class="col">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="ativo" id="ativo" value="1" checked>
+                    <label class="form-check-label" for="ativo">
+                        Inversor Ativo (disponível para orçamentos)
+                    </label>
+                </div>
+            </div>
+        </div>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <a href="../admin_php/editar.php" target="_parent" class="btn btn-secondary me-md-2">Cancelar</a>
             <button type="submit" class="btn btn-primary">Adicionar Inversor</button>
@@ -141,6 +152,7 @@ $result = $conn->query($sql);
               <th>Marca</th>
               <th>Potência</th>
               <th>Valor</th>
+              <th>Status</th>
               <th>Ações</th>
             </tr>
           </thead>
@@ -149,11 +161,13 @@ $result = $conn->query($sql);
             if($result && $result->num_rows > 0){
                 while ($row = $result->fetch_assoc()){
                     $valor_formatado = "R$ " . number_format($row['valor_inversor'] ?? 0, 2, ',', '.');
+                    $status = $row['ativo'] ? '<span class="badge bg-success">Ativo</span>' : '<span class="badge bg-secondary">Inativo</span>';
                     echo "<tr>";
                     echo "<td>{$row['nome_inversor']}</td>";
                     echo "<td>{$row['marca_inversor']}</td>";
                     echo "<td>{$row['potencia_inversor']}kW</td>";
                     echo "<td>{$valor_formatado}</td>";
+                    echo "<td>{$status}</td>";
                     echo "<td>";
                     echo "<a href='../forms/mostrar_inversor.php?id={$row['inversor_id']}' class='btn btn-info btn-sm'>Visualizar</a> ";
                     echo "<a href='../forms/editar_inversor.php?id={$row['inversor_id']}' class='btn btn-warning btn-sm'>Editar</a> ";
@@ -162,7 +176,7 @@ $result = $conn->query($sql);
                     echo "</tr>";
                 }
             } else {
-                echo "<tr><td colspan='5' class='text-center'>Nenhum inversor cadastrado.</td></tr>";
+                echo "<tr><td colspan='6' class='text-center'>Nenhum inversor cadastrado.</td></tr>";
             }
             ?>
           </tbody>

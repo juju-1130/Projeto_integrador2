@@ -23,13 +23,13 @@
             if ($stmt_delete->execute()) {
                 echo '<script>
                         alert("Vendedor excluído com sucesso!");
-                        window.parent.location.href = "../../vendedores.php";
+                        window.parent.location.href = "../../vendedor.php";
                       </script>';
                 exit;
             } else {
                 echo '<script>
                         alert("Erro ao excluir vendedor: ' . $conn->error . '");
-                        window.parent.location.href = "../../vendedores.php";
+                        window.parent.location.href = "../../vendedor.php";
                       </script>';
                 exit;
             }

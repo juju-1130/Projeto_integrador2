@@ -26,12 +26,13 @@ if($_POST && isset($_POST['marca']) && isset($_POST['potencia']) && isset($_POST
     $marca = $_POST['marca'];
     $potencia = $_POST['potencia'];
     $valor = $_POST['valor'];
+    $ativo = isset($_POST['ativo']) ? 1 : 0;
     
-    $sql = "UPDATE Placa SET marca_placa = ?, potencia_placa = ?, valor_placa = ? WHERE placa_id = ?";
+    $sql = "UPDATE Placa SET marca_placa = ?, potencia_placa = ?, valor_placa = ?, ativo = ? WHERE placa_id = ?";
     $stmt = $conn->prepare($sql);
     
     if($stmt){
-        $stmt->bind_param("ssdi", $marca, $potencia, $valor, $placa_id);
+        $stmt->bind_param("ssdii", $marca, $potencia, $valor, $ativo, $placa_id);
         
         if($stmt->execute()){
             header("Location: form_placa.php");
@@ -68,9 +69,19 @@ if($_POST && isset($_POST['marca']) && isset($_POST['potencia']) && isset($_POST
                     <input type="text" class="form-control" id="potencia" name="potencia" value="<?php echo htmlspecialchars($placa['potencia_placa']); ?>" required>
                 </div>
                 </div>
-                <div class="mb-3">
-                <label for="valor" class="form-label">Valor (R$)</label>
-                    <input type="number" step="0.01" class="form-control" id="valor" name="valor" value="<?php echo number_format($placa['valor_placa'], 2, '.', ''); ?>" required>
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="valor" class="form-label">Valor (R$)</label>
+                        <input type="number" step="0.01" class="form-control" id="valor" name="valor" value="<?php echo number_format($placa['valor_placa'], 2, '.', ''); ?>" required>
+                    </div>
+                    <div class="col">
+                        <div class="form-check mt-4">
+                            <input class="form-check-input" type="checkbox" name="ativo" id="ativo" value="1" <?php echo $placa['ativo'] ? 'checked' : ''; ?>>
+                            <label class="form-check-label" for="ativo">
+                                Placa Ativa (disponível para orçamentos)
+                            </label>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">

@@ -37,9 +37,7 @@ if ($stmt_ultimo) {
 $telhados = $conn->query("SELECT telhado_id, tipo_telhado, foto_telhado FROM Telhado ORDER BY tipo_telhado ASC");
 $fases = $conn->query("SELECT fase_id, tipo_fase FROM Fase ORDER BY tipo_fase ASC");
 $concessionarias = $conn->query("SELECT concessionaria_id, nome_concessionaria FROM Concessionaria ORDER BY nome_concessionaria ASC");
-$placas_query = $conn->query("SELECT placa_id, potencia_placa, marca_placa, valor_placa FROM Placa ORDER BY potencia_placa ASC");
-$inversores_query = $conn->query("SELECT DISTINCT marca_inversor FROM Inversor WHERE marca_inversor IN ('Chint', 'Growatt', 'Solis', 'SAJ') ORDER BY marca_inversor ASC");
-
+$placas_query = $conn->query("SELECT placa_id, potencia_placa, marca_placa, valor_placa FROM Placa WHERE ativo = 1 ORDER BY potencia_placa ASC");$inversores_query = $conn->query("SELECT DISTINCT marca_inversor FROM Inversor WHERE marca_inversor IN ('Chint', 'Growatt', 'Solis', 'SAJ') AND ativo = 1 ORDER BY marca_inversor ASC");
 // Meses de consumo
 $meses = [
     "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
@@ -47,13 +45,16 @@ $meses = [
 ];
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
     <?php include __DIR__ . '/head.php'; ?>
 <body id="page-top">
     <?php include __DIR__ . '/includes/navbar.php'; ?>
     <?php include __DIR__ . '/includes/funcoes.php'; ?>
 
-    <?php echo gerarTituloPagina("Orçamento"); ?>
+    <?php 
+    echo gerarTituloPagina("Orçamento"); 
+    carregarAPICidades(); // Carrega o script das cidades
+    ?>
 
     <div class="container">
         <div class="d-flex justify-content-center gap-3 my-4">
@@ -158,19 +159,18 @@ $meses = [
                                             <?php endif; ?>
                                         </label>
 
-                                        <input type="text"
-                                            name="cidade_cliente"
-                                            class="form-control"
-                                            placeholder="Digite sua cidade"
-                                            id="cidade-input"
-                                            value="<?= $ultimo_orcamento ? htmlspecialchars($ultimo_orcamento['cidade_cliente']) : '' ?>"
-                                            required
-                                            autocomplete="off">
-
-                                        <div id="sugestoes-cidade"
-                                            class="list-group"
-                                            style="display:none; position:absolute; z-index:1000; width:100%;">
+                                        <?php 
+                                        // Use a função gerarCampoCidade do arquivo funcoes.php com o nome correto
+                                        $valor_cidade = $ultimo_orcamento ? htmlspecialchars($ultimo_orcamento['cidade_cliente']) : '';
+                                        echo '
+                                        <div class="position-relative">
+                                            <input type="text" name="cidade_cliente" id="cidade-input" class="form-control" 
+                                                   value="' . htmlspecialchars($valor_cidade) . '" 
+                                                   placeholder="Digite sua cidade" autocomplete="off" required>
+                                            <div id="sugestoes-cidade-input" class="list-group position-absolute w-100 sugestoes-cidade" style="display: none;"></div>
                                         </div>
+                                        <script>document.addEventListener("DOMContentLoaded", function() { inicializarCampoCidade("cidade-input"); });</script>';
+                                        ?>
 
                                         <div class="invalid-feedback">Informe sua cidade.</div>
                                     </div>
@@ -535,45 +535,6 @@ $meses = [
         }, 3000);
     }
 
-    // API de Cidades do IBGE
-    function buscarCidades(query) {
-        if (query.length < 3) {
-            document.getElementById('sugestoes-cidade').style.display = 'none';
-            return;
-        }
-
-        fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/municipios?orderBy=nome`)
-            .then(response => response.json())
-            .then(data => {
-                const sugestoes = data.filter(cidade => 
-                    cidade.nome.toLowerCase().includes(query.toLowerCase())
-                ).slice(0, 10);
-
-                const container = document.getElementById('sugestoes-cidade');
-                container.innerHTML = '';
-
-                if (sugestoes.length > 0) {
-                    sugestoes.forEach(cidade => {
-                        const item = document.createElement('button');
-                        item.type = 'button';
-                        item.className = 'list-group-item list-group-item-action';
-                        item.textContent = `${cidade.nome} - ${cidade.microrregiao.mesorregiao.UF.sigla}`;
-                        item.onclick = function() {
-                            document.getElementById('cidade-input').value = `${cidade.nome} - ${cidade.microrregiao.mesorregiao.UF.sigla}`;
-                            container.style.display = 'none';
-                        };
-                        container.appendChild(item);
-                    });
-                    container.style.display = 'block';
-                } else {
-                    container.style.display = 'none';
-                }
-            })
-            .catch(error => {
-                console.error('Erro ao buscar cidades:', error);
-            });
-    }
-
     // Atualizar imagem do telhado
     function atualizarImagemTelhado() {
         const select = document.getElementById('telhado-select');
@@ -591,21 +552,8 @@ $meses = [
 
     // Event Listeners
     document.addEventListener('DOMContentLoaded', function() {
-        // Busca de cidades
-        const cidadeInput = document.getElementById('cidade-input');
-        if (cidadeInput) {
-            cidadeInput.addEventListener('input', function() {
-                buscarCidades(this.value);
-            });
-        }
-
-        // Fechar sugestões ao clicar fora
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('#cidade-input') && !e.target.closest('#sugestoes-cidade')) {
-                document.getElementById('sugestoes-cidade').style.display = 'none';
-            }
-        });
-
+        // A busca de cidades agora é gerenciada pela função carregarAPICidades()
+        
         // Inicializar imagem do telhado
         atualizarImagemTelhado();
 
@@ -634,8 +582,6 @@ $meses = [
                 }
             });
         }
-
-
     });
 
     // Bootstrap form validation
@@ -654,7 +600,6 @@ $meses = [
         })
     })();
     </script>
-
 
     <style>
     .form-label {

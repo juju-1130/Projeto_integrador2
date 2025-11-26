@@ -33,6 +33,7 @@ if($_POST && isset($_POST['nome']) && isset($_POST['marca']) && isset($_POST['po
     $mppt = $_POST['mppt'];
     $overload = $_POST['overload'];
     $valor = $_POST['valor'];
+    $ativo = isset($_POST['ativo']) ? 1 : 0;
     
     $sql = "UPDATE Inversor SET 
                 nome_inversor = ?, 
@@ -44,12 +45,13 @@ if($_POST && isset($_POST['nome']) && isset($_POST['marca']) && isset($_POST['po
                 entradas = ?, 
                 mppt = ?, 
                 overload = ?, 
-                valor_inversor = ? 
+                valor_inversor = ?,
+                ativo = ?
             WHERE inversor_id = ?";
     $stmt = $conn->prepare($sql);
     
     if($stmt){
-        $stmt->bind_param("sssddsiiidi", 
+        $stmt->bind_param("sssddsiiidii", 
             $nome,          // s
             $marca,         // s
             $tipo,          // s
@@ -60,6 +62,7 @@ if($_POST && isset($_POST['nome']) && isset($_POST['marca']) && isset($_POST['po
             $mppt,          // i
             $overload,      // i
             $valor,         // d
+            $ativo,         // i
             $inversor_id    // i
         );
         
@@ -147,6 +150,16 @@ if($_POST && isset($_POST['nome']) && isset($_POST['marca']) && isset($_POST['po
             <div class="col">
                 <label for="valor" class="form-label">Valor (R$)</label>
                 <input type="number" step="0.01" class="form-control" id="valor" name="valor" value="<?php echo number_format($inversor['valor_inversor'], 2, '.', ''); ?>" required>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="ativo" id="ativo" value="1" <?php echo $inversor['ativo'] ? 'checked' : ''; ?>>
+                    <label class="form-check-label" for="ativo">
+                        Inversor Ativo (disponível para orçamentos)
+                    </label>
+                </div>
             </div>
         </div>
 

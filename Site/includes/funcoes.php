@@ -227,15 +227,17 @@ function carregarFuncoesOrcamento() {
     // Atualizar imagem do telhado
     function atualizarImagemTelhado() {
         const select = document.getElementById("telhado-select");
-        const imagemContainer = document.getElementById("imagem-telhado");
-        const selectedOption = select.options[select.selectedIndex];
+        const imagemDiv = document.getElementById("imagem-telhado");
+        const imagem = imagemDiv.querySelector("img");
+
+        const opcaoSelecionada = select.options[select.selectedIndex];
+        const imagemPath = opcaoSelecionada.getAttribute("data-imagem");
         
-        if (selectedOption.value && selectedOption.dataset.imagem) {
-            const img = imagemContainer.querySelector("img");
-            img.src = selectedOption.dataset.imagem;
-            imagemContainer.style.display = "block";
+        if (imagemPath && imagemPath !== "") {
+            imagem.src = imagemPath;
+            imagemDiv.style.display = "block";
         } else {
-            imagemContainer.style.display = "none";
+            imagemDiv.style.display = "none";
         }
     }
 

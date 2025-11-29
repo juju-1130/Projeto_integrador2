@@ -194,20 +194,25 @@ $meses = [
 
                                         <select class="form-select" name="telhado_id" id="telhado-select" required onchange="atualizarImagemTelhado()">
                                             <option value="">Selecione</option>
-                                            <?php if ($telhados):
+                                            <?php 
+                                            if ($telhados):
                                                 $telhados->data_seek(0);
                                                 while ($row = $telhados->fetch_assoc()):
                                                     $selected = ($ultimo_orcamento && $row['telhado_id'] == $ultimo_orcamento['telhado_id']) ? 'selected' : '';
-                                                    $imagem_base64 = '';
+                                                    $imagem_src = '';
+                                                    
                                                     if (!empty($row['foto_telhado'])) {
-                                                        $imagem_base64 = 'data:image/jpeg;base64,' . base64_encode($row['foto_telhado']);
+                                                        $imagem_path = '../uploads/telhados/' . $row['foto_telhado'];
+                                                        if (file_exists($imagem_path)) {
+                                                            $imagem_src = $imagem_path;
+                                                        }
                                                     }
                                             ?>
-                                                <option value="<?= $row['telhado_id'] ?>"
-                                                        data-imagem="<?= htmlspecialchars($imagem_base64) ?>"
-                                                        <?= $selected ?>>
-                                                    <?= htmlspecialchars($row['tipo_telhado']) ?>
-                                                </option>
+                                                    <option value="<?= $row['telhado_id'] ?>" 
+                                                            data-imagem="<?= htmlspecialchars($imagem_src) ?>"
+                                                            <?= $selected ?>>
+                                                        <?= htmlspecialchars($row['tipo_telhado']) ?>
+                                                    </option>
                                             <?php endwhile; endif; ?>
                                         </select>
 

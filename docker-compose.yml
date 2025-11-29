@@ -12,20 +12,19 @@ services:
       - db
 
   db:
-  image: mysql:8.0
-  container_name: pi2_db
-  restart: always
-  environment:
-    MYSQL_ROOT_PASSWORD: root
-    MYSQL_DATABASE: pi2_db
-    MYSQL_USER: user
-    MYSQL_PASSWORD: user123
-  ports:
-    - "3306:3306"
-  volumes:
-    - db_data:/var/lib/mysql
-    - ./Site/banco:/docker-entrypoint-initdb.d
-
+    image: mysql:8.0
+    container_name: pi2_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: pi2_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user123
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./Site/banco:/docker-entrypoint-initdb.d
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -42,5 +41,3 @@ services:
 
 volumes:
   db_data:
-
-

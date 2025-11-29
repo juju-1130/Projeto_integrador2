@@ -54,6 +54,11 @@ $projetos = buscarProjetos($conn);
         <?php include __DIR__ . '/includes/funcoes.php'; ?>
         <?php echo gerarTituloPagina($is_admin ? "Gerenciar Projetos" : "Projetos Concluídos"); ?>
 
+        <?php 
+        // Carrega as funções JavaScript dos projetos
+        carregarFuncoesProjetos();
+        ?>
+
         <?php if ($is_admin): ?>
         <div class="container">
             <div class="d-flex justify-content-end mb-4">
@@ -162,62 +167,6 @@ $projetos = buscarProjetos($conn);
         
         <!-- Footer-->
         <?php include __DIR__ . '/includes/footer.php'; ?>
-        
-        <script>
-        function destacarProjeto(button, projetoId) {
-            if (!projetoId) {
-                alert('Erro: ID do projeto não encontrado');
-                return;
-            }
-
-            const card = button.closest('.project-card');
-            const projetoData = {
-                id: projetoId,
-                titulo: card.querySelector('.project-title')?.innerText,
-                imagem: card.querySelector('img')?.getAttribute('src'),
-                detalhes: card.querySelector('.project-features')?.innerHTML,
-                meta: card.querySelector('.project-meta')?.innerHTML,
-                tags: Array.from(card.querySelectorAll('.badge')).map(tag => tag.outerHTML),
-                timestamp: new Date().getTime() // Adiciona timestamp para controle
-            };
-
-            if (!projetoData.titulo || !projetoData.imagem) {
-                alert('Erro: Dados do projeto incompletos');
-                return;
-            }
-
-            const projetosDestacados = JSON.parse(localStorage.getItem('projetosDestacados')) || [];
-            
-            // Verifica se o projeto já está destacado
-            const jaDestacadoIndex = projetosDestacados.findIndex(proj => proj.id === projetoId);
-            if (jaDestacadoIndex !== -1) {
-                alert('Este projeto já está em destaque!');
-                return;
-            }
-
-            const LIMITE = 2;
-            
-            // Se já atingiu o limite, remove o mais antigo (primeiro da array)
-            if (projetosDestacados.length >= LIMITE) {
-                const projetoRemovido = projetosDestacados.shift(); // Remove o primeiro (mais antigo)
-                console.log('Projeto removido dos destacados:', projetoRemovido.titulo);
-            }
-
-            // Adiciona o novo projeto no final (mais recente)
-            projetosDestacados.push(projetoData);
-            localStorage.setItem('projetosDestacados', JSON.stringify(projetosDestacados));
-            
-            alert('Projeto destacado com sucesso!');
-        }
-
-        function removerProjetoDestacado(projetoId) {
-            const projetosDestacados = JSON.parse(localStorage.getItem('projetosDestacados')) || [];
-            const novosProjetos = projetosDestacados.filter(proj => proj.id !== projetoId);
-            localStorage.setItem('projetosDestacados', JSON.stringify(novosProjetos));
-            alert('Projeto removido dos destacados!');
-            location.reload(); 
-        }
-        </script>
 
         <!-- Modal para ações do admin -->
         <?php if (isset($_GET['modal'])): ?>
@@ -236,7 +185,7 @@ $projetos = buscarProjetos($conn);
                     $iframe_src = 'admin_php/crud_projeto/excluir_projeto.php?id=' . ($_GET['id'] ?? '');
                     break;
                 default:
-                    $iframe_src = 'editar_iframe.php?tipo=' . htmlspecialchars($modal_type);
+                    echo '<div class="alert alert-warning">Tipo não reconhecido: ' . htmlspecialchars($tipo) . '</div>';
             }
         ?>
         <div class="modal-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; display: flex; justify-content: center; align-items: center;">

@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <title>Orçamento #<?= $orcamento_id ?> - <?= htmlspecialchars($orcamento['nome_usuario'] ?? '') ?></title>
     <style>
-        /* ESTILO SIMPLIFICADO PARA PDF - SEM ÍCONES, SEM FASES */
         * { 
             box-sizing: border-box; 
             font-family: Arial, sans-serif; 

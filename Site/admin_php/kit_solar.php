@@ -1,11 +1,11 @@
 <?php 
 session_start();
+include_once '../conexao.php';
+
 if (!isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] != 1) {
     header('Location: /login.php');
     exit();
 }
-
-include_once '../conexao.php';
 
 if (!isset($conn) || $conn->connect_error) {
     die("Erro: Não foi possível conectar ao banco de dados.");

@@ -18,7 +18,7 @@ if($_POST && isset($_POST['titulo'])){
     
     // Processar upload da imagem
     if(isset($_FILES['imagem']) && $_FILES['imagem']['error'] == 0){
-        // Verificar tamanho do arquivo (máximo 10MB - atualizado)
+        // Verificar tamanho do arquivo (máximo 10MB)
         if($_FILES['imagem']['size'] > 10 * 1024 * 1024){
             $erro = 'A+imagem+deve+ter+no+máximo+10MB';
         } else {

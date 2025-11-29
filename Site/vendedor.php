@@ -123,6 +123,18 @@ $vendedores = buscarVendedores($conn);
                 </div>
             </div>
         </section>
+
+        <?php if (!$is_admin): ?>
+        <div class="alert alert-info mt-5">
+            <div class="d-flex align-items-center">
+                <i class="fas fa-info-circle me-3 fs-4"></i>
+                <div>
+                    <h5 class="alert-heading mb-1">Horário de Atendimento</h5>
+                    <p class="mb-0">Nossos vendedores estão disponíveis de Segunda a Sexta, das 7:30h às 11:30h e das 13:15h às 18:30h e no Sábado, das 8:00h às 11:30. Fora deste horário, você pode enviar uma mensagem pelo WhatsApp que retornaremos assim que possível.</p>
+                </div>
+            </div>
+        </div>
+        <?php endif; ?>
         
         <!-- Footer-->
         <?php include __DIR__ . '/includes/footer.php'; ?>

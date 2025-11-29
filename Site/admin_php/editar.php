@@ -3,7 +3,7 @@ session_start();
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
     <?php include __DIR__ . '/../head.php'; ?>
     <body id="page-top">
         <!-- Navigation-->

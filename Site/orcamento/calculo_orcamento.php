@@ -1,7 +1,4 @@
 <?php
-/**
- * calculo_orcamento.php - VERSÃO CORRIGIDA COM GERAÇÃO DESEJADA
- */
 
 define('DEFAULT_PANEL_WATT', 610);
 define('EXTRA_KW_DEFAULT', 0.1);
@@ -17,12 +14,11 @@ function calcular_orcamento_integrado($conn, $consumo_mensal_medio_kwh, $opcoes 
     $geracao_desejada_kwh = isset($opcoes['geracao_desejada_kwh']) ? floatval($opcoes['geracao_desejada_kwh']) : null;
     $margem_seguranca = isset($opcoes['margem_seguranca']) ? floatval($opcoes['margem_seguranca']) : 0.1;
 
-    // 1) CÁLCULO DA POTÊNCIA DO SISTEMA - CORRIGIDO
+    // 1) CÁLCULO DA POTÊNCIA DO SISTEMA 
     $horas_sol_dia = HORAS_PICO_DIARIAS;
     $dias_mes = DIAS_MES;
     
     if ($geracao_desejada_kwh !== null) {
-        // CORREÇÃO: Usa a geração desejada como base principal
         // Aplica margem de segurança à geração desejada
         $geracao_com_margem = $geracao_desejada_kwh * (1 + $margem_seguranca);
         

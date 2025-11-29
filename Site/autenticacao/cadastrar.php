@@ -34,41 +34,31 @@
                     <?php endif; ?>
                 </div>
 
-                <form action="<?= BASE_URL ?>/autenticacao/salvar_cadastro.php" method="POST" id="form-cadastro" novalidate>
+                <form method="POST" action="/../autenticacao/salvar_cadastro.php" id="form-cadastro">
                     <div class="mb-3">
                         <label class="form-label">Nome</label>
                         <input type="text" name="usuario" class="form-control" required>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Telefone</label>
-                        <input type="tel" name="telefone" class="form-control" placeholder="51999466563" required>
-                        <div class="form-text">Digite apenas números: 51999999999</div>
-                        <div class="invalid-feedback">Por favor, insira um telefone válido com DDD + número</div>
+                        <input type="tel" name="telefone" class="form-control" placeholder="51999999999" pattern="[0-9]{10,11}" required>
+                        <div class="form-text">Digite apenas números (10 ou 11 dígitos): 51999999999</div>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Email</label>
-                        <input type="email" name="email" class="form-control" required>
-                        <div class="invalid-feedback">Por favor, insira um email válido</div>
+                        <input type="text" name="email" class="form-control" required>
+                        <div class="form-text">Digite seu endereço de email</div>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Senha</label>
                         <input type="password" name="senha" id="senha" class="form-control" required>
                         <div class="form-text">
-                            A senha deve conter:
-                            <ul class="small mb-0">
-                                <li id="req-maiuscula">⭕ Pelo menos 1 letra maiúscula</li>
-                                <li id="req-minuscula">⭕ Pelo menos 1 letra minúscula</li>
-                                <li id="req-numero">⭕ Pelo menos 1 número</li>
-                                <li id="req-especial">⭕ Pelo menos 1 caractere especial (@$!%*?&)</li>
-                                <li id="req-tamanho">⭕ Mínimo de 8 caracteres</li>
-                            </ul>
+                            Digite uma senha segura
                         </div>
-                        <div class="invalid-feedback" id="senhaInvalida">A senha não atende aos requisitos de segurança</div>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Confirmar Senha</label>
                         <input type="password" name="confirmar_senha" id="confirmar_senha" class="form-control" required>
-                        <div class="invalid-feedback" id="senhaError">As senhas não coincidem</div>
                     </div>
                     <button type="submit" class="btn btn-primary w-100" id="btn-cadastrar">Cadastrar</button>
                 </form>
@@ -83,165 +73,91 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('form-cadastro');
-    const senhaInput = document.getElementById('senha');
-    const confirmaInput = document.getElementById('confirmar_senha');
-    const senhaError = document.getElementById('senhaError');
-    const senhaInvalida = document.getElementById('senhaInvalida');
-    const btnCadastrar = document.getElementById('btn-cadastrar');
     
-    // Elementos dos requisitos da senha
-    const reqMaiuscula = document.getElementById('req-maiuscula');
-    const reqMinuscula = document.getElementById('req-minuscula');
-    const reqNumero = document.getElementById('req-numero');
-    const reqEspecial = document.getElementById('req-especial');
-    const reqTamanho = document.getElementById('req-tamanho');
-
-    // Estado das validações
-    let senhaValida = false;
-    let senhasCoincidem = false;
-
-    // Função para validar força da senha
-    function validarForcaSenha(senha) {
-        const temMaiuscula = /[A-Z]/.test(senha);
-        const temMinuscula = /[a-z]/.test(senha);
-        const temNumero = /[0-9]/.test(senha);
-        const temEspecial = /[@$!%*?&]/.test(senha);
-        const temTamanho = senha.length >= 8;
-
-        // Atualizar visual dos requisitos
-        reqMaiuscula.innerHTML = (temMaiuscula ? '✅' : '⭕') + ' Pelo menos 1 letra maiúscula';
-        reqMinuscula.innerHTML = (temMinuscula ? '✅' : '⭕') + ' Pelo menos 1 letra minúscula';
-        reqNumero.innerHTML = (temNumero ? '✅' : '⭕') + ' Pelo menos 1 número';
-        reqEspecial.innerHTML = (temEspecial ? '✅' : '⭕') + ' Pelo menos 1 caractere especial (@$!%*?&)';
-        reqTamanho.innerHTML = (temTamanho ? '✅' : '⭕') + ' Mínimo de 8 caracteres';
-
-        senhaValida = temMaiuscula && temMinuscula && temNumero && temEspecial && temTamanho;
-        
-        // Atualizar estado visual do campo
-        if (senha.length > 0) {
-            if (senhaValida) {
-                senhaInput.classList.remove('is-invalid');
-                senhaInput.classList.add('is-valid');
-                senhaInvalida.style.display = 'none';
-            } else {
-                senhaInput.classList.remove('is-valid');
-                senhaInput.classList.add('is-invalid');
-                senhaInvalida.style.display = 'block';
-            }
-        } else {
-            senhaInput.classList.remove('is-valid', 'is-invalid');
-            senhaInvalida.style.display = 'none';
-        }
-
-        return senhaValida;
-    }
-
-    // Função para validar se senhas coincidem
-    function validarSenhas() {
-        const senha = senhaInput.value;
-        const confirma = confirmaInput.value;
-        
-        if (confirma.length > 0) {
-            if (senha === confirma) {
-                confirmaInput.classList.remove('is-invalid');
-                confirmaInput.classList.add('is-valid');
-                senhaError.style.display = 'none';
-                senhasCoincidem = true;
-            } else {
-                confirmaInput.classList.remove('is-valid');
-                confirmaInput.classList.add('is-invalid');
-                senhaError.style.display = 'block';
-                senhasCoincidem = false;
-            }
-        } else {
-            confirmaInput.classList.remove('is-valid', 'is-invalid');
-            senhaError.style.display = 'none';
-            senhasCoincidem = false;
-        }
-
-        return senhasCoincidem;
-    }
-
-    // Função para validar telefone - ACEITA APENAS NÚMEROS
-    function validarTelefone(telefone) {
-        // Remove tudo que não é número
-        const apenasNumeros = telefone.replace(/\D/g, '');
-        
-        // Verifica se tem entre 10 e 11 dígitos (DDD + número)
-        return apenasNumeros.length >= 10 && apenasNumeros.length <= 11;
-    }
-
-    // Função para formatar telefone (opcional)
-    function formatarTelefone(telefone) {
-        const apenasNumeros = telefone.replace(/\D/g, '');
-        
-        if (apenasNumeros.length === 11) {
-            return `(${apenasNumeros.substring(0,2)})${apenasNumeros.substring(2,7)}-${apenasNumeros.substring(7)}`;
-        } else if (apenasNumeros.length === 10) {
-            return `(${apenasNumeros.substring(0,2)})${apenasNumeros.substring(2,6)}-${apenasNumeros.substring(6)}`;
-        }
-        
-        return telefone;
-    }
-
-    // Função para validar email - SIMPLIFICADA
+    // Função para validar email
     function validarEmail(email) {
-        // Regex mais simples e eficaz
-        const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return regexEmail.test(email) && email.length <= 254;
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
     }
 
-    // Event listeners
-    senhaInput.addEventListener('input', function() {
-        validarForcaSenha(this.value);
-        validarSenhas(); // Revalidar confirmação quando a senha principal mudar
-    });
+    // Função para validar telefone
+    function validarTelefone(telefone) {
+        const telefoneLimpo = telefone.replace(/\D/g, '');
+        return telefoneLimpo.length >= 10 && telefoneLimpo.length <= 11;
+    }
 
-    confirmaInput.addEventListener('input', validarSenhas);
-
-    // Validação do telefone em tempo real
-    const telefoneInput = document.querySelector('input[name="telefone"]');
-    telefoneInput.addEventListener('blur', function() {
-        // Remove formatação para validação
-        const telefoneLimpo = this.value.replace(/\D/g, '');
-        
-        if (this.value && !validarTelefone(this.value)) {
-            this.classList.add('is-invalid');
-            this.classList.remove('is-valid');
-        } else if (this.value) {
-            this.classList.remove('is-invalid');
-            this.classList.add('is-valid');
-            
-            // Opcional: Formatar automaticamente
-            if (telefoneLimpo.length >= 10) {
-                this.value = formatarTelefone(this.value);
-            }
-        } else {
-            this.classList.remove('is-invalid', 'is-valid');
-        }
-    });
-
-    // Permitir apenas números no telefone
-    telefoneInput.addEventListener('input', function() {
-        // Remove caracteres não numéricos
-        this.value = this.value.replace(/\D/g, '');
-    });
-
-    // Validação do email em tempo real
+    // Validação em tempo real do email
     const emailInput = document.querySelector('input[name="email"]');
     emailInput.addEventListener('blur', function() {
-        if (this.value && !validarEmail(this.value)) {
+        const email = this.value.trim();
+        const feedbackElement = this.nextElementSibling;
+        
+        if (email && !validarEmail(email)) {
             this.classList.add('is-invalid');
             this.classList.remove('is-valid');
-        } else if (this.value) {
-            this.classList.remove('is-invalid');
+            if (feedbackElement && feedbackElement.classList.contains('form-text')) {
+                feedbackElement.innerHTML = '<span class="text-danger">❌ Email inválido. Use o formato: usuario@exemplo.com</span>';
+            }
+        } else if (email) {
             this.classList.add('is-valid');
+            this.classList.remove('is-invalid');
+            if (feedbackElement && feedbackElement.classList.contains('form-text')) {
+                feedbackElement.innerHTML = '<span class="text-success">✅ Email válido</span>';
+            }
         } else {
-            this.classList.remove('is-invalid', 'is-valid');
+            this.classList.remove('is-valid', 'is-invalid');
+            if (feedbackElement && feedbackElement.classList.contains('form-text')) {
+                feedbackElement.innerHTML = 'Digite seu endereço de email';
+            }
         }
     });
 
-    // Validação do formulário no submit
+    // Validação em tempo real do telefone
+    const telefoneInput = document.querySelector('input[name="telefone"]');
+    telefoneInput.addEventListener('blur', function() {
+        const telefone = this.value;
+        const feedbackElement = this.nextElementSibling;
+        
+        if (telefone && !validarTelefone(telefone)) {
+            this.classList.add('is-invalid');
+            this.classList.remove('is-valid');
+            if (feedbackElement && feedbackElement.classList.contains('form-text')) {
+                feedbackElement.innerHTML = '<span class="text-danger">❌ Telefone inválido. Digite DDD + número (10 ou 11 dígitos)</span>';
+            }
+        } else if (telefone) {
+            this.classList.add('is-valid');
+            this.classList.remove('is-invalid');
+            if (feedbackElement && feedbackElement.classList.contains('form-text')) {
+                feedbackElement.innerHTML = '<span class="text-success">✅ Telefone válido</span>';
+            }
+        } else {
+            this.classList.remove('is-valid', 'is-invalid');
+            if (feedbackElement && feedbackElement.classList.contains('form-text')) {
+                feedbackElement.innerHTML = 'Digite apenas números (10 ou 11 dígitos): 51999999999';
+            }
+        }
+    });
+
+    // Validação em tempo real da confirmação de senha
+    const confirmaInput = document.getElementById('confirmar_senha');
+    confirmaInput.addEventListener('input', function() {
+        const senha = document.getElementById('senha').value;
+        const confirma = this.value;
+        
+        if (confirma.length > 0) {
+            if (senha === confirma && senha.length > 0) {
+                this.classList.add('is-valid');
+                this.classList.remove('is-invalid');
+            } else {
+                this.classList.add('is-invalid');
+                this.classList.remove('is-valid');
+            }
+        } else {
+            this.classList.remove('is-valid', 'is-invalid');
+        }
+    });
+
+    // Validação básica no submit
     form.addEventListener('submit', function(e) {
         let formValido = true;
         const errors = [];
@@ -249,43 +165,65 @@ document.addEventListener('DOMContentLoaded', function() {
         // Validar nome
         const nomeInput = document.querySelector('input[name="usuario"]');
         if (!nomeInput.value.trim()) {
-            nomeInput.classList.add('is-invalid');
             formValido = false;
             errors.push('Nome é obrigatório');
+            nomeInput.classList.add('is-invalid');
         } else {
             nomeInput.classList.remove('is-invalid');
-            nomeInput.classList.add('is-valid');
-        }
-
-        // Validar telefone
-        if (!validarTelefone(telefoneInput.value)) {
-            telefoneInput.classList.add('is-invalid');
-            formValido = false;
-            errors.push('Telefone inválido. Digite DDD + número (10 ou 11 dígitos)');
-        } else {
-            telefoneInput.classList.remove('is-invalid');
         }
 
         // Validar email
-        if (!validarEmail(emailInput.value)) {
-            emailInput.classList.add('is-invalid');
+        const emailInput = document.querySelector('input[name="email"]');
+        const email = emailInput.value.trim();
+        if (!email) {
             formValido = false;
-            errors.push('Email inválido');
+            errors.push('Email é obrigatório');
+            emailInput.classList.add('is-invalid');
+        } else if (!validarEmail(email)) {
+            formValido = false;
+            errors.push('Email inválido. Use o formato: usuario@exemplo.com');
+            emailInput.classList.add('is-invalid');
         } else {
             emailInput.classList.remove('is-invalid');
         }
 
-        // Validar força da senha
-        if (!validarForcaSenha(senhaInput.value)) {
-            senhaInput.classList.add('is-invalid');
+        // Validar telefone
+        const telefoneInput = document.querySelector('input[name="telefone"]');
+        const telefoneLimpo = telefoneInput.value.replace(/\D/g, '');
+        if (!telefoneInput.value) {
             formValido = false;
-            errors.push('Senha não atende aos requisitos de segurança');
+            errors.push('Telefone é obrigatório');
+            telefoneInput.classList.add('is-invalid');
+        } else if (telefoneLimpo.length < 10 || telefoneLimpo.length > 11) {
+            formValido = false;
+            errors.push('Telefone inválido. Digite DDD + número (10 ou 11 dígitos)');
+            telefoneInput.classList.add('is-invalid');
+        } else {
+            // Atualizar o campo com apenas números para envio
+            telefoneInput.value = telefoneLimpo;
+            telefoneInput.classList.remove('is-invalid');
+        }
+
+        // Validar senha (apenas se está preenchida)
+        const senhaInput = document.getElementById('senha');
+        const senha = senhaInput.value;
+        
+        if (!senha) {
+            formValido = false;
+            errors.push('Senha é obrigatória');
+            senhaInput.classList.add('is-invalid');
+        } else {
+            senhaInput.classList.remove('is-invalid');
         }
 
         // Validar confirmação de senha
-        if (!validarSenhas()) {
+        const confirmaInput = document.getElementById('confirmar_senha');
+        if (senhaInput.value !== confirmaInput.value) {
             formValido = false;
             errors.push('As senhas não coincidem');
+            confirmaInput.classList.add('is-invalid');
+        } else {
+            confirmaInput.classList.remove('is-invalid');
         }
 
         if (!formValido) {
@@ -302,22 +240,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             `;
             
-            // Rolagem para o primeiro erro
-            const primeiroErro = form.querySelector('.is-invalid');
-            if (primeiroErro) {
-                primeiroErro.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                primeiroErro.focus();
-            }
+            // Restaurar o valor original do telefone para exibição
+            telefoneInput.value = telefoneInput.getAttribute('data-original-value') || telefoneInput.value;
         }
     });
 
-    // Remover validação ao digitar
-    form.querySelectorAll('input').forEach(input => {
-        input.addEventListener('input', function() {
-            if (this.type !== 'password' && this.name !== 'telefone') {
-                this.classList.remove('is-invalid');
-            }
-        });
-    });
+    // Salvar valor original do telefone para restauração
+    const telefoneInput = document.querySelector('input[name="telefone"]');
+    telefoneInput.setAttribute('data-original-value', telefoneInput.value);
 });
 </script>

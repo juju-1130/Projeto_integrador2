@@ -76,7 +76,7 @@ function mostrar_botao($tipo_botao) {
 
                 <?php if (!$logado): ?>
                     <li class="nav-item mx-0 mx-lg-1 w-auto">
-                        <a class="nav-link py-3 px-0 px-lg-3 rounded text-primary" href="<?= BASE_URL ?>/contato.php">Fale Conosco</a>
+                        <a class="nav-link py-3 px-0 px-lg-3 rounded text-primary" href="<?= BASE_URL ?>/vendedor.php">Fale Conosco</a>
                     </li>
                     <li class="nav-item mx-0 mx-lg-1 w-auto">
                         <a class="nav-link py-3 px-0 px-lg-3 rounded text-primary" href="#" data-bs-toggle="modal" data-bs-target="#cadastroOrcamentoModal">Orçamento</a>
@@ -93,7 +93,7 @@ function mostrar_botao($tipo_botao) {
 
                 <?php elseif ($logado && $tipo_usuario === 0): ?>
                     <li class="nav-item mx-0 mx-lg-1 w-auto">
-                        <a class="nav-link py-3 px-0 px-lg-3 rounded text-primary" href="<?= BASE_URL ?>/contato.php">Fale Conosco</a>
+                        <a class="nav-link py-3 px-0 px-lg-3 rounded text-primary" href="<?= BASE_URL ?>/vendedor.php">Fale Conosco</a>
                     </li>
                     <li class="nav-item mx-0 mx-lg-1 w-auto">
                         <a class="nav-link py-3 px-0 px-lg-3 rounded text-primary" href="<?= BASE_URL ?>/orcamento.php">Orçamento</a>

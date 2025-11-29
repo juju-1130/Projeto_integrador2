@@ -15,12 +15,11 @@ if (session_status() == PHP_SESSION_NONE) {
         <?php include __DIR__ . '/includes/navbar.php'; ?>
         <?php include __DIR__ . '/autenticacao/login.php'; ?>
         <?php include __DIR__ . '/autenticacao/cadastrar.php'; ?>
-        <?php include __DIR__ . '/autenticacao/esquecisenha.php'; ?>
         <!--Seção bem vindo-->
         <?php include __DIR__ . '/includes/funcoes.php'; ?>
-        <?php echo gerarTituloPagina("Seja Bem Vindo à <br> MK energia solar"); ?>
-
-        <!-- Masthead-->
+        <?php echo gerarTituloPagina("Seja Bem Vindo à <br> MK energia solar"); 
+        carregarFuncoesIndex();
+        ?>
         <header>
         <!-- Começo carrossel -->
             <div class="container-fluid px-0 mb-5">
@@ -180,162 +179,8 @@ if (session_status() == PHP_SESSION_NONE) {
         <?php include __DIR__ . '/includes/marcas.php'; ?>
         <!-- Footer-->
         <?php include __DIR__ . '/includes/footer.php'; ?>
-
-        <script>
-        <?php if (isset($_GET['show_login']) && $_GET['show_login'] == '1'): ?>
-            document.addEventListener('DOMContentLoaded', function() {
-                var loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
-                loginModal.show();
-                history.replaceState({}, document.title, '<?= BASE_URL ?>/index.php');
-            });
-        <?php endif; ?>
-        // Função para carregar e exibir projetos destacados
-        function carregarProjetosDestacados() {
-            const container = document.getElementById('projetos-destacados-container');
-            const semProjetosMsg = document.getElementById('sem-projetos-destacados');
-            const projetosDestacados = JSON.parse(localStorage.getItem('projetosDestacados')) || [];
-
-            // Limpar container
-            container.innerHTML = '';
-
-            if (projetosDestacados.length === 0) {
-                semProjetosMsg.style.display = 'block';
-                container.style.display = 'none';
-                return;
-            }
-
-            semProjetosMsg.style.display = 'none';
-            container.style.display = 'block';
-
-            // Gerar HTML para cada projeto destacado
-            projetosDestacados.forEach((projeto, index) => {
-                const isEven = index % 2 === 0;
-                
-                const projetoHTML = `
-                    <div class="project-card mb-5 p-4 rounded-3 bg-light">
-                        <div class="row align-items-center g-4">
-                            <div class="col-lg-5 col-md-6 ${!isEven ? 'order-lg-2 order-2' : ''}">
-                                <img src="${projeto.imagem}" 
-                                    class="img-fluid rounded shadow projeto-img" 
-                                    alt="${projeto.titulo}">
-                            </div>
-                            <div class="col-lg-7 col-md-6 ${!isEven ? 'order-lg-1 order-1' : ''}">
-                                <div class="${isEven ? 'ps-lg-4' : 'pe-lg-4'}">
-                                    <h3 class="project-title mb-3">${projeto.titulo}</h3>
-                                    <div class="project-features">
-                                        ${projeto.detalhes}
-                                    </div>
-                                    <div class="project-meta mt-3 small text-muted">
-                                        ${projeto.meta}
-                                    </div>
-                                    <div class="mt-3">
-                                        ${projeto.tags.join('')}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                container.innerHTML += projetoHTML;
-            });
-        }
-
-        // Carregar projetos destacados quando a página carregar
-        document.addEventListener('DOMContentLoaded', function() {
-            carregarProjetosDestacados();
-        });
-
-        // Atualizar projetos destacados quando o localStorage mudar (em outras abas)
-        window.addEventListener('storage', function(e) {
-            if (e.key === 'projetosDestacados') {
-                carregarProjetosDestacados();
-            }
-        });
-
-        // Gerenciar mensagens de login/cadastro
-        document.addEventListener('DOMContentLoaded', function() {
-            // Verificar se deve mostrar modal de login
-            <?php if (isset($_GET['show_login']) && $_GET['show_login'] == '1'): ?>
-                var loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
-                loginModal.show();
-                history.replaceState({}, document.title, '<?= BASE_URL ?>/index.php');
-            <?php endif; ?>
-            
-            // Verificar se deve mostrar modal de cadastro
-            <?php if (isset($_GET['show_cadastro']) && $_GET['show_cadastro'] == '1'): ?>
-                var cadastroModal = new bootstrap.Modal(document.getElementById('cadastrarModal'));
-                cadastroModal.show();
-                history.replaceState({}, document.title, '<?= BASE_URL ?>/index.php');
-            <?php endif; ?>
-
-            // Verificar mensagens do localStorage
-            const loginError = localStorage.getItem('loginError');
-            const loginSuccess = localStorage.getItem('loginSuccess');
-            const cadastroError = localStorage.getItem('cadastroError');
-            const cadastroSuccess = localStorage.getItem('cadastroSuccess');
-
-            if (loginError) {
-                mostrarMensagemLogin(loginError, 'error');
-                localStorage.removeItem('loginError');
-            }
-
-            if (loginSuccess) {
-                window.location.reload();
-                localStorage.removeItem('loginSuccess');
-            }
-
-            if (cadastroError) {
-                mostrarMensagemCadastro(cadastroError, 'error');
-                localStorage.removeItem('cadastroError');
-            }
-
-            if (cadastroSuccess) {
-                mostrarMensagemCadastro(cadastroSuccess, 'success');
-                localStorage.removeItem('cadastroSuccess');
-                
-                // Fechar modal de cadastro após 2 segundos e abrir login
-                setTimeout(() => {
-                    var cadastroModal = bootstrap.Modal.getInstance(document.getElementById('cadastrarModal'));
-                    var loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
-                    cadastroModal.hide();
-                    loginModal.show();
-                }, 2000);
-            }
-        });
-
-        function mostrarMensagemLogin(mensagem, tipo) {
-            const container = document.getElementById('login-message-container');
-            if (!container) return;
-            
-            container.innerHTML = `
-                <div class="alert alert-${tipo === 'error' ? 'danger' : 'success'} alert-dismissible fade show" role="alert">
-                    <i class="fas fa-exclamation-triangle me-2"></i>
-                    ${mensagem}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                </div>
-            `;
-        }
-
-        function mostrarMensagemCadastro(mensagem, tipo) {
-            const container = document.getElementById('cadastro-message-container');
-            if (!container) return;
-            
-            container.innerHTML = `
-                <div class="alert alert-${tipo === 'error' ? 'danger' : 'success'} alert-dismissible fade show" role="alert">
-                    <i class="fas ${tipo === 'error' ? 'fa-exclamation-triangle' : 'fa-check-circle'} me-2"></i>
-                    ${mensagem}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                </div>
-            `;
-        }
-        </script>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- * *                               SB Forms JS                               * *-->
-        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
     </body>
 </html>

@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // ====== DADOS DO FORMULÁRIO ======
     $modo_rapido = isset($_POST['modo_rapido']) ? (int)$_POST['modo_rapido'] : 0;
-    $cidade_cliente = isset($_POST['cidade_cliente']) ? trim($_POST['cidade_cliente']) : ''; // CORREÇÃO AQUI
+    $cidade_cliente = isset($_POST['cidade_cliente']) ? trim($_POST['cidade_cliente']) : ''; 
     $consumos = $_POST['consumo_mes'];
     $tarifa = isset($_POST['tarifa']) ? (float)$_POST['tarifa'] : 0.85;
     $telhado_id = (int)$_POST['telhado_id'];

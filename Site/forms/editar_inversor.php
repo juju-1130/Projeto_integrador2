@@ -81,13 +81,7 @@ if($_POST && isset($_POST['nome']) && isset($_POST['marca']) && isset($_POST['po
 
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Editar Inversor</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../css/styles.css" rel="stylesheet" />
-</head>
+    <?php include __DIR__ . '/../head.php'; ?>
 <body>
   <div class="container p-0">
     <div class="d-flex justify-content-between align-items-center bg-primary text-white px-3 py-2">

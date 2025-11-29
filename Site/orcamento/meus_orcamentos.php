@@ -73,10 +73,11 @@ $result = $stmt->get_result();
                                     <i class="fas fa-file-invoice-dollar"></i>
                                     <h3 class="text-muted">Nenhum orçamento encontrado</h3>
                                     <p class="text-muted mb-4">Você ainda não possui orçamentos gerados.</p>
-                                    <a href="orcamento.php" class="btn btn-primary btn-lg">
+                                    <a href="/../orcamento.php" class="btn btn-primary btn-lg">
                                         <i class="fas fa-calculator me-2"></i>Criar Primeiro Orçamento
                                     </a>
                                 </div>
+                                4
                             <?php endif; ?>
                         </div>
                     </div>

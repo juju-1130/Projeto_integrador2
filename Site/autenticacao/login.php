@@ -19,7 +19,6 @@
                         </form>
                         <div class="mt-3 text-center">
                             <a href="cadastrar.php" data-bs-toggle="modal" data-bs-target="#cadastrarModal" data-bs-dismiss="modal">Cadastrar</a> |
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#esqueciModal" data-bs-dismiss="modal">Esqueci a senha</a>
                         </div>
                         <!-- Container para mensagens de login -->
                         <div id="login-message-container" class="mb-3">
